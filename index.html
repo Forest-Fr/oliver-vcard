@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Oliver F - Sales Manager</title>
+
+  <!-- 引入Font Awesome图标（用于电话、邮箱、社交等图标） -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-..."
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    /* ======= 全局样式 ======= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    /* ======= 顶部渐变背景 ======= */
+    .top-header {
+      width: 100%;
+      background: linear-gradient(to right, #fa7f56, #b2503f);
+      text-align: center;
+      padding-top: 40px;
+      padding-bottom: 60px;
+      position: relative;
+    }
+    .header-overlay {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* 头像 */
+    .avatar-wrap {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 15px auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #fff;
+    }
+    .avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 姓名 + 职位 */
+    .person-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+    .person-title {
+      font-size: 1rem;
+      color: #fce9e4;
+      margin-bottom: 20px;
+    }
+
+    /* Call / Email 两个按钮 */
+    .action-row {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 20px;
+    }
+    .action-item {
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .action-item i {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+    .action-item span {
+      font-size: 0.9rem;
+    }
+
+    /* ======= 主体内容 ======= */
+    .info-section {
+      max-width: 600px;
+      margin: -40px auto 50px auto; /* 让卡片上移一点，覆盖到渐变背景 */
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    /* 简介文本 */
+    .description {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* 详细信息列表 */
+    .detail-list {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+    .detail-list li {
+      display: flex;
+      align-items: center;
+      border-top: 1px solid #eee;
+      padding: 15px 0;
+    }
+    .detail-list li:first-child {
+      border-top: none;
+    }
+    .detail-list i {
+      font-size: 1.2rem;
+      width: 40px;
+      text-align: center;
+      color: #888;
+    }
+    .info-value {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .info-label {
+      font-size: 0.85rem;
+      color: #888;
+    }
+    .info-value a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    /* 社交媒体图标 */
+    .social-section {
+      margin-bottom: 20px;
+    }
+    .social-section h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #666;
+    }
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      font-size: 1.6rem;
+    }
+    .social-icons a {
+      color: #555;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .social-icons a:hover {
+      color: #fa7f56;
+    }
+
+    /* 下载vCard按钮 */
+    .download-section {
+      text-align: center;
+    }
+    .download-btn {
+      display: inline-block;
+      background-color: #8a8a8a;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: background-color 0.2s ease;
+    }
+    .download-btn i {
+      margin-right: 8px;
+    }
+    .download-btn:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部区域：渐变背景 + 头像 + 姓名 + 职位 -->
+  <header class="top-header">
+    <div class="header-overlay">
+      <div class="avatar-wrap">
+        <!-- 可替换为你的实际LOGO或头像 -->
+        <img 
+          src="https://via.placeholder.com/120x120.png?text=DJA" 
+          alt="DJA logo" 
+          class="avatar" 
+        />
+      </div>
+      <h1 class="person-name">oliver F</h1>
+      <h2 class="person-title">sales manager</h2>
+
+      <div class="action-row">
+        <a href="tel:+1 281 783 9998" class="action-item">
+          <i class="fas fa-phone"></i>
+          <span>CALL</span>
+        </a>
+        <a href="mailto:Oliveroogle@gmail.com" class="action-item">
+          <i class="fas fa-envelope"></i>
+          <span>EMAIL</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主体内容区域 -->
+  <main class="info-section">
+    <!-- 简介/说明 -->
+    <div class="description">
+      <p>
+        DJA: PoE switch brand by Dijiean Tech. 
+        Visit: 
+        <a href="https://djakeji.com" target="_blank">djakeji.com</a>.
+      </p>
+    </div>
+
+    <!-- 详细信息列表 -->
+    <ul class="detail-list">
+      <li>
+        <i class="fas fa-phone-alt"></i>
+        <div>
+          <p class="info-value">+1 281 783 9998</p>
+          <p class="info-label">Mobile</p>
+        </div>
+      </li>
+      <li>
+        <i class="fas fa-envelope"></i>
+        <div>
+          <p class="info-value">Oliveroogle@gmail.com</p>
+          <p class="info-label">Email</p>
+        </div>
+      </li>
+      <li>
+        <i class="fas fa-briefcase"></i>
+        <div>
+          <p class="info-value">Shen Zhen Dijiean Technology Co., Ltd</p>
+          <p class="info-label">sales manager</p>
+        </div>
+      </li>
+      <li>
+        <i class="fas fa-globe"></i>
+        <div>
+          <p class="info-value">
+            <a href="https://en.djakeji.com" target="_blank">
+              en.djakeji.com
+            </a>
+          </p>
+          <p class="info-label">Website</p>
+        </div>
+      </li>
+    </ul>
+
+    <!-- 社交媒体 -->
+    <section class="social-section">
+      <h3>Social Media</h3>
+      <div class="social-icons">
+        <!-- WhatsApp示例 -->
+        <a href="https://wa.me/XXXXXXXXXXXX" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <!-- LinkedIn(更新) -->
+        <a 
+          href="https://linkedin.com/in/oliver-f-448b8a287" 
+          target="_blank"
+        >
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- 下载 vCard（数据URI） -->
+    <div class="download-section">
+      <a
+        class="download-btn"
+        download="OliverF.vcf"
+        href="data:text/vcard;base64,QkVHSU46VkNBUkQNClZFUlNJT046My4wDQpOOkY7b2xpdmVyOzs7DQpGTjpvbGl2ZXIgRg0KT1JHOlNoZW4gWmhlbiBEaWppZWFuIFRlY2hub2xvZ3kgQ28uLCBMdGQNClRJVExFOnNhbGVzIG1hbmFnZXINClRFTCBUWVBFPUNFTEwsVk9JQ0U6KzEgMjgxIDc4MyA5OTk4DQpFTUFJTCBUWVBFPVdPUks6T2xpdmVyb29nbGVAZ21haWwuY29tDQpVUkwgVFlQRT1XT1JLOmh0dHBzOi8vZW4uZGpha2VqaS5jb20NClNOT1RFOkRKQTogUG9FIHN3aXRjaCBicmFuZCBieSBEaWppZWFuIFRlY2guIFZpc2l0OiBodHRwczovL2RqYWtlamkuY29tDQpFTkQ6VkNBUkQN">
+        <i class="fas fa-user-plus"></i>
+        Download vCard
+      </a>
+    </div>
+  </main>
+
+  <!-- 可选的脚本逻辑 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Page loaded. Add any JS logic if needed.');
+      
+      const downloadBtn = document.querySelector('.download-btn');
+      downloadBtn.addEventListener('click', () => {
+        console.log('Downloading vCard...');
+      });
+    });
+  </script>
+
+</body>
+</html>
