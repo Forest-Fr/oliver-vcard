@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Oliver F - Sales Manager</title>
+  <title>Oliver F - VCard</title>
 
   <!-- 引入Font Awesome图标（用于电话、邮箱、社交等图标） -->
   <link
@@ -15,7 +15,9 @@
   />
 
   <style>
-    /* ======= 全局样式 ======= */
+    /********************
+     * 全局基础样式
+     ********************/
     * {
       margin: 0;
       padding: 0;
@@ -26,9 +28,70 @@
       background-color: #f5f5f5;
       color: #333;
       line-height: 1.4;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    /* ======= 顶部渐变背景 ======= */
+    /********************
+     * 顶部导航区域
+     ********************/
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .navbar .logo-wrap img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .navbar .menu {
+      display: flex;
+      gap: 20px;
+    }
+    .navbar .menu a {
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .navbar .menu a:hover {
+      color: #fa7f56;
+    }
+
+    /********************
+     * 主内容区：多“page-section”
+     ********************/
+    .page-section {
+      display: none; /* 默认隐藏，由JS控制显示哪一个 */
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .page-section.active {
+      display: block; /* 当前页面显示 */
+    }
+
+    /********************
+     * Home页面（电子名片）
+     ********************/
+    /* 顶部渐变背景 - 仅供 Home 使用 */
     .top-header {
       width: 100%;
       background: linear-gradient(to right, #fa7f56, #b2503f);
@@ -36,13 +99,16 @@
       padding-top: 40px;
       padding-bottom: 60px;
       position: relative;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      margin-top: -20px; /* 盖住page-section的padding */
+      margin-bottom: -20px;
     }
     .header-overlay {
       max-width: 600px;
       margin: 0 auto;
       position: relative;
     }
-
     /* 头像 */
     .avatar-wrap {
       width: 120px;
@@ -57,7 +123,6 @@
       height: 100%;
       object-fit: cover;
     }
-
     /* 姓名 + 职位 */
     .person-name {
       font-size: 1.5rem;
@@ -70,7 +135,6 @@
       color: #fce9e4;
       margin-bottom: 20px;
     }
-
     /* Call / Email 两个按钮 */
     .action-row {
       display: flex;
@@ -93,22 +157,14 @@
       font-size: 0.9rem;
     }
 
-    /* ======= 主体内容 ======= */
-    .info-section {
-      max-width: 600px;
-      margin: -40px auto 50px auto; /* 让卡片上移一点，覆盖到渐变背景 */
-      background-color: #fff;
-      border-radius: 8px;
+    /* 数字名片-内容详细 */
+    .info-section-home {
       padding: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    /* 简介文本 */
     .description {
       margin-bottom: 20px;
       text-align: center;
     }
-
-    /* 详细信息列表 */
     .detail-list {
       list-style: none;
       margin-bottom: 20px;
@@ -140,8 +196,7 @@
       color: #333;
       text-decoration: none;
     }
-
-    /* 社交媒体图标 */
+    /* 社交媒体 */
     .social-section {
       margin-bottom: 20px;
     }
@@ -163,7 +218,6 @@
     .social-icons a:hover {
       color: #fa7f56;
     }
-
     /* 下载vCard按钮 */
     .download-section {
       text-align: center;
@@ -184,125 +238,246 @@
     .download-btn:hover {
       background-color: #666;
     }
+
+    /********************
+     * About页面
+     ********************/
+    .about-content h2 {
+      margin-bottom: 10px;
+    }
+    .about-content p {
+      margin-bottom: 15px;
+    }
+
+    /********************
+     * Contact页面
+     ********************/
+    .contact-content h2 {
+      margin-bottom: 10px;
+    }
+    .contact-content p {
+      margin-bottom: 15px;
+    }
+    .contact-content form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .contact-content input,
+    .contact-content textarea {
+      padding: 8px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .contact-content button {
+      padding: 10px;
+      background-color: #fa7f56;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .contact-content button:hover {
+      background-color: #b2503f;
+    }
+
+    /********************
+     * 页脚
+     ********************/
+    footer {
+      margin-top: auto; /* 将页脚固定在页面底部 */
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+    }
   </style>
 </head>
 <body>
+  <!-- 顶部导航 -->
+  <nav class="navbar">
+    <div class="logo-wrap">
+      <!-- 使用本地文件 dja-logo.png，需要和 index.html 同级 -->
+      <img src="./dja-logo.png" alt="DJA Logo" />
+      <span>DJA Company</span>
+    </div>
+    <div class="menu">
+      <a href="#" data-page="home">Home</a>
+      <a href="#" data-page="about">About</a>
+      <a href="#" data-page="contact">Contact</a>
+    </div>
+  </nav>
 
-  <!-- 顶部区域：渐变背景 + 头像 + 姓名 + 职位 -->
-  <header class="top-header">
-    <div class="header-overlay">
-      <div class="avatar-wrap">
-        <!-- 可替换为你的实际LOGO或头像 -->
-        <img 
-          src="https://via.placeholder.com/120x120.png?text=DJA" 
-          alt="DJA logo" 
-          class="avatar" 
-        />
+  <!-- Home (数字名片) -->
+  <div class="page-section" id="homeSection">
+    <!-- 顶部渐变背景 + 头像 + 姓名 + 职位 + 按钮 -->
+    <header class="top-header">
+      <div class="header-overlay">
+        <div class="avatar-wrap">
+          <img
+            src="https://via.placeholder.com/120x120.png?text=DJA"
+            alt="DJA Avatar"
+            class="avatar"
+          />
+        </div>
+        <h1 class="person-name">oliver F</h1>
+        <h2 class="person-title">sales manager</h2>
+        <div class="action-row">
+          <a href="tel:+1 281 783 9998" class="action-item">
+            <i class="fas fa-phone"></i>
+            <span>CALL</span>
+          </a>
+          <a href="mailto:Oliveroogle@gmail.com" class="action-item">
+            <i class="fas fa-envelope"></i>
+            <span>EMAIL</span>
+          </a>
+        </div>
       </div>
-      <h1 class="person-name">oliver F</h1>
-      <h2 class="person-title">sales manager</h2>
+    </header>
 
-      <div class="action-row">
-        <a href="tel:+1 281 783 9998" class="action-item">
-          <i class="fas fa-phone"></i>
-          <span>CALL</span>
-        </a>
-        <a href="mailto:Oliveroogle@gmail.com" class="action-item">
+    <!-- 数字名片详细内容 -->
+    <div class="info-section-home">
+      <!-- 简介 -->
+      <div class="description">
+        <p>
+          DJA: PoE switch brand by Dijiean Tech. 
+          Visit: 
+          <a href="https://djakeji.com" target="_blank">djakeji.com</a>.
+        </p>
+      </div>
+      <!-- 详情列表 -->
+      <ul class="detail-list">
+        <li>
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <p class="info-value">+1 281 783 9998</p>
+            <p class="info-label">Mobile</p>
+          </div>
+        </li>
+        <li>
           <i class="fas fa-envelope"></i>
-          <span>EMAIL</span>
+          <div>
+            <p class="info-value">Oliveroogle@gmail.com</p>
+            <p class="info-label">Email</p>
+          </div>
+        </li>
+        <li>
+          <i class="fas fa-briefcase"></i>
+          <div>
+            <p class="info-value">Shen Zhen Dijiean Technology Co., Ltd</p>
+            <p class="info-label">sales manager</p>
+          </div>
+        </li>
+        <li>
+          <i class="fas fa-globe"></i>
+          <div>
+            <p class="info-value">
+              <a href="https://en.djakeji.com" target="_blank">
+                en.djakeji.com
+              </a>
+            </p>
+            <p class="info-label">Website</p>
+          </div>
+        </li>
+      </ul>
+      <!-- 社交媒体 -->
+      <section class="social-section">
+        <h3>Social Media</h3>
+        <div class="social-icons">
+          <!-- WhatsApp示例 -->
+          <a href="https://wa.me/XXXXXXXXXXXX" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <!-- LinkedIn(更新) -->
+          <a 
+            href="https://linkedin.com/in/oliver-f-448b8a287" 
+            target="_blank"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- 下载 vCard（数据URI） -->
+      <div class="download-section">
+        <a
+          class="download-btn"
+          download="OliverF.vcf"
+          href="data:text/vcard;base64,QkVHSU46VkNBUkQNClZFUlNJT046My4wDQpOOkY7b2xpdmVyOzs7DQpGTjpvbGl2ZXIgRg0KT1JHOlNoZW4gWmhlbiBEaWppZWFuIFRlY2hub2xvZ3kgQ28uLCBMdGQNClRJVExFOnNhbGVzIG1hbmFnZXINClRFTCBUWVBFPUNFTEwsVk9JQ0U6KzEgMjgxIDc4MyA5OTk4DQpFTUFJTCBUWVBFPVdPUks6T2xpdmVyb29nbGVAZ21haWwuY29tDQpVUkwgVFlQRT1XT1JLOmh0dHBzOi8vZW4uZGpha2VqaS5jb20NClNOT1RFOkRKQTogUG9FIHN3aXRjaCBicmFuZCBieSBEaWppZWFuIFRlY2guIFZpc2l0OiBodHRwczovL2RqYWtlamkuY29tDQpFTkQ6VkNBUkQN"
+        >
+          <i class="fas fa-user-plus"></i>
+          Download vCard
         </a>
       </div>
     </div>
-  </header>
+  </div><!-- /Home-->
 
-  <!-- 主体内容区域 -->
-  <main class="info-section">
-    <!-- 简介/说明 -->
-    <div class="description">
+  <!-- About页面 -->
+  <div class="page-section" id="aboutSection">
+    <div class="about-content">
+      <h2>About DJA Company</h2>
       <p>
-        DJA: PoE switch brand by Dijiean Tech. 
-        Visit: 
-        <a href="https://djakeji.com" target="_blank">djakeji.com</a>.
+        We are a leading tech solutions provider, specialized in PoE switching products and network infrastructure.
+        Our mission is to deliver top-quality devices and outstanding customer service to our global clients.
+      </p>
+      <p>
+        Established in 2008, we have rapidly expanded to serve markets worldwide, offering innovative products
+        under the <strong>DJA</strong> brand.
       </p>
     </div>
+  </div>
 
-    <!-- 详细信息列表 -->
-    <ul class="detail-list">
-      <li>
-        <i class="fas fa-phone-alt"></i>
-        <div>
-          <p class="info-value">+1 281 783 9998</p>
-          <p class="info-label">Mobile</p>
-        </div>
-      </li>
-      <li>
-        <i class="fas fa-envelope"></i>
-        <div>
-          <p class="info-value">Oliveroogle@gmail.com</p>
-          <p class="info-label">Email</p>
-        </div>
-      </li>
-      <li>
-        <i class="fas fa-briefcase"></i>
-        <div>
-          <p class="info-value">Shen Zhen Dijiean Technology Co., Ltd</p>
-          <p class="info-label">sales manager</p>
-        </div>
-      </li>
-      <li>
-        <i class="fas fa-globe"></i>
-        <div>
-          <p class="info-value">
-            <a href="https://en.djakeji.com" target="_blank">
-              en.djakeji.com
-            </a>
-          </p>
-          <p class="info-label">Website</p>
-        </div>
-      </li>
-    </ul>
-
-    <!-- 社交媒体 -->
-    <section class="social-section">
-      <h3>Social Media</h3>
-      <div class="social-icons">
-        <!-- WhatsApp示例 -->
-        <a href="https://wa.me/XXXXXXXXXXXX" target="_blank">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-        <!-- LinkedIn(更新) -->
-        <a 
-          href="https://linkedin.com/in/oliver-f-448b8a287" 
-          target="_blank"
-        >
-          <i class="fab fa-linkedin"></i>
-        </a>
-      </div>
-    </section>
-
-    <!-- 下载 vCard（数据URI） -->
-    <div class="download-section">
-      <a
-        class="download-btn"
-        download="OliverF.vcf"
-        href="data:text/vcard;base64,QkVHSU46VkNBUkQNClZFUlNJT046My4wDQpOOkY7b2xpdmVyOzs7DQpGTjpvbGl2ZXIgRg0KT1JHOlNoZW4gWmhlbiBEaWppZWFuIFRlY2hub2xvZ3kgQ28uLCBMdGQNClRJVExFOnNhbGVzIG1hbmFnZXINClRFTCBUWVBFPUNFTEwsVk9JQ0U6KzEgMjgxIDc4MyA5OTk4DQpFTUFJTCBUWVBFPVdPUks6T2xpdmVyb29nbGVAZ21haWwuY29tDQpVUkwgVFlQRT1XT1JLOmh0dHBzOi8vZW4uZGpha2VqaS5jb20NClNOT1RFOkRKQTogUG9FIHN3aXRjaCBicmFuZCBieSBEaWppZWFuIFRlY2guIFZpc2l0OiBodHRwczovL2RqYWtlamkuY29tDQpFTkQ6VkNBUkQN">
-        <i class="fas fa-user-plus"></i>
-        Download vCard
-      </a>
+  <!-- Contact页面 -->
+  <div class="page-section" id="contactSection">
+    <div class="contact-content">
+      <h2>Contact Us</h2>
+      <p>If you have any questions or business inquiries, please reach out:</p>
+      <form>
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
     </div>
-  </main>
+  </div>
 
-  <!-- 可选的脚本逻辑 -->
+  <!-- 页脚 -->
+  <footer>
+    <p>&copy; 2024 DJA Company. All Rights Reserved.</p>
+  </footer>
+
   <script>
+    // 页面切换逻辑：单页切换
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('Page loaded. Add any JS logic if needed.');
-      
-      const downloadBtn = document.querySelector('.download-btn');
-      downloadBtn.addEventListener('click', () => {
-        console.log('Downloading vCard...');
+      const links = document.querySelectorAll('.menu a');
+      const sections = document.querySelectorAll('.page-section');
+
+      // 默认显示 home 页面
+      showPage('home');
+
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const page = link.getAttribute('data-page');
+          showPage(page);
+        });
       });
+
+      function showPage(pageId) {
+        sections.forEach(sec => sec.classList.remove('active'));
+        if(pageId === 'home') {
+          document.getElementById('homeSection').classList.add('active');
+        } else if(pageId === 'about') {
+          document.getElementById('aboutSection').classList.add('active');
+        } else if(pageId === 'contact') {
+          document.getElementById('contactSection').classList.add('active');
+        }
+      }
     });
   </script>
-
 </body>
 </html>
