@@ -9,7 +9,7 @@
   <meta name="description" content="Professional digital business card of Oliver F, Sales Manager at DJA. Connect via WhatsApp, LinkedIn, or email. Download vCard for easy contact."/>
   <meta name="keywords" content="Oliver F, Sales Manager, DJA, Digital Business Card, vCard, WhatsApp, LinkedIn, Contact"/>
 
-  <!-- Font Awesome for basic icons (phone, email, etc.) -->
+  <!-- Basic Font Awesome (optional, for phone/mail icons only) -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -19,7 +19,7 @@
   />
 
   <style>
-    /* =========== Global Reset & Basic =========== */
+    /* ===== Global Reset & Basic ===== */
     * {
       margin: 0;
       padding: 0;
@@ -44,7 +44,7 @@
       height: auto;
     }
 
-    /* =========== Navbar =========== */
+    /* ===== Navbar ===== */
     .navbar {
       background-color: #333;
       color: #fff;
@@ -52,9 +52,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
     .navbar .logo-wrap img {
       width: 50px;
@@ -62,25 +59,25 @@
       object-fit: cover;
       border-radius: 4px;
     }
-    .navbar .menu {
+    .menu {
       display: flex;
       gap: 20px;
     }
-    .navbar .menu a {
+    .menu a {
       color: #fff;
       font-weight: 500;
       padding: 8px 12px;
       border-radius: 4px;
-      transition: background-color 0.2s, color 0.2s;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
-    .navbar .menu a:hover {
+    .menu a:hover {
       background-color: #fa7f56;
       color: #fff;
     }
 
-    /* =========== Page Sections =========== */
+    /* ===== Page Sections ===== */
     .page-section {
-      display: none; /* Controlled via JS */
+      display: none;
       max-width: 900px;
       margin: 20px auto;
       background-color: #fff;
@@ -92,13 +89,12 @@
       display: block;
     }
 
-    /* =========== Home Section =========== */
+    /* ===== Home Section (Improved Orange Header) ===== */
     .top-header {
       width: 100%;
       background: linear-gradient(to right, #fa7f56, #b2503f);
       text-align: center;
-      padding-top: 40px;
-      padding-bottom: 60px;
+      padding: 30px 15px; /* Reduced height to make it less tall */
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
       margin-top: -20px;
@@ -108,16 +104,14 @@
     .header-overlay {
       max-width: 600px;
       margin: 0 auto;
-      position: relative;
-      padding: 0 15px;
     }
     .avatar-wrap {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 15px auto;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 10px auto;
       border-radius: 50%;
       overflow: hidden;
-      border: 4px solid #fff;
+      border: 3px solid #fff;
     }
     .avatar {
       width: 100%;
@@ -125,21 +119,23 @@
       object-fit: cover;
     }
     .person-name {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: bold;
       color: #fff;
       margin-bottom: 5px;
     }
     .person-title {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: #fce9e4;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
+
+    /* Action row with stronger highlight */
     .action-row {
       display: flex;
       justify-content: center;
-      gap: 50px;
-      margin-top: 20px;
+      gap: 30px;
+      margin-top: 15px;
     }
     .action-item {
       color: #fff;
@@ -148,21 +144,24 @@
       flex-direction: column;
       align-items: center;
       transition: transform 0.2s, background-color 0.2s;
-      padding: 10px;
+      padding: 8px 12px;
       border-radius: 4px;
-    }
-    .action-item:hover {
-      transform: scale(1.1);
-      background-color: rgba(255,255,255,0.2);
+      border: 2px solid #fff; /* Make the button more prominent */
     }
     .action-item i {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       margin-bottom: 5px;
     }
     .action-item span {
-      font-size: 1rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .action-item:hover {
+      background-color: rgba(255,255,255,0.3);
+      transform: scale(1.05);
     }
 
+    /* Info Section */
     .info-section-home {
       padding: 20px;
     }
@@ -172,7 +171,7 @@
       font-size: 1.1rem;
     }
 
-    /* 左侧图标可视化化 + 信息块儿 */
+    /* Icon + Info Blocks */
     .detail-list {
       list-style: none;
       margin-bottom: 20px;
@@ -186,7 +185,7 @@
     .detail-list li:first-child {
       border-top: none;
     }
-    .detail-list .icon-box {
+    .icon-box {
       width: 50px;
       height: 50px;
       background-color: #fafafa;
@@ -198,8 +197,8 @@
       box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
     .detail-list i {
-      font-size: 1.5rem;
-      color: #f7774d; /* 自定义颜色 */
+      font-size: 1.4rem;
+      color: #f7774d;
     }
     .info-text {
       display: flex;
@@ -216,10 +215,8 @@
     }
 
     /* Social Media Section */
-    .social-section {
-      margin-bottom: 20px;
-    }
     .social-section h3 {
+      text-align: center;
       font-size: 1rem;
       margin-bottom: 10px;
       color: #666;
@@ -262,7 +259,7 @@
       align-items: center;
       background-color: #fa7f56;
       color: #fff;
-      padding: 12px 25px;
+      padding: 10px 25px;
       border-radius: 4px;
       font-size: 1rem;
       transition: background-color 0.2s ease, transform 0.2s;
@@ -271,36 +268,32 @@
     }
     .download-btn i {
       margin-right: 8px;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
     }
     .download-btn:hover {
       background-color: #b2503f;
       transform: scale(1.03);
     }
 
-    /* =========== Modals =========== */
+    /* Modals */
     .modal {
       display: none;
       position: fixed;
-      z-index: 1200;
-      left: 0;
+      z-index: 1000;
+      left: 0; 
       top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
+      width: 100%; 
+      height: 100%; 
       background-color: rgba(0,0,0,0.5);
-      transition: opacity 0.3s ease;
     }
     .modal-content {
       background-color: #fff;
-      margin: 10% auto;
-      padding: 30px;
-      border: none;
+      margin: 8% auto;
+      padding: 25px;
       width: 90%;
       max-width: 400px;
       border-radius: 8px;
       text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       position: relative;
       animation: fadeIn 0.3s;
     }
@@ -324,34 +317,33 @@
       display: block;
       width: 100%;
       padding: 12px;
-      margin: 15px 0;
-      background-color: #fa7f56;
-      color: #fff;
+      margin: 10px 0;
       border: none;
       border-radius: 4px;
       font-size: 1rem;
       cursor: pointer;
-      transition: background-color 0.2s ease, transform 0.2s;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    /* Different color styles for modal buttons */
+    .modal-button.email {
+      background-color: #f08d49; /* Another shade of orange */
+      color: #fff;
+    }
+    .modal-button.iphone {
+      background-color: #6ca4f8; /* A soft blue to differentiate */
+      color: #fff;
     }
     .modal-button:hover {
-      background-color: #b2503f;
-      transform: scale(1.02);
-    }
-    #emailStatus,
-    #contactStatus {
-      margin-top: 10px;
-      font-size: 0.9rem;
+      transform: scale(1.03);
     }
 
-    /* =========== Contact Section =========== */
-    .contact-content h2 {
-      margin-bottom: 10px;
-      text-align: center;
+    /* Contact Section */
+    .contact-content {
+      padding: 10px;
     }
-    .contact-content p {
-      margin-bottom: 15px;
+    .contact-content h2 {
       text-align: center;
-      font-size: 1.1rem;
+      margin-bottom: 10px;
     }
     .contact-content form {
       display: flex;
@@ -366,7 +358,6 @@
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 4px;
-      resize: vertical;
     }
     .contact-content button {
       padding: 12px;
@@ -383,7 +374,7 @@
       transform: scale(1.02);
     }
 
-    /* =========== Footer =========== */
+    /* Footer */
     footer {
       margin-top: auto;
       background-color: #333;
@@ -392,21 +383,20 @@
       padding: 15px 0;
     }
 
-    /* =========== Responsive =========== */
+    /* Responsive */
     @media (max-width: 600px) {
       .action-row {
         flex-direction: column;
         gap: 20px;
       }
-      .social-icons {
+      .detail-list li {
         flex-direction: column;
-        gap: 15px;
+        align-items: flex-start;
       }
-      .modal-content {
-        margin: 20% auto;
+      .detail-list li .icon-box {
+        margin-bottom: 5px;
       }
     }
-
   </style>
 </head>
 <body>
@@ -434,11 +424,13 @@
         <h1 class="person-name">Oliver F</h1>
         <h2 class="person-title">Sales Manager</h2>
         <div class="action-row">
+          <!-- If the email is fixed to Oliver, just do a mailto link to Oliver's address -->
           <a href="tel:+12817839998" class="action-item" aria-label="Call Oliver F">
             <i class="fas fa-phone"></i>
             <span>CALL</span>
           </a>
-          <a href="mailto:Oliveroogle@gmail.com" class="action-item" aria-label="Email Oliver F">
+          <!-- Force mailto to Oliver -->
+          <a href="mailto:Oliveroogle@gmail.com?subject=Hello Oliver" class="action-item" aria-label="Email Oliver F">
             <i class="fas fa-envelope"></i>
             <span>EMAIL</span>
           </a>
@@ -446,7 +438,6 @@
       </div>
     </header>
 
-    <!-- Info Section -->
     <div class="info-section-home">
       <div class="description">
         <p>
@@ -454,7 +445,8 @@
           <a href="https://djakeji.com" target="_blank" rel="noopener">djakeji.com</a>.
         </p>
       </div>
-      <!-- Visual Icon + Data -->
+
+      <!-- Icon + Info List -->
       <ul class="detail-list">
         <li>
           <div class="icon-box">
@@ -470,7 +462,9 @@
             <i class="fas fa-envelope"></i>
           </div>
           <div class="info-text">
-            <p class="info-value"><a href="mailto:Oliveroogle@gmail.com">Oliveroogle@gmail.com</a></p>
+            <p class="info-value">
+              <a href="mailto:Oliveroogle@gmail.com?subject=Regarding%20DJA%20Services">Oliveroogle@gmail.com</a>
+            </p>
             <p class="info-label">Email</p>
           </div>
         </li>
@@ -502,10 +496,12 @@
       <section class="social-section">
         <h3>Social Media</h3>
         <div class="social-icons">
+          <!-- WhatsApp -->
           <a href="https://wa.me/+12817839998" target="_blank" aria-label="WhatsApp">
             <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp Icon" />
             <span>WhatsApp</span>
           </a>
+          <!-- LinkedIn -->
           <a 
             href="https://linkedin.com/in/oliver-f-448b8a287" 
             target="_blank"
@@ -517,7 +513,7 @@
         </div>
       </section>
 
-      <!-- Download vCard Button -->
+      <!-- Download vCard -->
       <div class="download-section">
         <button id="downloadVCardBtn" class="download-btn">
           <i class="fas fa-user-plus"></i>
@@ -525,17 +521,17 @@
         </button>
       </div>
     </div>
-  </div><!-- /Home -->
+  </div> <!-- /Home Section -->
 
   <!-- Modal: vCard Download Options -->
   <div id="vcardModal" class="modal" aria-hidden="true">
     <div class="modal-content">
       <span class="close" aria-label="Close">&times;</span>
-      <!-- 新增提示文字：Save Contact Data -->
       <h2>Save Contact Data</h2>
-      <p style="margin-bottom: 10px;">How would you like to save contact data?</p>
-      <button id="savePhoneBtn" class="modal-button">Save to Phone</button>
-      <button id="saveEmailBtn" class="modal-button">Save via Email</button>
+      <p style="margin-bottom:10px;">How would you like to save contact data?</p>
+      <!-- Differently colored buttons for clarity -->
+      <button id="savePhoneBtn" class="modal-button iphone">To My iPhone</button>
+      <button id="saveEmailBtn" class="modal-button email">Save via Email</button>
     </div>
   </div>
 
@@ -546,7 +542,7 @@
       <h2>Send vCard via Email</h2>
       <form id="emailForm">
         <input type="email" name="user_email" placeholder="Enter your email" required />
-        <button type="submit" class="modal-button">Send Email</button>
+        <button type="submit" class="modal-button email">Send Email</button>
       </form>
       <p id="emailStatus"></p>
     </div>
@@ -557,12 +553,13 @@
     <div class="about-content">
       <h2>About DJA Company</h2>
       <p>
-        We are a leading technology solutions provider specializing in PoE switching products and network infrastructure.
-        Our mission is to deliver top-quality devices and outstanding customer service to our global clients.
+        We are a leading technology solutions provider specialized in PoE switching products 
+        and network infrastructure. Our mission is to deliver top-quality devices 
+        and outstanding customer service to our global clients.
       </p>
       <p>
-        Established in 2011, we have rapidly expanded to serve markets worldwide, offering innovative products under the 
-        <strong>DJA</strong> brand.
+        Established in 2011, we have rapidly expanded to serve worldwide markets, 
+        offering innovative solutions under the <strong>DJA</strong> brand.
       </p>
     </div>
   </div>
@@ -571,7 +568,7 @@
   <div class="page-section" id="contactSection">
     <div class="contact-content">
       <h2>Contact Us</h2>
-      <p>If you have any questions or business inquiries, please fill out the form below:</p>
+      <p>If you have any questions or business inquiries, feel free to reach out:</p>
       <form id="contactForm">
         <input type="text" name="from_name" placeholder="Your Name" required />
         <input type="email" name="reply_to" placeholder="Your Email" required />
@@ -591,7 +588,7 @@
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function(){
-      emailjs.init("HXCThZROMytOt-wyp"); // Initialize EmailJS with your Public Key
+      emailjs.init("HXCThZROMytOt-wyp"); 
     })();
   </script>
 
@@ -603,6 +600,12 @@
       const emailModal = document.getElementById('emailModal');
       const downloadVCardBtn = document.getElementById('downloadVCardBtn');
       const closeButtons = document.querySelectorAll('.close');
+      const savePhoneBtn = document.getElementById('savePhoneBtn');
+      const saveEmailBtn = document.getElementById('saveEmailBtn');
+      const emailForm = document.getElementById('emailForm');
+      const emailStatus = document.getElementById('emailStatus');
+      const contactForm = document.getElementById('contactForm');
+      const contactStatus = document.getElementById('contactStatus');
 
       // Default show Home
       showPage('home');
@@ -620,33 +623,27 @@
         const activeSection = document.getElementById(`${pageId}Section`);
         if (activeSection) {
           activeSection.classList.add('active');
-          // 可选：平滑滚动
+          // Smooth scroll
           activeSection.scrollIntoView({ behavior: 'smooth' });
         }
       }
 
-      // Show vCard modal
+      // Download VCard click
       downloadVCardBtn.onclick = () => {
         vcardModal.style.display = "block";
-      }
+      };
 
+      // Modal close
       closeButtons.forEach(btn => {
         btn.onclick = () => {
           vcardModal.style.display = "none";
           emailModal.style.display = "none";
-        }
+        };
       });
-
       window.onclick = (event) => {
-        if (event.target === vcardModal) {
-          vcardModal.style.display = "none";
-        }
-        if (event.target === emailModal) {
-          emailModal.style.display = "none";
-        }
+        if (event.target === vcardModal) vcardModal.style.display = "none";
+        if (event.target === emailModal) emailModal.style.display = "none";
       };
-
-      // ESC key close
       document.addEventListener('keydown', (event) => {
         if (event.key === "Escape") {
           vcardModal.style.display = "none";
@@ -654,75 +651,65 @@
         }
       });
 
-      // Save to Phone
-      const savePhoneBtn = document.getElementById('savePhoneBtn');
+      // Save to iPhone
       savePhoneBtn.onclick = () => {
         vcardModal.style.display = "none";
-        // 下载或打开OliverF.vcf
+        // Download or open vCard
         window.location.href = 'OliverF.vcf';
       };
 
       // Save via Email
-      const saveEmailBtn = document.getElementById('saveEmailBtn');
       saveEmailBtn.onclick = () => {
         vcardModal.style.display = "none";
         emailModal.style.display = "block";
       };
 
       // Email vCard
-      const emailForm = document.getElementById('emailForm');
-      const emailStatus = document.getElementById('emailStatus');
-
-      emailForm.addEventListener('submit', function(event) {
+      emailForm.addEventListener('submit', (event) => {
         event.preventDefault();
         emailStatus.textContent = "Sending...";
         emailStatus.style.color = "black";
 
-        // Send mail via EmailJS
-        emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
+        emailjs.send('service_1ffkva1','template_ypdj9n9',{
           to_email: emailForm.user_email.value,
-          message: 'Please download your vCard here: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
+          message: 'Please download your vCard from: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
         })
-        .then(function(response) {
-           console.log('SUCCESS!', response.status, response.text);
-           emailStatus.style.color = "green";
-           emailStatus.textContent = "Email sent successfully! Please check your inbox.";
-           emailForm.reset();
-           // 3秒后关闭Modal
-           setTimeout(() => {
-             emailModal.style.display = "none";
-           }, 3000);
-        }, function(error) {
-           console.log('FAILED...', error);
-           emailStatus.style.color = "red";
-           emailStatus.textContent = "Failed to send email. Please try again later.";
+        .then((response) => {
+          console.log('SUCCESS!', response.status, response.text);
+          emailStatus.style.color = "green";
+          emailStatus.textContent = "Email sent successfully! Please check your inbox.";
+          emailForm.reset();
+          // close after 3s
+          setTimeout(() => {
+            emailModal.style.display = "none";
+          }, 3000);
+        }, (error) => {
+          console.log('FAILED...', error);
+          emailStatus.style.color = "red";
+          emailStatus.textContent = "Failed to send email. Please try again later.";
         });
       });
 
       // Contact Form
-      const contactForm = document.getElementById('contactForm');
-      const contactStatus = document.getElementById('contactStatus');
-
-      contactForm.addEventListener('submit', function(event) {
+      contactForm.addEventListener('submit', (event) => {
         event.preventDefault();
         contactStatus.textContent = "Sending...";
         contactStatus.style.color = "black";
 
-        // Use contact template
         emailjs.send('service_1ffkva1', 'template_contact', {
           from_name: contactForm.from_name.value,
           reply_to: contactForm.reply_to.value,
           message: contactForm.message.value,
         })
-        .then(function(response) {
-           console.log('SUCCESS!', response.status, response.text);
-           contactStatus.style.color = "green";
-           contactStatus.textContent = "Your message has been sent successfully! We'll get back to you soon.";
-           contactForm.reset();
-        }, function(error) {
-           console.log('FAILED...', error);
-           contactStatus.style.color = "red";
-           contactStatus.textContent = "Failed to send your message. Please try again later.";
+        .then((response) => {
+          console.log('SUCCESS!', response.status, response.text);
+          contactStatus.style.color = "green";
+          contactStatus.textContent = "Your message has been sent successfully! We will get back to you soon.";
+          contactForm.reset();
+        }, (error) => {
+          console.log('FAILED...', error);
+          contactStatus.style.color = "red";
+          contactStatus.textContent = "Failed to send your message. Please try again later.";
         });
       });
     });
