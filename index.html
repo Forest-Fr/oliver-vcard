@@ -555,7 +555,7 @@
       const links = document.querySelectorAll('.menu a');
       const sections = document.querySelectorAll('.page-section');
 
-      // Default to Home section
+      // 默认显示Home页面
       showPage('home');
 
       links.forEach(link => {
@@ -571,7 +571,7 @@
         document.getElementById(`${pageId}Section`).classList.add('active');
       }
 
-      // Modal Logic
+      // 模态框逻辑
       const vcardModal = document.getElementById('vcardModal');
       const emailModal = document.getElementById('emailModal');
       const downloadVCardBtn = document.getElementById('downloadVCardBtn');
@@ -597,7 +597,7 @@
         }
       }
 
-      // Enable closing modals with ESC key
+      // 按下ESC键关闭模态框
       document.addEventListener('keydown', function(event) {
         if (event.key === "Escape") {
           vcardModal.style.display = "none";
@@ -605,21 +605,21 @@
         }
       });
 
-      // Save to Phone
+      // 保存到手机
       const savePhoneBtn = document.getElementById('savePhoneBtn');
       savePhoneBtn.onclick = () => {
         vcardModal.style.display = "none";
-        window.location.href = 'OliverF.vcf'; // Ensure OliverF.vcf is in the same directory
+        window.location.href = 'OliverF.vcf'; // 确保OliverF.vcf在同一目录下
       }
 
-      // Save via Email
+      // 通过邮件保存
       const saveEmailBtn = document.getElementById('saveEmailBtn');
       saveEmailBtn.onclick = () => {
         vcardModal.style.display = "none";
         emailModal.style.display = "block";
       }
 
-      // Handle vCard Email Submission
+      // 处理vCard邮件提交
       const emailForm = document.getElementById('emailForm');
       const emailStatus = document.getElementById('emailStatus');
 
@@ -629,7 +629,7 @@
         emailStatus.style.color = "black";
 
         emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
-          to_email: emailForm.user_email.value,
+          to_email: emailForm.user_email.value, // 动态接收用户输入的邮箱
           message: 'Please download Oliver vCard from the following link: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
         })
         .then(function(response) {
@@ -644,7 +644,7 @@
         });
       });
 
-      // Handle Contact Form Submission
+      // 处理联系表单提交
       const contactForm = document.getElementById('contactForm');
       const contactStatus = document.getElementById('contactStatus');
 
@@ -653,7 +653,7 @@
         contactStatus.textContent = "Sending...";
         contactStatus.style.color = "black";
 
-        emailjs.send('service_1ffkva1', 'template_contact', {
+        emailjs.send('service_1ffkva1', 'template_contact', { // 使用不同的模板ID
           from_name: contactForm.from_name.value,
           reply_to: contactForm.reply_to.value,
           message: contactForm.message.value,
