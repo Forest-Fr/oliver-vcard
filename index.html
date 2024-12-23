@@ -303,7 +303,7 @@
       margin: 8% auto;
       padding: 25px;
       width: 90%;
-      max-width: 480px; /* wider for safe input */
+      max-width: 600px; /* 调整为更宽 */
       border-radius: 8px;
       text-align: center;
       position: relative;
@@ -340,7 +340,7 @@
       transform: scale(1.03);
     }
     .modal-button.iphone {
-      background: #6ca4f8; /* bluish */
+      background: #6ca4f8; /* 蓝色 */
       color: #fff;
     }
     .modal-button.email {
@@ -434,14 +434,18 @@
       .detail-list .icon-box {
         margin-bottom: 5px;
       }
+      .modal-content {
+        max-width: 90%; /* 更适合手机 */
+      }
     }
+
   </style>
 </head>
 <body>
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo-wrap">
-      <!-- DJA-logo.png (ensure the path is correct or use inline SVG) -->
+      <!-- DJA-logo.png (确保路径正确，或使用内联 SVG) -->
       <img src="DJA-logo.png" alt="DJA Logo" onerror="this.style.display='none'">
     </div>
     <div class="menu">
@@ -453,7 +457,7 @@
 
   <!-- HOME SECTION -->
   <div class="page-section active" id="homeSection">
-    <!-- Removed the extra 'X' button in the orange header area -->
+    <!-- 不需要 'X' 按钮 -->
 
     <header class="top-header">
       <div class="header-overlay">
@@ -469,7 +473,7 @@
             <i class="fas fa-phone"></i>
             <span>CALL</span>
           </a>
-          <a href="mailto:oliveroogle@gmail.com?subject=Hello%20Oliver" class="action-item" aria-label="Email Oliver F">
+          <a href="#" id="openEmailModal" class="action-item" aria-label="Email Oliver F">
             <i class="fas fa-envelope"></i>
             <span>EMAIL</span>
           </a>
@@ -490,7 +494,7 @@
             <!-- 使用内联 SVG 确保图标在任何设备上都能加载 -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
               <path fill="#f7774d" d="M391.8 312.9c-19.3-10.5-43.3-16.7-68.5-16.7-25.1 0-49.1 6.2-68.5 16.7-19.3 10.5-35.2 25.3-45.7 44.6-10.5 19.3-16.7 43.3-16.7 68.5 0 25.1 6.2 49.1 16.7 68.5 10.5 19.3 25.3 35.2 44.6 45.7 19.3 10.5 43.3 16.7 68.5 16.7 25.1 0 49.1-6.2 68.5-16.7 19.3-10.5 35.2-25.3 45.7-45.7 10.5-19.3 16.7-43.3 16.7-68.5 0-25.2-6.2-49.2-16.7-68.5-10.5-19.3-25.3-35.2-45.7-45.7zM512 256c0 141.4-114.6 256-256 256S0 397.4 0 256 114.6 0 256 0s256 114.6 256 256z"/>
-              <path fill="#f7774d" d="M394.4 145.6c-11.3-11.3-29.7-11.3-41 0l-74.6 74.6c-4.7 4.7-7 10.9-6.6 17.3l1.2 25.6c.3 14.7-11.9 27.2-26.6 27.2h-48c-14.7 0-27-12.5-26.6-27.2l1.2-25.6c.4-6.4-1.9-12.6-6.6-17.3L158.6 145.6c-11.3-11.3-29.7-11.3-41 0s-11.3 29.7 0 41l74.6 74.6c4.7 4.7 7 10.9 6.6 17.3l-1.2 25.6c-.3 14.7 11.9 27.2 26.6 27.2h48c14.7 0 27-12.5 26.6-27.2l-1.2-25.6c-.4-6.4 1.9-12.6 6.6-17.3l74.6-74.6c11.3-11.3 11.3-29.7 0-41z"/>
+              <path fill="#f7774d" d="M502.3 190.8c3.9-10.3 0.2-21.4-9.3-28.1L400 112.4c-9.5-6.7-22.3-6.7-31.8 0l-74.6 74.6c-4.7 4.7-7 10.9-6.6 17.3l1.2 25.6c.3 14.7-11.9 27.2-26.6 27.2h-48c-14.7 0-27-12.5-26.6-27.2l1.2-25.6c.4-6.4-1.9-12.6-6.6-17.3L158.6 145.6c-11.3-11.3-29.7-11.3-41 0s-11.3 29.7 0 41l74.6 74.6c4.7 4.7 7 10.9 6.6 17.3l-1.2 25.6c-.3 14.7 11.9 27.2 26.6 27.2h48c14.7 0 27-12.5 26.6-27.2l-1.2-25.6c-.4-6.4 1.9-12.6 6.6-17.3l74.6-74.6c11.3-11.3 11.3-29.7 0-41z"/>
             </svg>
           </div>
           <div class="info-text">
@@ -501,7 +505,7 @@
         <li>
           <div class="icon-box">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
-              <path fill="#f7774d" d="M502.3 190.8c3.9-10.3 0.2-21.4-9.3-28.1L400 112.4c-9.5-6.7-22.3-6.7-31.8 0l-92.9 65.2-92.9-65.2c-9.5-6.7-22.3-6.7-31.8 0L18.9 162.7c-9.5 6.7-13.2 17.8-9.3 28.1l35.4 93.2c3.9 10.3 14.4 16.5 25.4 16.5h15.3v204c0 35.3 28.7 64 64 64h240c35.3 0 64-28.7 64-64V280h15.3c11 0 21.5-6.2 25.4-16.5l35.4-93.2zM256 384c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"/>
+              <path fill="#f7774d" d="M502.3 190.8c3.9-10.3 0.2-21.4-9.3-28.1L400 112.4c-9.5-6.7-22.3-6.7-31.8 0l-74.6 74.6c-4.7 4.7-7 10.9-6.6 17.3l1.2 25.6c.3 14.7-11.9 27.2-26.6 27.2h-48c-14.7 0-27-12.5-26.6-27.2l1.2-25.6c.4-6.4-1.9-12.6-6.6-17.3L158.6 145.6c-11.3-11.3-29.7-11.3-41 0s-11.3 29.7 0 41l74.6 74.6c4.7 4.7 7 10.9 6.6 17.3l-1.2 25.6c-.3 14.7 11.9 27.2 26.6 27.2h48c14.7 0 27-12.5 26.6-27.2l-1.2-25.6c-.4-6.4 1.9-12.6 6.6-17.3l74.6-74.6c11.3-11.3 11.3-29.7 0-41z"/>
             </svg>
           </div>
           <div class="info-text">
@@ -651,7 +655,7 @@
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function(){
-      emailjs.init("YOUR_PUBLIC_KEY"); // 替换为您的 EmailJS 公钥
+      emailjs.init("HXCThZROMytOt-wyp"); // 替换为您的 EmailJS 公钥
     })();
   </script>
 
@@ -765,7 +769,7 @@
         emailStatus.style.color = "black";
 
         // 使用您的 EmailJS 服务和模板ID
-        emailjs.send('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID',{
+        emailjs.send('service_1ffkva1','template_ypdj9n9',{
           to_email: userEmail,
           message: 'Download your vCard here: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
         })
@@ -803,7 +807,7 @@
         contactStatus.style.color = "black";
 
         // 使用您的 EmailJS 服务和模板ID
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_CONTACT_TEMPLATE_ID', {
+        emailjs.send('service_1ffkva1','template_q5nmhvk',{
           from_name: contactForm.from_name.value.trim(),
           reply_to: contactEmail,
           message: contactForm.message.value.trim()
@@ -818,6 +822,12 @@
           contactStatus.style.color='red';
           contactStatus.textContent='Failed to send. Please try again.';
         });
+      });
+
+      // 打开 Email 模态框的按钮
+      document.getElementById('openEmailModal').addEventListener('click', (e)=>{
+        e.preventDefault();
+        emailModal.style.display = 'block';
       });
 
     });
