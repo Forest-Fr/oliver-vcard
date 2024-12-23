@@ -44,6 +44,7 @@
       align-items: center;
       justify-content: space-between;
     }
+    /* 移除公司名称，仅保留Logo */
     .navbar .logo-wrap img {
       width: 40px;
       height: 40px;
@@ -137,11 +138,11 @@
       transform: scale(1.1);
     }
     .action-item i {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       margin-bottom: 5px;
     }
     .action-item span {
-      font-size: 0.9rem;
+      font-size: 1rem;
     }
 
     /* Detailed Information */
@@ -151,6 +152,7 @@
     .description {
       margin-bottom: 20px;
       text-align: center;
+      font-size: 1.1rem;
     }
     .detail-list {
       list-style: none;
@@ -166,8 +168,8 @@
       border-top: none;
     }
     .detail-list i {
-      font-size: 1.2rem;
-      width: 40px;
+      font-size: 1.5rem;
+      width: 50px;
       text-align: center;
       color: #888;
     }
@@ -196,8 +198,8 @@
     }
     .social-icons {
       display: flex;
-      gap: 15px;
-      font-size: 1.6rem;
+      gap: 20px;
+      font-size: 2rem;
       justify-content: center;
     }
     .social-icons a {
@@ -208,10 +210,6 @@
     .social-icons a:hover {
       color: #fa7f56;
     }
-    .social-icons i {
-      width: 24px;
-      height: 24px;
-    }
 
     /* Download Section */
     .download-section {
@@ -220,20 +218,21 @@
     }
     .download-btn {
       display: inline-block;
-      background-color: #8a8a8a;
+      background-color: #fa7f56;
       color: #fff;
       text-decoration: none;
-      padding: 12px 20px;
+      padding: 12px 25px;
       border-radius: 4px;
       font-size: 1rem;
       transition: background-color 0.2s ease;
       cursor: pointer;
+      border: none;
     }
     .download-btn i {
       margin-right: 8px;
     }
     .download-btn:hover {
-      background-color: #666;
+      background-color: #b2503f;
     }
 
     /* ======= Modals ======= */
@@ -250,17 +249,21 @@
     }
     .modal-content {
       background-color: #fff;
-      margin: 15% auto; /* 15% from the top and centered */
-      padding: 20px;
-      border: 1px solid #888;
+      margin: 10% auto; /* 10% from the top and centered */
+      padding: 30px;
+      border: none;
       width: 90%;
       max-width: 400px; /* Could be more or less, depending on screen size */
       border-radius: 8px;
       text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: fadeIn 0.3s;
     }
     .close {
       color: #aaa;
-      float: right;
+      position: absolute;
+      top: 20px;
+      right: 30px;
       font-size: 28px;
       font-weight: bold;
       cursor: pointer;
@@ -273,8 +276,8 @@
     .modal-button {
       display: block;
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
+      padding: 12px;
+      margin: 15px 0;
       background-color: #fa7f56;
       color: #fff;
       border: none;
@@ -286,6 +289,16 @@
     .modal-button:hover {
       background-color: #b2503f;
     }
+    #emailStatus,
+    #contactStatus {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
 
     /* ======= Contact Section ======= */
     .contact-content h2 {
@@ -295,23 +308,25 @@
     .contact-content p {
       margin-bottom: 15px;
       text-align: center;
+      font-size: 1.1rem;
     }
     .contact-content form {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      max-width: 400px;
+      gap: 15px;
+      max-width: 500px;
       margin: 0 auto;
     }
     .contact-content input,
     .contact-content textarea {
-      padding: 8px;
+      padding: 12px;
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 4px;
+      resize: vertical;
     }
     .contact-content button {
-      padding: 10px;
+      padding: 12px;
       background-color: #fa7f56;
       border: none;
       border-radius: 4px;
@@ -323,11 +338,6 @@
     .contact-content button:hover {
       background-color: #b2503f;
     }
-    #contactStatus {
-      text-align: center;
-      margin-top: 10px;
-      color: green;
-    }
 
     /* ======= Footer ======= */
     footer {
@@ -335,7 +345,7 @@
       background-color: #333;
       color: #fff;
       text-align: center;
-      padding: 10px 0;
+      padding: 15px 0;
     }
 
     /* ======= Responsive Design ======= */
@@ -346,7 +356,10 @@
       }
       .social-icons {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
+      }
+      .modal-content {
+        margin: 20% auto;
       }
     }
   </style>
@@ -356,6 +369,7 @@
   <nav class="navbar">
     <div class="logo-wrap">
       <!-- Company Logo: Company-Logo.png -->
+      <!-- 如果Logo仍无法显示，请移除此<img>标签 -->
       <img src="Company-Logo.png" alt="DJA Company Logo" />
     </div>
     <div class="menu">
@@ -488,7 +502,7 @@
         Our mission is to deliver top-quality devices and outstanding customer service to our global clients.
       </p>
       <p>
-        Established in 2011, we have rapidly expanded to serve markets worldwide, offering innovative products under the 
+        Established in 2008, we have rapidly expanded to serve markets worldwide, offering innovative products under the 
         <strong>DJA</strong> brand.
       </p>
     </div>
@@ -590,6 +604,7 @@
       emailForm.addEventListener('submit', function(event) {
         event.preventDefault();
         emailStatus.textContent = "Sending...";
+        emailStatus.style.color = "black";
 
         emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
           to_email: emailForm.user_email.value,
@@ -614,6 +629,7 @@
       contactForm.addEventListener('submit', function(event) {
         event.preventDefault();
         contactStatus.textContent = "Sending...";
+        contactStatus.style.color = "black";
 
         emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
           from_name: contactForm.from_name.value,
