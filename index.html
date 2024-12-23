@@ -22,7 +22,7 @@
       box-sizing: border-box;
     }
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f5f5f5;
       color: #333;
       line-height: 1.6;
@@ -43,6 +43,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     /* 移除公司名称，仅保留Logo */
     .navbar .logo-wrap img {
@@ -59,9 +62,12 @@
       color: #fff;
       font-weight: 500;
       transition: color 0.2s ease;
+      padding: 8px 12px;
+      border-radius: 4px;
     }
     .navbar .menu a:hover {
-      color: #fa7f56;
+      background-color: #fa7f56;
+      color: #fff;
     }
 
     /* ======= Main Content ======= */
@@ -110,13 +116,13 @@
       object-fit: cover;
     }
     .person-name {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: bold;
       color: #fff;
       margin-bottom: 5px;
     }
     .person-title {
-      font-size: 1rem;
+      font-size: 1.2rem;
       color: #fce9e4;
       margin-bottom: 20px;
     }
@@ -138,7 +144,7 @@
       transform: scale(1.1);
     }
     .action-item i {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       margin-bottom: 5px;
     }
     .action-item span {
@@ -217,10 +223,10 @@
       margin-top: 20px;
     }
     .download-btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       background-color: #fa7f56;
       color: #fff;
-      text-decoration: none;
       padding: 12px 25px;
       border-radius: 4px;
       font-size: 1rem;
@@ -246,6 +252,7 @@
       height: 100%; /* Full height */
       overflow: auto; /* Enable scroll if needed */
       background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+      transition: opacity 0.3s ease;
     }
     .modal-content {
       background-color: #fff;
@@ -258,12 +265,13 @@
       text-align: center;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       animation: fadeIn 0.3s;
+      position: relative;
     }
     .close {
       color: #aaa;
       position: absolute;
-      top: 20px;
-      right: 30px;
+      top: 15px;
+      right: 20px;
       font-size: 28px;
       font-weight: bold;
       cursor: pointer;
@@ -338,6 +346,11 @@
     .contact-content button:hover {
       background-color: #b2503f;
     }
+    #contactStatus {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
 
     /* ======= Footer ======= */
     footer {
@@ -370,7 +383,7 @@
     <div class="logo-wrap">
       <!-- Company Logo: Company-Logo.png -->
       <!-- 如果Logo仍无法显示，请移除此<img>标签 -->
-      <img src="Company-Logo.png" alt="DJA Company Logo" />
+      <img src="Company-Logo.png" alt="DJA Company Logo" onerror="this.style.display='none'"/>
     </div>
     <div class="menu">
       <a href="#" data-page="home">Home</a>
@@ -413,14 +426,14 @@
         <li>
           <i class="fas fa-phone-alt"></i>
           <div>
-            <p class="info-value">+1 281 783 9998</p>
+            <p class="info-value"><a href="tel:+12817839998">+1 281 783 9998</a></p>
             <p class="info-label">Mobile</p>
           </div>
         </li>
         <li>
           <i class="fas fa-envelope"></i>
           <div>
-            <p class="info-value">Oliveroogle@gmail.com</p>
+            <p class="info-value"><a href="mailto:Oliveroogle@gmail.com">Oliveroogle@gmail.com</a></p>
             <p class="info-label">Email</p>
           </div>
         </li>
@@ -447,13 +460,14 @@
         <h3>Social Media</h3>
         <div class="social-icons">
           <!-- WhatsApp -->
-          <a href="https://wa.me/XXXXXXXXXXXX" target="_blank">
+          <a href="https://wa.me/XXXXXXXXXXXX" target="_blank" aria-label="WhatsApp">
             <i class="fab fa-whatsapp fa-2x"></i>
           </a>
           <!-- LinkedIn -->
           <a 
             href="https://linkedin.com/in/oliver-f-448b8a287" 
             target="_blank"
+            aria-label="LinkedIn"
           >
             <i class="fab fa-linkedin fa-2x"></i>
           </a>
@@ -502,7 +516,7 @@
         Our mission is to deliver top-quality devices and outstanding customer service to our global clients.
       </p>
       <p>
-        Established in 2008, we have rapidly expanded to serve markets worldwide, offering innovative products under the 
+        Established in 2011, we have rapidly expanded to serve markets worldwide, offering innovative products under the 
         <strong>DJA</strong> brand.
       </p>
     </div>
@@ -583,6 +597,14 @@
         }
       }
 
+      // Enable closing modals with ESC key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+          vcardModal.style.display = "none";
+          emailModal.style.display = "none";
+        }
+      });
+
       // Save to Phone
       const savePhoneBtn = document.getElementById('savePhoneBtn');
       savePhoneBtn.onclick = () => {
@@ -608,7 +630,7 @@
 
         emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
           to_email: emailForm.user_email.value,
-          message: 'Please download your vCard from the following link: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
+          message: 'Please download Oliver vCard from the following link: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
         })
         .then(function(response) {
            console.log('SUCCESS!', response.status, response.text);
@@ -631,7 +653,7 @@
         contactStatus.textContent = "Sending...";
         contactStatus.style.color = "black";
 
-        emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
+        emailjs.send('service_1ffkva1', 'template_contact', {
           from_name: contactForm.from_name.value,
           reply_to: contactForm.reply_to.value,
           message: contactForm.message.value,
