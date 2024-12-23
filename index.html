@@ -47,7 +47,6 @@
       top: 0;
       z-index: 100;
     }
-    /* 移除公司名称，仅保留Logo */
     .navbar .logo-wrap img {
       width: 40px;
       height: 40px;
@@ -61,7 +60,7 @@
     .navbar .menu a {
       color: #fff;
       font-weight: 500;
-      transition: color 0.2s ease;
+      transition: background-color 0.2s ease, color 0.2s ease;
       padding: 8px 12px;
       border-radius: 4px;
     }
@@ -138,10 +137,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform 0.2s;
+      transition: transform 0.2s, color 0.2s, background-color 0.2s;
+      padding: 10px;
+      border-radius: 4px;
     }
     .action-item:hover {
       transform: scale(1.1);
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fa7f56;
     }
     .action-item i {
       font-size: 1.8rem;
@@ -192,6 +195,9 @@
       color: #333;
       text-decoration: none;
     }
+    .info-value a:hover {
+      text-decoration: underline;
+    }
 
     /* Social Media Section */
     .social-section {
@@ -211,10 +217,11 @@
     .social-icons a {
       color: #555;
       text-decoration: none;
-      transition: color 0.2s ease;
+      transition: color 0.2s ease, transform 0.2s;
     }
     .social-icons a:hover {
       color: #fa7f56;
+      transform: scale(1.2);
     }
 
     /* Download Section */
@@ -230,7 +237,7 @@
       padding: 12px 25px;
       border-radius: 4px;
       font-size: 1rem;
-      transition: background-color 0.2s ease;
+      transition: background-color 0.2s ease, transform 0.2s;
       cursor: pointer;
       border: none;
     }
@@ -239,6 +246,7 @@
     }
     .download-btn:hover {
       background-color: #b2503f;
+      transform: scale(1.05);
     }
 
     /* ======= Modals ======= */
@@ -292,10 +300,11 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 1rem;
-      transition: background-color 0.2s ease;
+      transition: background-color 0.2s ease, transform 0.2s;
     }
     .modal-button:hover {
       background-color: #b2503f;
+      transform: scale(1.02);
     }
     #emailStatus,
     #contactStatus {
@@ -341,10 +350,11 @@
       color: #fff;
       font-size: 1rem;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      transition: background-color 0.2s ease, transform 0.2s;
     }
     .contact-content button:hover {
       background-color: #b2503f;
+      transform: scale(1.02);
     }
     #contactStatus {
       text-align: center;
@@ -382,7 +392,7 @@
   <nav class="navbar">
     <div class="logo-wrap">
       <!-- Company Logo: Company-Logo.png -->
-      <!-- 如果Logo仍无法显示，请移除此<img>标签 -->
+      <!-- 如果Logo无法显示，将隐藏此<img>标签 -->
       <img src="Company-Logo.png" alt="DJA Company Logo" onerror="this.style.display='none'"/>
     </div>
     <div class="menu">
@@ -503,7 +513,7 @@
         <input type="email" name="user_email" placeholder="Enter your email" required />
         <button type="submit" class="modal-button">Send Email</button>
       </form>
-      <p id="emailStatus"></p>
+        <p id="emailStatus"></p>
     </div>
   </div>
 
@@ -630,7 +640,7 @@
 
         emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
           to_email: emailForm.user_email.value, // 动态接收用户输入的邮箱
-          message: 'Please download Oliver vCard from the following link: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
+          message: 'Please download your vCard from the following link: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
         })
         .then(function(response) {
            console.log('SUCCESS!', response.status, response.text);
