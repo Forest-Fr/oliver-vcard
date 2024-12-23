@@ -6,10 +6,10 @@
   <title>Oliver F - Sales Manager | DJA Company</title>
 
   <!-- Meta Tags for SEO -->
-  <meta name="description" content="Professional digital business card of Oliver F, Sales Manager at DJA Company. Connect via WhatsApp, LinkedIn, or email. Download vCard for easy contact.">
-  <meta name="keywords" content="Oliver F, Sales Manager, DJA Company, Digital Business Card, vCard, WhatsApp, LinkedIn, Contact">
+  <meta name="description" content="Professional digital business card of Oliver F, Sales Manager at DJA. Connect via WhatsApp, LinkedIn, or email. Download vCard for easy contact."/>
+  <meta name="keywords" content="Oliver F, Sales Manager, DJA, Digital Business Card, vCard, WhatsApp, LinkedIn, Contact"/>
 
-  <!-- Font Awesome for Icons (仅用于基本图标，如电话、邮件等) -->
+  <!-- Font Awesome for basic icons (phone, email, etc.) -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -19,7 +19,7 @@
   />
 
   <style>
-    /* ======= Global Styles ======= */
+    /* =========== Global Reset & Basic =========== */
     * {
       margin: 0;
       padding: 0;
@@ -27,7 +27,7 @@
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f5f5f5;
+      background-color: #f7f7f7;
       color: #333;
       line-height: 1.6;
       min-height: 100vh;
@@ -39,12 +39,12 @@
       color: inherit;
     }
     img {
+      display: block;
       max-width: 100%;
       height: auto;
-      display: block;
     }
 
-    /* ======= Navbar ======= */
+    /* =========== Navbar =========== */
     .navbar {
       background-color: #333;
       color: #fff;
@@ -69,33 +69,19 @@
     .navbar .menu a {
       color: #fff;
       font-weight: 500;
-      transition: background-color 0.2s ease, color 0.2s ease;
       padding: 8px 12px;
       border-radius: 4px;
+      transition: background-color 0.2s, color 0.2s;
     }
     .navbar .menu a:hover {
       background-color: #fa7f56;
       color: #fff;
     }
 
-    /* Responsive Navbar - Hamburger Menu */
-    .navbar .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .navbar .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: #fff;
-      margin: 4px 0;
-      transition: all 0.3s ease;
-    }
-
-    /* ======= Main Content ======= */
+    /* =========== Page Sections =========== */
     .page-section {
-      display: none; /* Hidden by default, controlled via JavaScript */
-      max-width: 800px;
+      display: none; /* Controlled via JS */
+      max-width: 900px;
       margin: 20px auto;
       background-color: #fff;
       border-radius: 8px;
@@ -106,18 +92,18 @@
       display: block;
     }
 
-    /* ======= Home Section ======= */
+    /* =========== Home Section =========== */
     .top-header {
       width: 100%;
       background: linear-gradient(to right, #fa7f56, #b2503f);
       text-align: center;
       padding-top: 40px;
       padding-bottom: 60px;
-      position: relative;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-      margin-top: -20px; 
+      margin-top: -20px;
       margin-bottom: -20px;
+      position: relative;
     }
     .header-overlay {
       max-width: 600px;
@@ -161,14 +147,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform 0.2s, color 0.2s, background-color 0.2s;
+      transition: transform 0.2s, background-color 0.2s;
       padding: 10px;
       border-radius: 4px;
     }
     .action-item:hover {
       transform: scale(1.1);
-      background-color: rgba(255, 255, 255, 0.2);
-      color: #fa7f56;
+      background-color: rgba(255,255,255,0.2);
     }
     .action-item i {
       font-size: 1.8rem;
@@ -178,7 +163,6 @@
       font-size: 1rem;
     }
 
-    /* Detailed Information */
     .info-section-home {
       padding: 20px;
     }
@@ -187,6 +171,8 @@
       text-align: center;
       font-size: 1.1rem;
     }
+
+    /* 左侧图标可视化化 + 信息块儿 */
     .detail-list {
       list-style: none;
       margin-bottom: 20px;
@@ -200,27 +186,33 @@
     .detail-list li:first-child {
       border-top: none;
     }
+    .detail-list .icon-box {
+      width: 50px;
+      height: 50px;
+      background-color: #fafafa;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
     .detail-list i {
       font-size: 1.5rem;
-      width: 50px;
-      text-align: center;
-      color: #888;
+      color: #f7774d; /* 自定义颜色 */
+    }
+    .info-text {
+      display: flex;
+      flex-direction: column;
     }
     .info-value {
       font-size: 1rem;
       font-weight: 500;
-      margin-left: 10px;
+      color: #333;
     }
     .info-label {
       font-size: 0.85rem;
       color: #888;
-    }
-    .info-value a {
-      color: #333;
-      text-decoration: none;
-    }
-    .info-value a:hover {
-      text-decoration: underline;
     }
 
     /* Social Media Section */
@@ -236,24 +228,21 @@
       display: flex;
       gap: 20px;
       justify-content: center;
-      align-items: center;
       flex-wrap: wrap;
     }
     .social-icons a {
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-decoration: none;
-      color: #555;
-      transition: transform 0.2s, color 0.2s;
       width: 80px;
+      text-decoration: none;
+      color: #333;
+      transition: transform 0.2s;
     }
     .social-icons a img {
       width: 40px;
       height: 40px;
-      object-fit: contain;
       margin-bottom: 5px;
-      transition: transform 0.2s;
     }
     .social-icons a:hover img {
       transform: scale(1.1);
@@ -282,37 +271,42 @@
     }
     .download-btn i {
       margin-right: 8px;
+      font-size: 1.3rem;
     }
     .download-btn:hover {
       background-color: #b2503f;
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
 
-    /* ======= Modals ======= */
+    /* =========== Modals =========== */
     .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1000; /* Sit on top */
+      display: none;
+      position: fixed;
+      z-index: 1200;
       left: 0;
       top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
       transition: opacity 0.3s ease;
     }
     .modal-content {
       background-color: #fff;
-      margin: 10% auto; /* 10% from the top and centered */
+      margin: 10% auto;
       padding: 30px;
       border: none;
       width: 90%;
-      max-width: 400px; /* Could be more or less, depending on screen size */
+      max-width: 400px;
       border-radius: 8px;
       text-align: center;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      animation: fadeIn 0.3s;
       position: relative;
+      animation: fadeIn 0.3s;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
     .close {
       color: #aaa;
@@ -323,10 +317,8 @@
       font-weight: bold;
       cursor: pointer;
     }
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
+    .close:hover {
+      color: #000;
     }
     .modal-button {
       display: block;
@@ -337,8 +329,8 @@
       color: #fff;
       border: none;
       border-radius: 4px;
-      cursor: pointer;
       font-size: 1rem;
+      cursor: pointer;
       transition: background-color 0.2s ease, transform 0.2s;
     }
     .modal-button:hover {
@@ -351,12 +343,7 @@
       font-size: 0.9rem;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-
-    /* ======= Contact Section ======= */
+    /* =========== Contact Section =========== */
     .contact-content h2 {
       margin-bottom: 10px;
       text-align: center;
@@ -395,13 +382,8 @@
       background-color: #b2503f;
       transform: scale(1.02);
     }
-    #contactStatus {
-      text-align: center;
-      margin-top: 10px;
-      font-size: 0.9rem;
-    }
 
-    /* ======= Footer ======= */
+    /* =========== Footer =========== */
     footer {
       margin-top: auto;
       background-color: #333;
@@ -410,66 +392,34 @@
       padding: 15px 0;
     }
 
-    /* ======= Back to Top Button ======= */
-    #backToTopBtn {
-      display: none; /* Hidden by default */
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 100;
-      font-size: 18px;
-      border: none;
-      outline: none;
-      background-color: #fa7f56;
-      color: white;
-      cursor: pointer;
-      padding: 15px;
-      border-radius: 50%;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    #backToTopBtn:hover {
-      background-color: #b2503f;
-      transform: scale(1.1);
+    /* =========== Responsive =========== */
+    @media (max-width: 600px) {
+      .action-row {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .social-icons {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .modal-content {
+        margin: 20% auto;
+      }
     }
 
-    /* ======= Responsive Design ======= */
-    @media (max-width: 768px) {
-      .navbar .menu {
-        display: none;
-        flex-direction: column;
-        background-color: #333;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        width: 150px;
-        border-radius: 4px;
-      }
-      .navbar .menu.active {
-        display: flex;
-      }
-      .navbar .hamburger {
-        display: flex;
-      }
-    }
   </style>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="navbar">
     <div class="logo-wrap">
-      <!-- Company Logo: Company-Logo.png -->
-      <!-- If Logo cannot be displayed, hide the img tag -->
-      <img src="https://via.placeholder.com/50" alt="DJA Company Logo" onerror="this.style.display='none'"/>
+      <!-- DJA-logo.png -->
+      <img src="DJA-logo.png" alt="DJA Logo" onerror="this.style.display='none'" />
     </div>
-    <div class="menu" id="navbarMenu">
+    <div class="menu">
       <a href="#" data-page="home">Home</a>
       <a href="#" data-page="about">About</a>
       <a href="#" data-page="contact">Contact</a>
-    </div>
-    <div class="hamburger" id="hamburger" aria-label="Toggle navigation" role="button" tabindex="0">
-      <div></div>
-      <div></div>
-      <div></div>
     </div>
   </nav>
 
@@ -478,8 +428,8 @@
     <header class="top-header">
       <div class="header-overlay">
         <div class="avatar-wrap">
-          <!-- Personal Avatar: Oliver-Avatar.png -->
-          <img src="https://via.placeholder.com/120" alt="Oliver F Avatar" class="avatar" />
+          <!-- Oliver-Avatar.png -->
+          <img src="Oliver-Avatar.png" alt="Oliver F Avatar" class="avatar" />
         </div>
         <h1 class="person-name">Oliver F</h1>
         <h2 class="person-title">Sales Manager</h2>
@@ -496,38 +446,48 @@
       </div>
     </header>
 
+    <!-- Info Section -->
     <div class="info-section-home">
       <div class="description">
         <p>
-          DJA: PoE Switch brand by Dijiean Technology. Visit: 
+          DJA: PoE Switch brand by Dijiean Tech. Visit: 
           <a href="https://djakeji.com" target="_blank" rel="noopener">djakeji.com</a>.
         </p>
       </div>
+      <!-- Visual Icon + Data -->
       <ul class="detail-list">
         <li>
-          <i class="fas fa-phone-alt"></i>
-          <div>
+          <div class="icon-box">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="info-text">
             <p class="info-value"><a href="tel:+12817839998">+1 281 783 9998</a></p>
             <p class="info-label">Mobile</p>
           </div>
         </li>
         <li>
-          <i class="fas fa-envelope"></i>
-          <div>
+          <div class="icon-box">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="info-text">
             <p class="info-value"><a href="mailto:Oliveroogle@gmail.com">Oliveroogle@gmail.com</a></p>
             <p class="info-label">Email</p>
           </div>
         </li>
         <li>
-          <i class="fas fa-briefcase"></i>
-          <div>
+          <div class="icon-box">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <div class="info-text">
             <p class="info-value">Shenzhen Dijiean Technology Co., Ltd</p>
             <p class="info-label">Sales Manager</p>
           </div>
         </li>
         <li>
-          <i class="fas fa-globe"></i>
-          <div>
+          <div class="icon-box">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="info-text">
             <p class="info-value">
               <a href="https://en.djakeji.com" target="_blank" rel="noopener">
                 en.djakeji.com
@@ -537,15 +497,15 @@
           </div>
         </li>
       </ul>
+
+      <!-- Social Media -->
       <section class="social-section">
-        <h3>Connect with Me</h3>
+        <h3>Social Media</h3>
         <div class="social-icons">
-          <!-- WhatsApp -->
           <a href="https://wa.me/+12817839998" target="_blank" aria-label="WhatsApp">
             <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp Icon" />
             <span>WhatsApp</span>
           </a>
-          <!-- LinkedIn -->
           <a 
             href="https://linkedin.com/in/oliver-f-448b8a287" 
             target="_blank"
@@ -559,13 +519,38 @@
 
       <!-- Download vCard Button -->
       <div class="download-section">
-        <button id="downloadVCardBtn" class="download-btn" aria-label="Download vCard">
+        <button id="downloadVCardBtn" class="download-btn">
           <i class="fas fa-user-plus"></i>
-          Download vCard
+          DOWNLOAD VCARD
         </button>
       </div>
     </div>
   </div><!-- /Home -->
+
+  <!-- Modal: vCard Download Options -->
+  <div id="vcardModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <span class="close" aria-label="Close">&times;</span>
+      <!-- 新增提示文字：Save Contact Data -->
+      <h2>Save Contact Data</h2>
+      <p style="margin-bottom: 10px;">How would you like to save contact data?</p>
+      <button id="savePhoneBtn" class="modal-button">Save to Phone</button>
+      <button id="saveEmailBtn" class="modal-button">Save via Email</button>
+    </div>
+  </div>
+
+  <!-- Modal: Save via Email -->
+  <div id="emailModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <span class="close" aria-label="Close">&times;</span>
+      <h2>Send vCard via Email</h2>
+      <form id="emailForm">
+        <input type="email" name="user_email" placeholder="Enter your email" required />
+        <button type="submit" class="modal-button">Send Email</button>
+      </form>
+      <p id="emailStatus"></p>
+    </div>
+  </div>
 
   <!-- About Section -->
   <div class="page-section" id="aboutSection">
@@ -588,42 +573,14 @@
       <h2>Contact Us</h2>
       <p>If you have any questions or business inquiries, please fill out the form below:</p>
       <form id="contactForm">
-        <input type="text" name="from_name" placeholder="Your Name" required aria-label="Your Name"/>
-        <input type="email" name="reply_to" placeholder="Your Email" required aria-label="Your Email"/>
-        <textarea name="message" rows="5" placeholder="Your Message" required aria-label="Your Message"></textarea>
+        <input type="text" name="from_name" placeholder="Your Name" required />
+        <input type="email" name="reply_to" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
       </form>
-      <p id="contactStatus" aria-live="polite"></p>
+      <p id="contactStatus"></p>
     </div>
   </div>
-
-  <!-- Modal: vCard Download Options -->
-  <div id="vcardModal" class="modal" aria-hidden="true">
-    <div class="modal-content">
-      <span class="close" aria-label="Close">&times;</span>
-      <h2>Save vCard</h2>
-      <button id="savePhoneBtn" class="modal-button">Save to Phone</button>
-      <button id="saveEmailBtn" class="modal-button">Send via Email</button>
-    </div>
-  </div>
-
-  <!-- Modal: Save via Email -->
-  <div id="emailModal" class="modal" aria-hidden="true">
-    <div class="modal-content">
-      <span class="close" aria-label="Close">&times;</span>
-      <h2>Send vCard via Email</h2>
-      <form id="emailForm">
-        <input type="email" name="user_email" placeholder="Enter your email" required aria-label="Your Email"/>
-        <button type="submit" class="modal-button">Send Email</button>
-      </form>
-      <p id="emailStatus" aria-live="polite"></p>
-    </div>
-  </div>
-
-  <!-- Back to Top Button -->
-  <button id="backToTopBtn" title="Go to top" aria-label="Back to Top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
 
   <!-- Footer -->
   <footer>
@@ -642,103 +599,77 @@
     document.addEventListener('DOMContentLoaded', () => {
       const links = document.querySelectorAll('.menu a');
       const sections = document.querySelectorAll('.page-section');
-      const hamburger = document.getElementById('hamburger');
-      const navbarMenu = document.getElementById('navbarMenu');
-      const backToTopBtn = document.getElementById('backToTopBtn');
-
-      // Default to show Home page
-      showPage('home');
-
-      // Navigation link click handler
-      links.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const page = link.getAttribute('data-page');
-          showPage(page);
-          // Close the navbar menu on small screens after clicking
-          if (window.innerWidth <= 768) {
-            navbarMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-          }
-        });
-      });
-
-      // Show specified page section
-      function showPage(pageId) {
-        sections.forEach(sec => sec.classList.remove('active'));
-        const activeSection = document.getElementById(`${pageId}Section`);
-        if (activeSection) {
-          activeSection.classList.add('active');
-          // Smooth scroll to the section
-          activeSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-
-      // Hamburger menu toggle
-      hamburger.addEventListener('click', () => {
-        navbarMenu.classList.toggle('active');
-        hamburger.classList.toggle('active');
-      });
-
-      // Modal functionality
       const vcardModal = document.getElementById('vcardModal');
       const emailModal = document.getElementById('emailModal');
       const downloadVCardBtn = document.getElementById('downloadVCardBtn');
       const closeButtons = document.querySelectorAll('.close');
 
+      // Default show Home
+      showPage('home');
+
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const page = link.getAttribute('data-page');
+          showPage(page);
+        });
+      });
+
+      function showPage(pageId) {
+        sections.forEach(sec => sec.classList.remove('active'));
+        const activeSection = document.getElementById(`${pageId}Section`);
+        if (activeSection) {
+          activeSection.classList.add('active');
+          // 可选：平滑滚动
+          activeSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      // Show vCard modal
       downloadVCardBtn.onclick = () => {
         vcardModal.style.display = "block";
-        vcardModal.setAttribute('aria-hidden', 'false');
       }
 
       closeButtons.forEach(btn => {
         btn.onclick = () => {
           vcardModal.style.display = "none";
           emailModal.style.display = "none";
-          vcardModal.setAttribute('aria-hidden', 'true');
-          emailModal.setAttribute('aria-hidden', 'true');
         }
       });
 
       window.onclick = (event) => {
-        if (event.target == vcardModal) {
+        if (event.target === vcardModal) {
           vcardModal.style.display = "none";
-          vcardModal.setAttribute('aria-hidden', 'true');
         }
-        if (event.target == emailModal) {
+        if (event.target === emailModal) {
           emailModal.style.display = "none";
-          emailModal.setAttribute('aria-hidden', 'true');
         }
-      }
+      };
 
-      // Close modals with ESC key
-      document.addEventListener('keydown', function(event) {
+      // ESC key close
+      document.addEventListener('keydown', (event) => {
         if (event.key === "Escape") {
           vcardModal.style.display = "none";
           emailModal.style.display = "none";
-          vcardModal.setAttribute('aria-hidden', 'true');
-          emailModal.setAttribute('aria-hidden', 'true');
         }
       });
 
-      // Save to phone (download vCard)
+      // Save to Phone
       const savePhoneBtn = document.getElementById('savePhoneBtn');
       savePhoneBtn.onclick = () => {
         vcardModal.style.display = "none";
-        vcardModal.setAttribute('aria-hidden', 'true');
-        window.location.href = 'OliverF.vcf'; // Ensure OliverF.vcf is in the same directory
-      }
+        // 下载或打开OliverF.vcf
+        window.location.href = 'OliverF.vcf';
+      };
 
-      // Save via email (open email modal)
+      // Save via Email
       const saveEmailBtn = document.getElementById('saveEmailBtn');
       saveEmailBtn.onclick = () => {
         vcardModal.style.display = "none";
-        vcardModal.setAttribute('aria-hidden', 'true');
         emailModal.style.display = "block";
-        emailModal.setAttribute('aria-hidden', 'false');
-      }
+      };
 
-      // Handle vCard email submission
+      // Email vCard
       const emailForm = document.getElementById('emailForm');
       const emailStatus = document.getElementById('emailStatus');
 
@@ -747,19 +678,19 @@
         emailStatus.textContent = "Sending...";
         emailStatus.style.color = "black";
 
+        // Send mail via EmailJS
         emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
-          to_email: emailForm.user_email.value, // Dynamically receive user's email
-          message: 'Please download your vCard from the following link: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
+          to_email: emailForm.user_email.value,
+          message: 'Please download your vCard here: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
         })
         .then(function(response) {
            console.log('SUCCESS!', response.status, response.text);
            emailStatus.style.color = "green";
            emailStatus.textContent = "Email sent successfully! Please check your inbox.";
            emailForm.reset();
-           // Automatically close the email modal after 3 seconds
+           // 3秒后关闭Modal
            setTimeout(() => {
              emailModal.style.display = "none";
-             emailModal.setAttribute('aria-hidden', 'true');
            }, 3000);
         }, function(error) {
            console.log('FAILED...', error);
@@ -768,7 +699,7 @@
         });
       });
 
-      // Handle contact form submission
+      // Contact Form
       const contactForm = document.getElementById('contactForm');
       const contactStatus = document.getElementById('contactStatus');
 
@@ -777,7 +708,8 @@
         contactStatus.textContent = "Sending...";
         contactStatus.style.color = "black";
 
-        emailjs.send('service_1ffkva1', 'template_contact', { // Use a different template ID
+        // Use contact template
+        emailjs.send('service_1ffkva1', 'template_contact', {
           from_name: contactForm.from_name.value,
           reply_to: contactForm.reply_to.value,
           message: contactForm.message.value,
@@ -785,29 +717,13 @@
         .then(function(response) {
            console.log('SUCCESS!', response.status, response.text);
            contactStatus.style.color = "green";
-           contactStatus.textContent = "Your message has been sent successfully! We will get back to you soon.";
+           contactStatus.textContent = "Your message has been sent successfully! We'll get back to you soon.";
            contactForm.reset();
-           // Optionally, auto scroll to contact section or reset view
         }, function(error) {
            console.log('FAILED...', error);
            contactStatus.style.color = "red";
            contactStatus.textContent = "Failed to send your message. Please try again later.";
         });
-      });
-
-      // Back to Top Button functionality
-      window.onscroll = function() {scrollFunction()};
-
-      function scrollFunction() {
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-          backToTopBtn.style.display = "block";
-        } else {
-          backToTopBtn.style.display = "none";
-        }
-      }
-
-      backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
   </script>
