@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Oliver F - Sales Manager | DJA Company</title>
 
-  <!-- Font Awesome for Icons (Version as you provided) -->
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Oliver F - Sales Manager at DJA Company. Connect via WhatsApp, LinkedIn, or email. Download vCard for quick contact."/>
+  <meta name="keywords" content="Oliver F, Sales Manager, DJA, Digital Business Card, vCard, WhatsApp, LinkedIn, Contact"/>
+
+  <!-- Font Awesome for Icons -->
   <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    integrity="sha512-Fo3rlrZj/k7ujTnHq6g6ZVbYVUhcG1UwTvQpTjB0B4XfJXTybE3M8msF6M1dZC/A1hd+V4t1Aj6+h2+jTGH+zw=="
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pjw1E0HJQ0Zc9ewYbz2bDgO38eP27Uu7haR4awFzylFflI2Z+zY1c4Xo3I0Y2KjPnCgFJwlGJgJGZcELp0K0xw=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
 
   <style>
-    /* ======= Global Styles ======= */
+    /* =========== GLOBAL RESET =========== */
     * {
       margin: 0;
       padding: 0;
@@ -23,7 +27,7 @@
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f5f5f5;
+      background-color: #f7f7f7;
       color: #333;
       line-height: 1.6;
       min-height: 100vh;
@@ -34,8 +38,13 @@
       text-decoration: none;
       color: inherit;
     }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
 
-    /* ======= Navbar ======= */
+    /* =========== NAVBAR =========== */
     .navbar {
       background-color: #333;
       color: #fff;
@@ -43,71 +52,79 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
     }
     .navbar .logo-wrap img {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       object-fit: cover;
       border-radius: 4px;
     }
-    .navbar .menu {
+    .menu {
       display: flex;
       gap: 20px;
     }
-    .navbar .menu a {
+    .menu a {
       color: #fff;
       font-weight: 500;
       padding: 8px 12px;
       border-radius: 4px;
       transition: background-color 0.2s ease, color 0.2s ease;
     }
-    .navbar .menu a:hover {
+    .menu a:hover {
       background-color: #fa7f56;
       color: #fff;
     }
 
-    /* ======= Main Content ======= */
+    /* =========== PAGE SECTIONS =========== */
     .page-section {
-      display: none; /* Hidden by default, controlled via JavaScript */
-      max-width: 800px;
+      display: none; /* Show by JS */
+      max-width: 900px;
       margin: 20px auto;
       background-color: #fff;
       border-radius: 8px;
       padding: 20px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
     }
     .page-section.active {
       display: block;
     }
 
-    /* ======= Home Section ======= */
+    /* "X" button styling */
+    .section-close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      color: #aaa;
+      cursor: pointer;
+    }
+    .section-close-btn:hover {
+      color: #000;
+    }
+
+    /* =========== HOME SECTION =========== */
     .top-header {
       width: 100%;
-      background: linear-gradient(to right, #fa7f56, #b2503f);
+      background: linear-gradient(135deg, #fa7f56, #b2503f);
       text-align: center;
-      padding-top: 40px;
-      padding-bottom: 60px;
-      position: relative;
+      padding: 30px 15px;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-      margin-top: -20px; 
+      margin-top: -20px;
       margin-bottom: -20px;
     }
     .header-overlay {
       max-width: 600px;
       margin: 0 auto;
-      position: relative;
     }
     .avatar-wrap {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 15px auto;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 10px auto;
       border-radius: 50%;
       overflow: hidden;
-      border: 4px solid #fff;
+      border: 3px solid #fff;
     }
     .avatar {
       width: 100%;
@@ -123,41 +140,43 @@
     .person-title {
       font-size: 1.2rem;
       color: #fce9e4;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
+
     .action-row {
       display: flex;
       justify-content: center;
-      gap: 50px;
-      margin-top: 20px;
+      gap: 20px;
+      margin-top: 15px;
     }
+    /* Ensure buttons are same size on desktop */
     .action-item {
       color: #fff;
       text-decoration: none;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform 0.2s;
-      width: 120px;   /* Ensure same width for both buttons */
-      height: 60px;   /* Ensure same height for both buttons */
-      justify-content: center;
       border: 2px solid #fff;
       border-radius: 6px;
-    }
-    .action-item:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      transform: scale(1.05);
+      padding: 8px;
+      width: 120px;   /* Fixed width */
+      height: 60px;   /* Fixed height */
+      justify-content: center; /* Center content vertically */
+      transition: background-color 0.2s, transform 0.2s;
     }
     .action-item i {
-      font-size: 1.8rem;
-      margin-bottom: 5px;
+      font-size: 1.3rem;
+      margin-bottom: 3px;
     }
     .action-item span {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 500;
     }
+    .action-item:hover {
+      background-color: rgba(255,255,255,0.25);
+      transform: scale(1.05);
+    }
 
-    /* Detailed Information */
     .info-section-home {
       padding: 20px;
     }
@@ -166,6 +185,8 @@
       text-align: center;
       font-size: 1.1rem;
     }
+
+    /* Icon + Info blocks */
     .detail-list {
       list-style: none;
       margin-bottom: 20px;
@@ -179,51 +200,69 @@
     .detail-list li:first-child {
       border-top: none;
     }
+    .icon-box {
+      width: 45px;
+      height: 45px;
+      border-radius: 8px;
+      margin-right: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fafafa;
+    }
     .detail-list i {
-      font-size: 1.5rem;
-      width: 50px;
-      text-align: center;
-      color: #888;
+      font-size: 1.3rem;
+      color: #f7774d;
+    }
+    .info-text {
+      display: flex;
+      flex-direction: column;
     }
     .info-value {
       font-size: 1rem;
       font-weight: 500;
-      margin-left: 10px;
     }
     .info-label {
       font-size: 0.85rem;
       color: #888;
     }
-    .info-value a {
-      color: #333;
-      text-decoration: none;
-    }
 
-    /* Social Media Section */
-    .social-section {
-      margin-bottom: 20px;
-    }
+    /* Social Media */
     .social-section h3 {
-      font-size: 1rem;
+      text-align: center;
       margin-bottom: 10px;
       color: #666;
     }
     .social-icons {
       display: flex;
       gap: 20px;
-      font-size: 2rem;
       justify-content: center;
+      flex-wrap: wrap;
     }
     .social-icons a {
-      color: #555;
+      width: 70px;
       text-decoration: none;
-      transition: color 0.2s ease;
+      color: #333;
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .social-icons a:hover {
-      color: #fa7f56;
+    .social-icons a img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 5px;
+    }
+    .social-icons a:hover img {
+      transform: scale(1.1);
+    }
+    .social-icons a span {
+      font-size: 0.9rem;
+      color: #333;
     }
 
-    /* Download Section */
+    /* Download vCard Button */
     .download-section {
       text-align: center;
       margin-top: 20px;
@@ -231,154 +270,85 @@
     .download-btn {
       display: inline-flex;
       align-items: center;
-      background-color: #fa7f56;
+      background: linear-gradient(135deg, #fa7f56, #b2503f);
       color: #fff;
-      padding: 12px 25px;
+      padding: 10px 25px;
       border-radius: 4px;
       font-size: 1rem;
-      transition: background-color 0.2s ease;
+      transition: transform 0.2s;
       cursor: pointer;
       border: none;
     }
     .download-btn i {
       margin-right: 8px;
+      font-size: 1.2rem;
     }
     .download-btn:hover {
-      background-color: #b2503f;
+      transform: scale(1.05);
     }
 
-    /* ======= Modals ======= */
+    /* =========== MODALS =========== */
     .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1000; /* Sit on top */
-      left: 0;
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; 
       top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
-      transition: opacity 0.3s ease;
+      width: 100%; 
+      height: 100%; 
+      background-color: rgba(0,0,0,0.5);
     }
     .modal-content {
       background-color: #fff;
-      margin: 10% auto; /* 10% from the top and centered */
-      padding: 30px;
-      border: none;
+      margin: 8% auto;
+      padding: 25px;
       width: 90%;
-      max-width: 500px; /* Could be more or less, depending on screen size */
+      max-width: 600px; /* 调整为更宽 */
       border-radius: 8px;
       text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      animation: fadeIn 0.3s;
       position: relative;
+      animation: fadeIn 0.3s;
     }
-    .close {
-      color: #aaa;
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-    }
-    .modal-button {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      margin: 15px 0;
-      background-color: #fa7f56;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.2s ease;
-    }
-    .modal-button:hover {
-      background-color: #b2503f;
-    }
-
-    #emailStatus,
-    #contactStatus {
-      margin-top: 10px;
-      font-size: 0.9rem;
-    }
-
     @keyframes fadeIn {
       from {opacity: 0;}
       to {opacity: 1;}
     }
-
-    /* ======= Contact Section ======= */
-    .contact-content h2 {
-      margin-bottom: 10px;
-      text-align: center;
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
     }
-    .contact-content p {
-      margin-bottom: 15px;
-      text-align: center;
-      font-size: 1.1rem;
+    .close:hover {
+      color: #000;
     }
-    .contact-content form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    .contact-content input,
-    .contact-content textarea {
-      padding: 12px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      resize: vertical;
-    }
-    .contact-content button {
-      padding: 12px;
-      background-color: #fa7f56;
+    .modal-button {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
       border: none;
       border-radius: 4px;
-      color: #fff;
       font-size: 1rem;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      transition: transform 0.2s;
     }
-    .contact-content button:hover {
-      background-color: #b2503f;
+    .modal-button:hover {
+      transform: scale(1.03);
     }
-
-    /* ======= Footer ======= */
-    footer {
-      margin-top: auto;
-      background-color: #333;
+    .modal-button.iphone {
+      background: #6ca4f8; /* 蓝色 */
       color: #fff;
-      text-align: center;
-      padding: 15px 0;
+    }
+    .modal-button.email {
+      background: #f08d49; 
+      color: #fff;
     }
 
-    /* ======= Responsive Design ======= */
-    @media (max-width: 600px) {
-      .action-row {
-        flex-direction: column;
-        gap: 20px;
-      }
-      .social-icons {
-        flex-direction: column;
-        gap: 15px;
-      }
-      .modal-content {
-        margin: 20% auto;
-      }
-    }
-
-    /* ======= Error & Success Messages ======= */
+    /* =========== CONTACT FORM VALIDATION MESSAGES =========== */
     .error-message {
       color: red;
       font-size: 0.85rem;
@@ -392,13 +362,91 @@
       display: none;
     }
 
+    /* =========== ABOUT/CONTACT SECTION CLOSE BUTTON =========== */
+    .section-close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      color: #aaa;
+      cursor: pointer;
+    }
+    .section-close-btn:hover {
+      color: #000;
+    }
+
+    /* =========== CONTACT STYLES =========== */
+    .contact-content h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .contact-content form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .contact-content input,
+    .contact-content textarea {
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .contact-content button {
+      padding: 12px;
+      background: linear-gradient(135deg, #fa7f56, #b2503f);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .contact-content button:hover {
+      transform: scale(1.03);
+    }
+
+    /* =========== FOOTER =========== */
+    footer {
+      margin-top: auto;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+    }
+
+    /* =========== RESPONSIVE =========== */
+    @media (max-width: 600px) {
+      .action-row {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .action-item {
+        width: 100%;
+        margin: 0 auto;
+      }
+      .detail-list li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .detail-list .icon-box {
+        margin-bottom: 5px;
+      }
+      .modal-content {
+        max-width: 90%; /* 更适合手机 */
+      }
+    }
+
   </style>
 </head>
 <body>
-  <!-- Navbar -->
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo-wrap">
-      <img src="Company-Logo.png" alt="DJA Company Logo" onerror="this.style.display='none'"/>
+      <!-- DJA-logo.png (确保路径正确，或使用内联 SVG) -->
+      <img src="DJA-logo.png" alt="DJA Logo" onerror="this.style.display='none'">
     </div>
     <div class="menu">
       <a href="#" data-page="home">Home</a>
@@ -407,23 +455,25 @@
     </div>
   </nav>
 
-  <!-- Home Section -->
+  <!-- HOME SECTION -->
   <div class="page-section active" id="homeSection">
+    <!-- 不需要 'X' 按钮 -->
+
     <header class="top-header">
       <div class="header-overlay">
+        <!-- Middle Logo: Oliver-Avatar.png -->
         <div class="avatar-wrap">
-          <img src="Oliver-Avatar.png" alt="Oliver F Avatar" class="avatar" onerror="this.style.display='none'"/>
+          <img src="Oliver-Avatar.png" alt="Oliver F Avatar" onerror="this.style.display='none'" class="avatar" />
         </div>
         <h1 class="person-name">Oliver F</h1>
         <h2 class="person-title">Sales Manager</h2>
         <div class="action-row">
-          <!-- 两个按钮大小一致 -->
-          <a href="tel:+12817839998" class="action-item">
-            <i class="fas fa-phone-alt"></i>
+          <!-- Ensured both buttons have the same size and gradient -->
+          <a href="tel:+12817839998" class="action-item" aria-label="Call Oliver F">
+            <i class="fas fa-phone"></i>
             <span>CALL</span>
           </a>
-          <!-- 打开“Send Email Modal”的按钮 -->
-          <a href="#" id="openEmailModal" class="action-item">
+          <a href="#" id="openEmailModal" class="action-item" aria-label="Email Oliver F">
             <i class="fas fa-envelope"></i>
             <span>EMAIL</span>
           </a>
@@ -434,37 +484,55 @@
     <div class="info-section-home">
       <div class="description">
         <p>
-          DJA: PoE Switch brand by Dijiean Technology. Visit:
-          <a href="https://djakeji.com" target="_blank">djakeji.com</a>.
+          DJA: PoE Switch brand by Dijiean Tech. Visit:
+          <a href="https://djakeji.com" target="_blank" rel="noopener">djakeji.com</a>.
         </p>
       </div>
       <ul class="detail-list">
         <li>
-          <i class="fas fa-phone-alt"></i>
-          <div>
+          <div class="icon-box">
+            <!-- 使用内联 SVG 确保图标在任何设备上都能加载 -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+              <path fill="#f7774d" d="M391.8 312.9c-19.3-10.5-43.3-16.7-68.5-16.7-25.1 0-49.1 6.2-68.5 16.7-19.3 10.5-35.2 25.3-45.7 44.6-10.5 19.3-16.7 43.3-16.7 68.5 0 25.1 6.2 49.1 16.7 68.5 10.5 19.3 25.3 35.2 44.6 45.7 19.3 10.5 43.3 16.7 68.5 16.7 25.1 0 49.1-6.2 68.5-16.7 19.3-10.5 35.2-25.3 45.7-45.7 10.5-19.3 16.7-43.3 16.7-68.5 0-25.2-6.2-49.2-16.7-68.5-10.5-19.3-25.3-35.2-45.7-45.7zM512 256c0 141.4-114.6 256-256 256S0 397.4 0 256 114.6 0 256 0s256 114.6 256 256z"/>
+              <path fill="#f7774d" d="M502.3 190.8c3.9-10.3 0.2-21.4-9.3-28.1L400 112.4c-9.5-6.7-22.3-6.7-31.8 0l-74.6 74.6c-4.7 4.7-7 10.9-6.6 17.3l1.2 25.6c.3 14.7-11.9 27.2-26.6 27.2h-48c-14.7 0-27-12.5-26.6-27.2l1.2-25.6c.4-6.4-1.9-12.6-6.6-17.3L158.6 145.6c-11.3-11.3-29.7-11.3-41 0s-11.3 29.7 0 41l74.6 74.6c4.7 4.7 7 10.9 6.6 17.3l-1.2 25.6c-.3 14.7 11.9 27.2 26.6 27.2h48c14.7 0 27-12.5 26.6-27.2l-1.2-25.6c-.4-6.4 1.9-12.6 6.6-17.3l74.6-74.6c11.3-11.3 11.3-29.7 0-41z"/>
+            </svg>
+          </div>
+          <div class="info-text">
             <p class="info-value"><a href="tel:+12817839998">+1 281 783 9998</a></p>
             <p class="info-label">Mobile</p>
           </div>
         </li>
         <li>
-          <i class="fas fa-envelope"></i>
-          <div>
-            <p class="info-value"><a href="mailto:Oliveroogle@gmail.com">Oliveroogle@gmail.com</a></p>
+          <div class="icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+              <path fill="#f7774d" d="M502.3 190.8c3.9-10.3 0.2-21.4-9.3-28.1L400 112.4c-9.5-6.7-22.3-6.7-31.8 0l-74.6 74.6c-4.7 4.7-7 10.9-6.6 17.3l1.2 25.6c.3 14.7-11.9 27.2-26.6 27.2h-48c-14.7 0-27-12.5-26.6-27.2l1.2-25.6c.4-6.4-1.9-12.6-6.6-17.3L158.6 145.6c-11.3-11.3-29.7-11.3-41 0s-11.3 29.7 0 41l74.6 74.6c4.7 4.7 7 10.9 6.6 17.3l-1.2 25.6c-.3 14.7 11.9 27.2 26.6 27.2h48c14.7 0 27-12.5 26.6-27.2l-1.2-25.6c-.4-6.4 1.9-12.6 6.6-17.3l74.6-74.6c11.3-11.3 11.3-29.7 0-41z"/>
+            </svg>
+          </div>
+          <div class="info-text">
+            <p class="info-value"><a href="mailto:oliveroogle@gmail.com">oliveroogle@gmail.com</a></p>
             <p class="info-label">Email</p>
           </div>
         </li>
         <li>
-          <i class="fas fa-briefcase"></i>
-          <div>
-            <p class="info-value">Shenzhen Dijiean Technology Co., Ltd</p>
+          <div class="icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24">
+              <path fill="#f7774d" d="M336 80H48C21.5 80 0 101.5 0 128v256c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V128c0-26.5-21.5-48-48-48zM96 272a32 32 0 1 0 32 32 32 32 0 0 0-32-32zm192 0a32 32 0 1 0 32 32 32 32 0 0 0-32-32z"/>
+            </svg>
+          </div>
+          <div class="info-text">
+            <p class="info-value">Shenzhen Dijiean Tech</p>
             <p class="info-label">Sales Manager</p>
           </div>
         </li>
         <li>
-          <i class="fas fa-globe"></i>
-          <div>
+          <div class="icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24">
+              <path fill="#f7774d" d="M336 128H48C21.5 128 0 149.5 0 176v160c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V176c0-26.5-21.5-48-48-48zM192 320c-35.3 0-64-28.7-64-64s28.7-64 64-64 64 28.7 64 64-28.7 64-64 64z"/>
+            </svg>
+          </div>
+          <div class="info-text">
             <p class="info-value">
-              <a href="https://en.djakeji.com" target="_blank">
+              <a href="https://en.djakeji.com" target="_blank" rel="noopener">
                 en.djakeji.com
               </a>
             </p>
@@ -472,92 +540,113 @@
           </div>
         </li>
       </ul>
+
+      <!-- Social Media -->
       <section class="social-section">
         <h3>Social Media</h3>
         <div class="social-icons">
-          <!-- WhatsApp -->
-          <a href="https://wa.me/XXXXXXXXXXXX" target="_blank" aria-label="WhatsApp">
-            <i class="fab fa-whatsapp fa-2x"></i>
+          <a href="https://wa.me/+12817839998" target="_blank" aria-label="WhatsApp">
+            <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp Icon" />
+            <span>WhatsApp</span>
           </a>
-          <!-- LinkedIn -->
-          <a 
-            href="https://linkedin.com/in/oliver-f-448b8a287" 
-            target="_blank"
-            aria-label="LinkedIn"
-          >
-            <i class="fab fa-linkedin fa-2x"></i>
+          <a href="https://linkedin.com/in/oliver-f-448b8a287" target="_blank" aria-label="LinkedIn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Icon" />
+            <span>LinkedIn</span>
           </a>
         </div>
       </section>
 
-      <!-- Download vCard Button -->
+      <!-- Download vCard -->
       <div class="download-section">
         <button id="downloadVCardBtn" class="download-btn">
           <i class="fas fa-user-plus"></i>
-          Download vCard
+          DOWNLOAD VCARD
         </button>
       </div>
     </div>
-  </div><!-- /Home -->
+  </div>
 
-  <!-- Modal: vCard Download Options -->
+  <!-- vCard Modal (2nd level) -->
   <div id="vcardModal" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Save vCard</h2>
-      <button id="savePhoneBtn" class="modal-button">Save to Phone</button>
-      <button id="saveEmailBtn" class="modal-button">Save via Email</button>
+      <span class="close" aria-label="Close">&times;</span>
+      <h2>Save Contact Data</h2>
+      <p style="margin-bottom:15px;">How would you like to save contact data?</p>
+      <button id="savePhoneBtn" class="modal-button iphone">To My iPhone</button>
+      <button id="saveEmailBtn" class="modal-button email">Save via Email</button>
     </div>
   </div>
 
-  <!-- Modal: Send vCard via Email -->
+  <!-- Email Modal (3rd level) -->
   <div id="emailModal" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span class="close" aria-label="Close">&times;</span>
       <h2>Send vCard via Email</h2>
       <form id="emailForm">
-        <input type="email" name="user_email" placeholder="Enter your email" required />
-        <span class="error-message" id="emailError">Please enter a valid email address.</span>
-        <button type="submit" class="modal-button">Send Email</button>
+        <input 
+          type="email" 
+          name="user_email" 
+          placeholder="Enter your email" 
+          required 
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        />
+        <span class="error-message" id="emailError">请输入有效的电子邮件地址。</span>
+        <button type="submit" class="modal-button email">Send Email</button>
       </form>
       <p id="emailStatus" class="success-message"></p>
     </div>
   </div>
 
-  <!-- About Section -->
+  <!-- ABOUT SECTION -->
   <div class="page-section" id="aboutSection">
     <span class="section-close-btn" onclick="goHome()">x</span>
-    <div class="about-content">
+    <div class="about-content" style="padding-top:30px;">
       <h2>About DJA Company</h2>
       <p>
-        We are a leading technology solutions provider specializing in PoE switching products and network infrastructure.
-        Our mission is to deliver top-quality devices and outstanding customer service to our global clients.
+        We specialize in PoE switching products and network infrastructure. Our mission is 
+        to deliver top-quality devices and outstanding customer service to our global clients.
       </p>
       <p>
-        Established in 2008, we have rapidly expanded to serve markets worldwide, offering innovative
+        Founded in 2011, we've rapidly expanded to serve markets worldwide, offering innovative
         products under the <strong>DJA</strong> brand.
       </p>
     </div>
   </div>
 
-  <!-- Contact Section -->
+  <!-- CONTACT SECTION -->
   <div class="page-section" id="contactSection">
     <span class="section-close-btn" onclick="goHome()">x</span>
     <div class="contact-content">
       <h2>Contact Us</h2>
-      <p>If you have any questions or business inquiries, please fill out the form below:</p>
+      <p>We appreciate your interest. Please fill out the form below:</p>
       <form id="contactForm">
-        <input type="text" name="from_name" placeholder="Your Name" required />
-        <input type="email" name="reply_to" placeholder="Your Email" required />
-        <span class="error-message" id="contactEmailError">Please enter a valid email address.</span>
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <input 
+          type="text" 
+          name="from_name" 
+          placeholder="Your Name" 
+          required 
+        />
+        <input 
+          type="email" 
+          name="reply_to" 
+          placeholder="Your Email" 
+          required 
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        />
+        <span class="error-message" id="contactEmailError">请输入有效的电子邮件地址。</span>
+        <textarea 
+          name="message" 
+          rows="5" 
+          placeholder="Your Message" 
+          required
+        ></textarea>
         <button type="submit">Send Message</button>
       </form>
       <p id="contactStatus" class="success-message"></p>
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2024 DJA Company. All Rights Reserved.</p>
   </footer>
@@ -566,13 +655,12 @@
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function(){
-      // 使用您提供的 Public Key 初始化EmailJS
-      emailjs.init("HXCThZROMytOt-wyp");
+      emailjs.init("HXCThZROMytOt-wyp"); // 替换为您的 EmailJS 公钥
     })();
   </script>
 
   <script>
-    // 函数：回到Home页面
+    // 通用 "Go Home" 函数
     function goHome() {
       const sections = document.querySelectorAll('.page-section');
       sections.forEach(s => s.classList.remove('active'));
@@ -583,95 +671,92 @@
     document.addEventListener('DOMContentLoaded', () => {
       const links = document.querySelectorAll('.menu a');
       const sections = document.querySelectorAll('.page-section');
+      const vcardModal = document.getElementById('vcardModal');
+      const emailModal = document.getElementById('emailModal');
+      const downloadVCardBtn = document.getElementById('downloadVCardBtn');
+      const closeBtns = document.querySelectorAll('.close');
+      const savePhoneBtn = document.getElementById('savePhoneBtn');
+      const saveEmailBtn = document.getElementById('saveEmailBtn');
+      const emailForm = document.getElementById('emailForm');
+      const emailStatus = document.getElementById('emailStatus');
+      const contactForm = document.getElementById('contactForm');
+      const contactStatus = document.getElementById('contactStatus');
+      const emailError = document.getElementById('emailError');
+      const contactEmailError = document.getElementById('contactEmailError');
 
-      // 默认显示Home页面
-      showPage('home');
+      // 页面导航功能
+      function showPage(pageId) {
+        sections.forEach(sec => sec.classList.remove('active'));
+        const active = document.getElementById(`${pageId}Section`);
+        if(active) {
+          active.classList.add('active');
+          active.scrollIntoView({behavior:'smooth'});
+        }
+      }
 
-      // 菜单点击
+      // 菜单链接点击事件
       links.forEach(link => {
-        link.addEventListener('click', (e) => {
+        link.addEventListener('click', (e)=>{
           e.preventDefault();
           const page = link.getAttribute('data-page');
           showPage(page);
         });
       });
 
-      function showPage(pageId) {
-        sections.forEach(sec => sec.classList.remove('active'));
-        document.getElementById(`${pageId}Section`).classList.add('active');
-      }
+      // 默认显示 Home
+      showPage('home');
 
-      // 模态框逻辑
-      const vcardModal = document.getElementById('vcardModal');
-      const emailModal = document.getElementById('emailModal');
-      const downloadVCardBtn = document.getElementById('downloadVCardBtn');
-      const closeButtons = document.querySelectorAll('.close');
-      const savePhoneBtn = document.getElementById('savePhoneBtn');
-      const saveEmailBtn = document.getElementById('saveEmailBtn');
-
+      // 打开 vCard 模态框
       downloadVCardBtn.onclick = () => {
-        vcardModal.style.display = "block";
-      }
+        vcardModal.style.display = 'block';
+      };
 
-      closeButtons.forEach(btn => {
+      // 关闭模态框
+      closeBtns.forEach(btn => {
         btn.onclick = () => {
-          vcardModal.style.display = "none";
-          emailModal.style.display = "none";
+          vcardModal.style.display = 'none';
+          emailModal.style.display = 'none';
+        };
+      });
+
+      // 点击模态框外部区域关闭
+      window.onclick = (event)=>{
+        if(event.target === vcardModal) vcardModal.style.display='none';
+        if(event.target === emailModal) emailModal.style.display='none';
+      };
+
+      // ESC 键关闭模态框
+      document.addEventListener('keydown',(event)=>{
+        if(event.key === 'Escape'){
+          vcardModal.style.display='none';
+          emailModal.style.display='none';
         }
       });
 
-      window.onclick = (event) => {
-        if (event.target === vcardModal) {
-          vcardModal.style.display = "none";
-        }
-        if (event.target === emailModal) {
-          emailModal.style.display = "none";
-        }
-      }
-
-      // 按下ESC键关闭模态框
-      document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape") {
-          vcardModal.style.display = "none";
-          emailModal.style.display = "none";
-        }
-      });
-
-      // 保存到手机
+      // 保存到 iPhone
       savePhoneBtn.onclick = () => {
-        vcardModal.style.display = "none";
-        // 下载vCard文件
-        window.location.href = 'OliverF.vcf';
-      }
+        vcardModal.style.display='none';
+        window.location.href='OliverF.vcf';
+      };
 
-      // Save via Email
+      // 保存通过 Email
       saveEmailBtn.onclick = () => {
-        vcardModal.style.display = "none";
-        emailModal.style.display = "block";
-      }
+        vcardModal.style.display='none';
+        emailModal.style.display='block';
+      };
 
-      // 打开 Email Modal 按钮
-      const openEmailModal = document.getElementById('openEmailModal');
-      openEmailModal.addEventListener('click', (e)=>{
-        e.preventDefault();
-        emailModal.style.display = 'block';
-      });
-
-      // 验证邮件格式
+      // 邮件验证函数
       function validateEmail(email) {
         const re = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
         return re.test(String(email).toLowerCase());
       }
 
-      // 处理vCard邮件提交
-      const emailForm = document.getElementById('emailForm');
-      const emailStatus = document.getElementById('emailStatus');
-      const emailError = document.getElementById('emailError');
-
-      emailForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+      // 发送 vCard via Email
+      emailForm.addEventListener('submit',(e)=>{
+        e.preventDefault();
         const userEmail = emailForm.user_email.value.trim();
 
+        // 验证邮箱格式
         if(!validateEmail(userEmail)) {
           emailError.style.display = 'block';
           emailStatus.textContent = '';
@@ -688,31 +773,28 @@
           to_email: userEmail,
           message: 'Please download your vCard from: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
         })
-        .then(function(response) {
-           console.log('SUCCESS!', response.status, response.text);
-           emailStatus.style.color = "green";
-           emailStatus.textContent = "Email sent successfully! Please check your inbox.";
-           emailForm.reset();
-           setTimeout(() => {
-             emailModal.style.display = "none";
-             emailStatus.textContent = '';
-           }, 3000);
-        }, function(error) {
-           console.log('FAILED...', error);
-           emailStatus.style.color = "red";
-           emailStatus.textContent = "Failed to send email. Please try again later.";
+        .then((resp)=>{
+          console.log('SUCCESS!', resp.status, resp.text);
+          emailStatus.style.color='green';
+          emailStatus.textContent='Email sent successfully! Check your inbox.';
+          emailForm.reset();
+          setTimeout(()=> {
+            emailModal.style.display='none';
+            emailStatus.textContent = '';
+          },3000);
+        },(err)=>{
+          console.log('FAILED...', err);
+          emailStatus.style.color='red';
+          emailStatus.textContent='Failed to send email. Try again later.';
         });
       });
 
-      // 处理联系表单提交
-      const contactForm = document.getElementById('contactForm');
-      const contactStatus = document.getElementById('contactStatus');
-      const contactEmailError = document.getElementById('contactEmailError');
-
-      contactForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+      // 联系表单提交
+      contactForm.addEventListener('submit',(e)=>{
+        e.preventDefault();
         const contactEmail = contactForm.reply_to.value.trim();
 
+        // 验证邮箱格式
         if(!validateEmail(contactEmail)) {
           contactEmailError.style.display = 'block';
           contactStatus.textContent = '';
@@ -724,23 +806,30 @@
         contactStatus.textContent = "Sending...";
         contactStatus.style.color = "black";
 
-        // 收件人模板(template_o5n5jrp)
-        emailjs.send('service_1ffkva1', 'template_o5n5jrp', {
+         // 收件人模板(template_o5n5jrp)
+        emailjs.send('service_1ffkva1', 'template_o5n5jrp',{
           from_name: contactForm.from_name.value.trim(),
-          reply_to: contactEmail,
+        reply_to: contactEmail,
           message: contactForm.message.value.trim()
         })
-        .then(function(response) {
-           console.log('SUCCESS!', response.status, response.text);
-           contactStatus.style.color = "green";
-           contactStatus.textContent = "Your message has been sent successfully! We will get back to you soon.";
-           contactForm.reset();
-        }, function(error) {
-           console.log('FAILED...', error);
-           contactStatus.style.color = "red";
-           contactStatus.textContent = "Failed to send your message. Please try again later.";
+        .then((resp)=>{
+          console.log("SUCCESS!", resp.status, resp.text);
+          contactStatus.style.color='green';
+          contactStatus.textContent='Your message was sent successfully! We will reply soon.';
+          contactForm.reset();
+        },(err)=>{
+          console.log("FAILED...", err);
+          contactStatus.style.color='red';
+          contactStatus.textContent='Failed to send. Please try again.';
         });
       });
+
+      // 打开 Email 模态框的按钮
+      document.getElementById('openEmailModal').addEventListener('click', (e)=>{
+        e.preventDefault();
+        emailModal.style.display = 'block';
+      });
+
     });
   </script>
 </body>
