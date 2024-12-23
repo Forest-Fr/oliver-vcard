@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Oliver F - Sales Manager | DJA Company</title>
-
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Oliver F - Sales Manager at DJA Company. Connect via WhatsApp, LinkedIn, or email. Download vCard for quick contact."/>
-  <meta name="keywords" content="Oliver F, Sales Manager, DJA, Digital Business Card, vCard, WhatsApp, LinkedIn, Contact"/>
 
   <!-- Font Awesome for Icons -->
   <link
@@ -57,23 +53,23 @@
       object-fit: cover;
       border-radius: 4px;
     }
-    .menu {
+    .navbar .menu {
       display: flex;
       gap: 20px;
     }
-    .menu a {
+    .navbar .menu a {
       color: #fff;
       font-weight: 500;
+      transition: background-color 0.2s ease, color 0.2s ease;
       padding: 8px 12px;
       border-radius: 4px;
-      transition: background-color 0.2s ease, color 0.2s ease;
     }
-    .menu a:hover {
+    .navbar .menu a:hover {
       background-color: #fa7f56;
       color: #fff;
     }
 
-    /* ======= Page Sections ======= */
+    /* ======= Main Content ======= */
     .page-section {
       display: none; /* Hidden by default, controlled via JavaScript */
       max-width: 800px;
@@ -82,23 +78,9 @@
       border-radius: 8px;
       padding: 20px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: relative;
     }
     .page-section.active {
       display: block;
-    }
-
-    /* "X" button styling */
-    .section-close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 24px;
-      color: #aaa;
-      cursor: pointer;
-    }
-    .section-close-btn:hover {
-      color: #000;
     }
 
     /* ======= Home Section ======= */
@@ -155,16 +137,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform 0.2s;
-      width: 120px;   /* Fixed width */
-      height: 60px;   /* Fixed height */
-      justify-content: center;
-      border: 2px solid #fff;
-      border-radius: 6px;
+      transition: transform 0.2s, color 0.2s, background-color 0.2s;
+      padding: 10px;
+      border-radius: 4px;
     }
     .action-item:hover {
-      background-color: rgba(255,255,255,0.25);
-      transform: scale(1.05);
+      transform: scale(1.1);
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fa7f56;
     }
     .action-item i {
       font-size: 1.8rem;
@@ -172,7 +152,6 @@
     }
     .action-item span {
       font-size: 1rem;
-      font-weight: 500;
     }
 
     /* Detailed Information */
@@ -216,6 +195,9 @@
       color: #333;
       text-decoration: none;
     }
+    .info-value a:hover {
+      text-decoration: underline;
+    }
 
     /* Social Media Section */
     .social-section {
@@ -235,10 +217,11 @@
     .social-icons a {
       color: #555;
       text-decoration: none;
-      transition: color 0.2s ease;
+      transition: color 0.2s ease, transform 0.2s;
     }
     .social-icons a:hover {
       color: #fa7f56;
+      transform: scale(1.2);
     }
 
     /* Download Section */
@@ -254,7 +237,7 @@
       padding: 12px 25px;
       border-radius: 4px;
       font-size: 1rem;
-      transition: background-color 0.2s ease;
+      transition: background-color 0.2s ease, transform 0.2s;
       cursor: pointer;
       border: none;
     }
@@ -263,6 +246,7 @@
     }
     .download-btn:hover {
       background-color: #b2503f;
+      transform: scale(1.05);
     }
 
     /* ======= Modals ======= */
@@ -284,7 +268,7 @@
       padding: 30px;
       border: none;
       width: 90%;
-      max-width: 500px; /* Adjusted for better coordination */
+      max-width: 400px; /* Could be more or less, depending on screen size */
       border-radius: 8px;
       text-align: center;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -296,7 +280,7 @@
       position: absolute;
       top: 15px;
       right: 20px;
-      font-size: 24px;
+      font-size: 28px;
       font-weight: bold;
       cursor: pointer;
     }
@@ -316,10 +300,11 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 1rem;
-      transition: background-color 0.2s ease;
+      transition: background-color 0.2s ease, transform 0.2s;
     }
     .modal-button:hover {
       background-color: #b2503f;
+      transform: scale(1.02);
     }
     #emailStatus,
     #contactStatus {
@@ -365,10 +350,11 @@
       color: #fff;
       font-size: 1rem;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      transition: background-color 0.2s ease, transform 0.2s;
     }
     .contact-content button:hover {
       background-color: #b2503f;
+      transform: scale(1.02);
     }
     #contactStatus {
       text-align: center;
@@ -399,20 +385,6 @@
         margin: 20% auto;
       }
     }
-
-    /* ======= Error & Success Messages ======= */
-    .error-message {
-      color: red;
-      font-size: 0.85rem;
-      margin-top: 5px;
-      display: none;
-    }
-    .success-message {
-      color: green;
-      font-size: 0.85rem;
-      margin-top: 5px;
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -420,7 +392,7 @@
   <nav class="navbar">
     <div class="logo-wrap">
       <!-- Company Logo: Company-Logo.png -->
-      <!-- 如果Logo仍无法显示，请移除此<img>标签 -->
+      <!-- 如果Logo无法显示，将隐藏此<img>标签 -->
       <img src="Company-Logo.png" alt="DJA Company Logo" onerror="this.style.display='none'"/>
     </div>
     <div class="menu">
@@ -442,10 +414,10 @@
         <h2 class="person-title">Sales Manager</h2>
         <div class="action-row">
           <a href="tel:+12817839998" class="action-item">
-            <i class="fas fa-phone-alt"></i>
+            <i class="fas fa-phone"></i>
             <span>CALL</span>
           </a>
-          <a href="#" id="openEmailModal" class="action-item">
+          <a href="mailto:Oliveroogle@gmail.com" class="action-item">
             <i class="fas fa-envelope"></i>
             <span>EMAIL</span>
           </a>
@@ -539,16 +511,14 @@
       <h2>Send vCard via Email</h2>
       <form id="emailForm">
         <input type="email" name="user_email" placeholder="Enter your email" required />
-        <span class="error-message" id="emailError">请输入有效的电子邮件地址。</span>
         <button type="submit" class="modal-button">Send Email</button>
       </form>
-      <p id="emailStatus" class="success-message"></p>
+        <p id="emailStatus"></p>
     </div>
   </div>
 
   <!-- About Section -->
   <div class="page-section" id="aboutSection">
-    <span class="section-close-btn" onclick="goHome()">x</span>
     <div class="about-content">
       <h2>About DJA Company</h2>
       <p>
@@ -556,26 +526,24 @@
         Our mission is to deliver top-quality devices and outstanding customer service to our global clients.
       </p>
       <p>
-        Established in 2008, we have rapidly expanded to serve markets worldwide, offering innovative
-        products under the <strong>DJA</strong> brand.
+        Established in 2008, we have rapidly expanded to serve markets worldwide, offering innovative products under the 
+        <strong>DJA</strong> brand.
       </p>
     </div>
   </div>
 
   <!-- Contact Section -->
   <div class="page-section" id="contactSection">
-    <span class="section-close-btn" onclick="goHome()">x</span>
     <div class="contact-content">
       <h2>Contact Us</h2>
       <p>If you have any questions or business inquiries, please fill out the form below:</p>
       <form id="contactForm">
         <input type="text" name="from_name" placeholder="Your Name" required />
         <input type="email" name="reply_to" placeholder="Your Email" required />
-        <span class="error-message" id="contactEmailError">请输入有效的电子邮件地址。</span>
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
       </form>
-      <p id="contactStatus" class="success-message"></p>
+      <p id="contactStatus"></p>
     </div>
   </div>
 
@@ -661,43 +629,17 @@
         emailModal.style.display = "block";
       }
 
-      // 打开 Email 模态框的按钮
-      const openEmailModalBtn = document.getElementById('openEmailModal');
-      openEmailModalBtn.addEventListener('click', (e)=>{
-        e.preventDefault();
-        emailModal.style.display = 'block';
-      });
-
-      // 邮件验证函数
-      function validateEmail(email) {
-        const re = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-        return re.test(String(email).toLowerCase());
-      }
-
       // 处理vCard邮件提交
       const emailForm = document.getElementById('emailForm');
       const emailStatus = document.getElementById('emailStatus');
-      const emailError = document.getElementById('emailError');
 
       emailForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        const userEmail = emailForm.user_email.value.trim();
-
-        // 验证邮箱格式
-        if(!validateEmail(userEmail)) {
-          emailError.style.display = 'block';
-          emailStatus.textContent = '';
-          return;
-        } else {
-          emailError.style.display = 'none';
-        }
-
         emailStatus.textContent = "Sending...";
         emailStatus.style.color = "black";
 
-        // 使用您的 EmailJS 服务和模板ID
         emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
-          to_email: userEmail,
+          to_email: emailForm.user_email.value, // 动态接收用户输入的邮箱
           message: 'Please download your vCard from the following link: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
         })
         .then(function(response) {
@@ -705,10 +647,6 @@
            emailStatus.style.color = "green";
            emailStatus.textContent = "Email sent successfully! Please check your inbox.";
            emailForm.reset();
-           setTimeout(()=> {
-             emailModal.style.display = "none";
-             emailStatus.textContent = '';
-           }, 3000);
         }, function(error) {
            console.log('FAILED...', error);
            emailStatus.style.color = "red";
@@ -719,29 +657,16 @@
       // 处理联系表单提交
       const contactForm = document.getElementById('contactForm');
       const contactStatus = document.getElementById('contactStatus');
-      const contactEmailError = document.getElementById('contactEmailError');
 
       contactForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        const contactEmail = contactForm.reply_to.value.trim();
-
-        // 验证邮箱格式
-        if(!validateEmail(contactEmail)) {
-          contactEmailError.style.display = 'block';
-          contactStatus.textContent = '';
-          return;
-        } else {
-          contactEmailError.style.display = 'none';
-        }
-
         contactStatus.textContent = "Sending...";
         contactStatus.style.color = "black";
 
-        // 使用您的 EmailJS 服务和模板ID
-        emailjs.send('service_1ffkva1', 'template_q5nmhvk', {
-          from_name: contactForm.from_name.value.trim(),
-          reply_to: contactEmail,
-          message: contactForm.message.value.trim()
+        emailjs.send('service_1ffkva1', 'template_contact', { // 使用不同的模板ID
+          from_name: contactForm.from_name.value,
+          reply_to: contactForm.reply_to.value,
+          message: contactForm.message.value,
         })
         .then(function(response) {
            console.log('SUCCESS!', response.status, response.text);
