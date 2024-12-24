@@ -10,7 +10,13 @@
   <meta name="keywords" content="Oliver F, Sales Manager, DJA, Digital Business Card, vCard, WhatsApp, LinkedIn, Contact"/>
 
   <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous"/>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pjw1E0HJQ0Zc9ewYbz2bDgO38eP27Uu7haR4awFzylFflI2Z+zY1c4Xo3I0Y2KjPnCgFJwlGJgJGZcELp0K0xw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 
   <style>
     /* =========== GLOBAL RESET =========== */
@@ -21,8 +27,8 @@
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #003366; /* 深蓝色背景 */
-      color: #fff; /* 白色字体 */
+      background-color: #f7f7f7;
+      color: #333;
       line-height: 1.6;
       min-height: 100vh;
       display: flex;
@@ -71,7 +77,7 @@
 
     /* =========== PAGE SECTIONS =========== */
     .page-section {
-      display: none;
+      display: none; /* Show by JS */
       max-width: 900px;
       margin: 20px auto;
       background-color: #fff;
@@ -102,7 +108,7 @@
       width: 100%;
       background: linear-gradient(135deg, #fa7f56, #b2503f);
       text-align: center;
-      padding: 20px 15px;
+      padding: 20px 15px; /* Reduced padding */
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
       margin-top: -10px;
@@ -113,7 +119,7 @@
       margin: 0 auto;
     }
     .avatar-wrap {
-      width: 80px;
+      width: 80px; /* Slightly reduced size */
       height: 80px;
       margin: 0 auto 10px auto;
       border-radius: 50%;
@@ -126,13 +132,13 @@
       object-fit: cover;
     }
     .person-name {
-      font-size: 1.6rem;
+      font-size: 1.6rem; /* Slightly reduced size */
       font-weight: bold;
       color: #fff;
       margin-bottom: 5px;
     }
     .person-title {
-      font-size: 1.1rem;
+      font-size: 1.1rem; /* Slightly reduced size */
       color: #fce9e4;
       margin-bottom: 15px;
     }
@@ -140,7 +146,7 @@
     .action-row {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 15px; /* Reduced gap */
       margin-top: 15px;
     }
     .action-item {
@@ -152,13 +158,13 @@
       border: 2px solid #fff;
       border-radius: 6px;
       padding: 8px;
-      width: 100px;
-      height: 50px;
+      width: 100px;   /* Slightly reduced width */
+      height: 50px;   /* Reduced height */
       justify-content: center;
       transition: background-color 0.2s, transform 0.2s;
     }
     .action-item i {
-      font-size: 1.2rem;
+      font-size: 1.2rem; /* Slightly reduced size */
       margin-bottom: 3px;
     }
     .action-item span {
@@ -171,14 +177,15 @@
     }
 
     .info-section-home {
-      padding: 15px;
+      padding: 15px; /* Slightly reduced padding */
     }
     .description {
       margin-bottom: 20px;
       text-align: center;
-      font-size: 1rem;
+      font-size: 1rem; /* Reduced font size */
     }
 
+    /* Icon + Info blocks */
     .detail-list {
       list-style: none;
       margin-bottom: 20px;
@@ -193,7 +200,7 @@
       border-top: none;
     }
     .icon-box {
-      width: 40px;
+      width: 40px; /* Slightly reduced size */
       height: 40px;
       border-radius: 8px;
       margin-right: 10px;
@@ -204,7 +211,7 @@
       background-color: #fafafa;
     }
     .detail-list i {
-      font-size: 1.2rem;
+      font-size: 1.2rem; /* Slightly reduced size */
       color: #f7774d;
     }
     .info-text {
@@ -228,12 +235,12 @@
     }
     .social-icons {
       display: flex;
-      gap: 15px;
+      gap: 15px; /* Reduced gap */
       justify-content: center;
       flex-wrap: wrap;
     }
     .social-icons a {
-      width: 60px;
+      width: 60px; /* Slightly reduced size */
       text-decoration: none;
       color: #333;
       transition: transform 0.2s;
@@ -264,7 +271,7 @@
       align-items: center;
       background: linear-gradient(135deg, #fa7f56, #b2503f);
       color: #fff;
-      padding: 8px 20px;
+      padding: 8px 20px; /* Reduced padding */
       border-radius: 4px;
       font-size: 1rem;
       transition: transform 0.2s;
@@ -279,7 +286,7 @@
       transform: scale(1.05);
     }
 
-    /* Modal Styles */
+    /* =========== MODALS =========== */
     .modal {
       display: none;
       position: fixed;
@@ -295,7 +302,7 @@
       margin: 8% auto;
       padding: 25px;
       width: 90%;
-      max-width: 600px;
+      max-width: 600px; /* 调整为更宽 */
       border-radius: 8px;
       text-align: center;
       position: relative;
@@ -340,6 +347,7 @@
       color: #fff;
     }
 
+    /* =========== CONTACT FORM VALIDATION MESSAGES =========== */
     .error-message {
       color: red;
       font-size: 0.85rem;
@@ -351,6 +359,48 @@
       font-size: 0.85rem;
       margin-top: 5px;
       display: none;
+    }
+
+    /* =========== CONTACT STYLES =========== */
+    .contact-content h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .contact-content form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .contact-content input,
+    .contact-content textarea {
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .contact-content button {
+      padding: 12px;
+      background: linear-gradient(135deg, #fa7f56, #b2503f);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .contact-content button:hover {
+      transform: scale(1.03);
+    }
+
+    /* =========== FOOTER =========== */
+    footer {
+      margin-top: auto;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
     }
 
     /* =========== RESPONSIVE =========== */
@@ -371,7 +421,7 @@
         margin-bottom: 5px;
       }
       .modal-content {
-        max-width: 90%;
+        max-width: 90%; /* 更适合手机 */
       }
     }
 
@@ -423,6 +473,7 @@
           <div class="icon-box">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
               <path fill="#f7774d" d="M391.8 312.9c-19.3-10.5-43.3-16.7-68.5-16.7-25.1 0-49.1 6.2-68.5 16.7-19.3 10.5-35.2 25.3-45.7 44.6-10.5 19.3-16.7 43.3-16.7 68.5 0 25.1 6.2 49.1 16.7 68.5 10.5 19.3 25.3 35.2 44.6 45.7 19.3 10.5 43.3 16.7 68.5 16.7 25.1 0 49.1-6.2 68.5-16.7 19.3-10.5 35.2-25.3 45.7-45.7 10.5-19.3 16.7-43.3 16.7-68.5 0-25.2-6.2-49.2-16.7-68.5-10.5-19.3-25.3-35.2-45.7-45.7zM512 256c0 141.4-114.6 256-256 256S0 397.4 0 256 114.6 0 256 0s256 114.6 256 256z"/>
+              <path fill="#f7774d" d="M502.3 190.8c3.9-10.3 0.2-21.4-9.3-28.1L400 112.4c-9.5-6.7-22.3-6.7-31.8 0l-74.6 74.6c-4.7 4.7-7 10.9-6.6 17.3l1.2 25.6c.3 14.7-11.9 27.2-26.6 27.2h-48c-14.7 0-27-12.5-26.6-27.2l1.2-25.6c.4-6.4-1.9-12.6-6.6-17.3L158.6 145.6c-11.3-11.3-29.7-11.3-41 0s-11.3 29.7 0 41l74.6 74.6c4.7 4.7 7 10.9 6.6 17.3l-1.2 25.6c-.3 14.7 11.9 27.2 26.6 27.2h48c14.7 0 27-12.5 26.6-27.2l-1.2-25.6c-.4-6.4 1.9-12.6 6.6-17.3l74.6-74.6c11.3-11.3 11.3-29.7 0-41z"/>
             </svg>
           </div>
           <div class="info-text">
@@ -448,7 +499,7 @@
             </svg>
           </div>
           <div class="info-text">
-            <p class="info-value">Shenzhen Dijiean Techology Co,.Ltd</p>
+            <p class="info-value">Shenzhen Dijiean Tech</p>
             <p class="info-label">Sales Manager</p>
           </div>
         </li>
@@ -468,33 +519,33 @@
           </div>
         </li>
       </ul>
+
+      <!-- Social Media -->
+      <section class="social-section">
+        <h3>Social Media</h3>
+        <div class="social-icons">
+          <a href="https://wa.me/+12817839998" target="_blank" aria-label="WhatsApp">
+            <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp Icon" />
+            <span>WhatsApp</span>
+          </a>
+          <a href="https://linkedin.com/in/oliver-f-448b8a287" target="_blank" aria-label="LinkedIn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Icon" />
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Download vCard -->
+      <div class="download-section">
+        <button id="downloadVCardBtn" class="download-btn">
+          <i class="fas fa-user-plus"></i>
+          DOWNLOAD VCARD
+        </button>
+      </div>
     </div>
   </div>
-  
-  <!-- Social Media -->
-  <section class="social-section">
-    <h3>Social Media</h3>
-    <div class="social-icons">
-      <a href="https://wa.me/+12817839998" target="_blank" aria-label="WhatsApp">
-        <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp Icon" />
-        <span>WhatsApp</span>
-      </a>
-      <a href="https://linkedin.com/in/oliver-f-448b8a287" target="_blank" aria-label="LinkedIn">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Icon" />
-        <span>LinkedIn</span>
-      </a>
-    </div>
-  </section>
 
-  <!-- Download vCard -->
-  <div class="download-section">
-    <button id="downloadVCardBtn" class="download-btn">
-      <i class="fas fa-user-plus"></i>
-      DOWNLOAD VCARD
-    </button>
-  </div>
-
- <!-- vCard Modal -->
+  <!-- vCard Modal -->
   <div id="vcardModal" class="modal">
     <div class="modal-content">
       <span class="close" aria-label="Close">&times;</span>
@@ -525,16 +576,12 @@
     <div class="about-content" style="padding-top:30px;">
       <h2>About DJA Company</h2>
       <p>
-       DJA – Brand of Shenzhen Dijiean Technology Co., Ltd.
-    Website: djakeji.com
-   Dijiean Technology Co., Ltd. is our official name, with "DJA" as our brand. Our website,    djakeji.com, reflects our Chinese name, "Dijiean Keji."
+        We specialize in PoE switching products and network infrastructure. Our mission is 
+        to deliver top-quality devices and outstanding customer service to our global clients.
       </p>
       <p>
-        Founded in 2011, We provide PoE switches, splitters, repeaters, extenders, and fiber transceivers for security solutions.
-
-Our products, backed by strong R&D and global partnerships, serve industries like retail, transportation, and government.
-
-We are known for quality and service, earning a trusted reputation in the security sector.
+        Founded in 2011, we've rapidly expanded to serve markets worldwide, offering innovative
+        products under the <strong>DJA</strong> brand.
       </p>
     </div>
   </div>
@@ -574,7 +621,7 @@ We are known for quality and service, earning a trusted reputation in the securi
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2024 A huge fan. All Rights Reserved.</p>
+    <p>&copy; 2024 DJA Company. All Rights Reserved.</p>
   </footer>
 
   <!-- EmailJS SDK -->
@@ -760,12 +807,3 @@ We are known for quality and service, earning a trusted reputation in the securi
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
