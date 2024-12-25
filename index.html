@@ -226,62 +226,56 @@
       font-size: 0.8rem;
       color: #888;
     }
-
-    /* Social Media */
-    .social-section {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.social-section h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.social-icons a {
-    text-decoration: none;
-    color: #666;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.social-icons img {
-    width: 24px;
-    height: 24px;
-}
-
-  /* Download vCard Button */
-.download-section {
+/* Center and adjust the Social Media section */
+.social-section {
   text-align: center;
   margin-top: 20px;
 }
+
+/* Social icons styling */
+.social-section {
+  text-align: center;
+  margin: 20px auto;
+}
+
+/* Social Icons 样式 */
+.social-icons a {
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+}
+
+.social-icons img {
+ .download-section {
+  text-align: center;
+  margin: 20px auto;
+}
+
+/* Adjust Download vCard button */
+.download-section {
+  text-align: center;
+  margin: 20px auto;
+}
+
 .download-btn {
   display: inline-flex;
-    align-items: center;
-    background: linear-gradient(to right, #9faebf, #cdd7e3); /* 渐变色 */
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+  align-items: center;
+  justify-content: center;
+  background-color: #6ca4f8;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease-in-out;
 }
-.download-btn i {
-  margin-right: 8px;
-  font-size: 1.2rem;
-}
+
 .download-btn:hover {
- transform: scale(1.05);
+  background-color: #5a92e0;
+  transform: scale(1.05);
 }
 
     /* =========== MODALS =========== */
@@ -473,84 +467,50 @@
     </div>
   </header>
 
-  <div class="info-section-home">
-    <div class="description">
-      <p>
-        DJA: PoE Switch brand by Dijiean Tech-original factory with R&D
-      </p>
+ <div class="info-section-home">
+  <div class="description">
+    <p>
+      DJA: PoE Switch brand by Dijiean Tech-original factory with R&D
+    </p>
+  </div>
+  <ul class="detail-list">
+    <!-- Company details like Phone, Email, Company Name, Website -->
+    <li>
+      <div class="icon-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/126/126509.png" alt="Phone Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+      </div>
+      <div class="info-text">
+        <p class="info-value"><a href="tel:+12817839998">+1 281 783 9998</a></p>
+        <p class="info-label">Mobile</p>
+      </div>
+    </li>
+    <!-- Add other details -->
+  </ul>
+
+  <!-- Social Media Section -->
+  <section class="social-section">
+    <h3>Social Media</h3>
+    <div class="social-icons">
+      <a href="https://wa.me/+12817839998" target="_blank" aria-label="WhatsApp">
+        <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp Icon" />
+        <span>WhatsApp</span>
+      </a>
+      <a href="https://linkedin.com/in/oliver-f-448b8a287" target="_blank" aria-label="LinkedIn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Icon" />
+        <span>LinkedIn</span>
+      </a>
     </div>
-    <ul class="detail-list">
-      <!-- Phone -->
-      <li>
-        <div class="icon-box">
-          <img src="https://cdn-icons-png.flaticon.com/512/126/126509.png" alt="Phone Icon" style="width: 24px; height: 24px; margin-right: 8px;">
-        </div>
-        <div class="info-text">
-          <p class="info-value"><a href="tel:+12817839998">+1 281 783 9998</a></p>
-          <p class="info-label">Mobile</p>
-        </div>
-      </li>
-      <!-- Email -->
-      <li>
-        <div class="icon-box">
-          <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Icon" style="width: 24px; height: 24px; margin-right: 8px;">
-        </div>
-        <div class="info-text">
-          <p class="info-value"><a href="mailto:oliveroogle@gmail.com">oliveroogle@gmail.com</a></p>
-          <p class="info-label">Email</p>
-        </div>
-      </li>
-      <!-- Company -->
-      <li>
-        <div class="icon-box">
-          <img src="https://cdn-icons-png.flaticon.com/512/1239/1239525.png" alt="Company Icon" style="width: 24px; height: 24px; margin-right: 8px;">
-        </div>
-        <div class="info-text">
-          <p class="info-value">Shenzhen Dijiean Technology Co., Ltd</p>
-          <p class="info-label">Company</p>
-        </div>
-      </li>
-      <!-- Website -->
-      <li>
-        <div class="icon-box">
-          <img src="https://cdn-icons-png.flaticon.com/512/2950/2950622.png" alt="Website Icon" style="width: 24px; height: 24px; margin-right: 8px;">
-        </div>
-        <div class="info-text">
-          <p class="info-value">
-            <a href="https://en.djakeji.com" target="_blank" rel="noopener">en.djakeji.com</a>
-          </p>
-          <p class="info-label">Website</p>
-        </div>
-      </li>
-    </ul>
+  </section>
+
+  <!-- Download vCard -->
+  <div class="download-section">
+    <button id="downloadVCardBtn" class="download-btn">
+      <i class="fas fa-user-plus"></i> <!-- 更改图标 -->
+      DOWNLOAD VCARD
+    </button>
   </div>
 </div>
 
-
-      <!-- Social Media -->
-      <section class="social-section">
-        <h3>Social Media</h3>
-        <div class="social-icons">
-          <a href="https://wa.me/+12817839998" target="_blank" aria-label="WhatsApp">
-            <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp Icon" />
-            <span>WhatsApp</span>
-          </a>
-          <a href="https://linkedin.com/in/oliver-f-448b8a287" target="_blank" aria-label="LinkedIn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Icon" />
-            <span>LinkedIn</span>
-          </a>
-        </div>
-      </section>
-
-      <!-- Download vCard -->
-      <div class="download-section">
-         <button id="downloadVCardBtn" class="download-btn">
-    <i class="fas fa-user-plus"></i> <!-- 更改图标 -->
-    DOWNLOAD VCARD
-  </button>
-</div>
-</div>
-</div>
 
   <!-- vCard Modal -->
   <div id="vcardModal" class="modal">
