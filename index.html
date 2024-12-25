@@ -740,37 +740,25 @@
         window.location.href='OliverF.vcf';
       };
 
-      // 保存通过 Email
-saveEmailBtn.onclick = () => {
-  vcardModal.style.display = 'none';
-  emailModal.style.display = 'block';
-};
+    // 保存通过 Email
+      saveEmailBtn.onclick = () => {
+        vcardModal.style.display='none';
+        emailModal.style.display='block';
+      };
 
-// 邮件验证函数
-function validateEmail(email) {
-  const re = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i; // i: 忽略大小写
-  return re.test(String(email).toLowerCase());
-}
+      // 邮件验证函数
+      function validateEmail(email) {
+        const re = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+        return re.test(String(email).toLowerCase());
+      }
 
-// 设置状态消息
-function setStatusMessage(element, message, status) {
-  element.style.color = status === 'success' ? 'green' : 'red';
-  element.textContent = message;
-}
+      // 发送 vCard via Email
+      emailForm.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        const userEmail = emailForm.user_email.value.trim();
 
-// 重置表单状态
-function resetFormStatus(form, statusElement) {
-  form.reset();
-  statusElement.textContent = '';
-}
-
-// 发送 vCard via Email
-emailForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const userEmail = emailForm.user_email.value.trim();
-
-  // 验证邮箱格式
-  if (!validateEmail(userEmail)) {
+        // 验证邮箱格式
+     if (!validateEmail(userEmail)) {
     setStatusMessage(emailError, 'Please enter a valid email address.', 'error');
     emailStatus.textContent = '';
     return;
@@ -778,82 +766,72 @@ emailForm.addEventListener('submit', (e) => {
     emailError.style.display = 'none';
   }
 
-  setStatusMessage(emailStatus, 'Sending...', 'info');
+        emailStatus.textContent = "Sending...";
+        emailStatus.style.color = "black";
 
-  // 使用 EmailJS 发送邮件
-  emailjs
-    .send('service_1ffkva1', 'template_ypdj9n9', {
-      to_email: userEmail,
-      message:
-        'Please download Oliver vCard from: https://forest-fr.github.io/oliver-vcard/OliverF.vcf',
-    })
-    .then((resp) => {
-      console.log('SUCCESS!', resp.status, resp.text);
-      setStatusMessage(
-        emailStatus,
-        'Your message was sent successfully! We will reply soon.',
-        'success'
-      );
-      resetFormStatus(emailForm, emailStatus);
-    })
-    .catch((err) => {
-      console.error('FAILED...', err);
-      setStatusMessage(
-        emailStatus,
-        'Failed to send. Please try again.',
-        'error'
-      );
+        // 发件人模板(template_ypdj9n9)
+        emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
+          to_email: userEmail,
+          message: 'Please download your vCard from: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
+        })
+        .then((resp)=>{
+          console.log('SUCCESS!', resp.status, resp.text);
+          emailStatus.style.color='green';
+          emailStatus.textContent='Email sent successfully! Check your inbox.';
+          emailForm.reset();
+          setTimeout(()=> {
+            emailModal.style.display='none';
+            emailStatus.textContent = '';
+          },3000);
+        },(err)=>{
+          console.log('FAILED...', err);
+          emailStatus.style.color='red';
+          emailStatus.textContent='Failed to send email. Try again later.';
+        });
+      });
+
+      // 联系表单提交
+      contactForm.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        const contactEmail = contactForm.reply_to.value.trim();
+
+        // 验证邮箱格式
+        if(!validateEmail(contactEmail)) {
+          contactEmailError.style.display = 'block';
+          contactStatus.textContent = '';
+          return;
+        } else {
+          contactEmailError.style.display = 'none';
+        }
+
+        contactStatus.textContent = "Sending...";
+        contactStatus.style.color = "black";
+
+         // 收件人模板(template_o5n5jrp)
+        emailjs.send('service_1ffkva1', 'template_o5n5jrp',{
+          from_name: contactForm.from_name.value.trim(),
+        reply_to: contactEmail,
+          message: contactForm.message.value.trim()
+        })
+        .then((resp)=>{
+          console.log("SUCCESS!", resp.status, resp.text);
+          contactStatus.style.color='green';
+          contactStatus.textContent='Your message was sent successfully! We will reply soon.';
+          contactForm.reset();
+        },(err)=>{
+          console.log("FAILED...", err);
+          contactStatus.style.color='red';
+          contactStatus.textContent='Failed to send. Please try again.';
+        });
+      });
+
+      // 打开 Email 模态框的按钮
+      document.getElementById('openEmailModal').addEventListener('click', (e)=>{
+        e.preventDefault();
+        emailModal.style.display = 'block';
+      });
+
     });
-});
-
-// 联系表单提交
-contactForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const contactEmail = contactForm.reply_to.value.trim();
-
-  // 验证邮箱格式
-  if (!validateEmail(contactEmail)) {
-    setStatusMessage(
-      contactEmailError,
-      'Please enter a valid email address.',
-      'error'
-    );
-    contactStatus.textContent = '';
-    return;
-  } else {
-    contactEmailError.style.display = 'none';
-  }
-
-  setStatusMessage(contactStatus, 'Sending...', 'info');
-
-  // 使用 EmailJS 发送邮件
-  emailjs
-    .send('service_1ffkva1', 'template_o5n5jrp', {
-      from_name: contactForm.from_name.value.trim(),
-      reply_to: contactEmail,
-      message: contactForm.message.value.trim(),
-    })
-    .then((resp) => {
-      console.log('SUCCESS!', resp.status, resp.text);
-      setStatusMessage(
-        contactStatus,
-        'Your message was sent successfully! We will reply soon.',
-        'success'
-      );
-      resetFormStatus(contactForm, contactStatus);
-    })
-    .catch((err) => {
-      console.error('FAILED...', err);
-      setStatusMessage(
-        contactStatus,
-        'Failed to send. Please try again.',
-        'error'
-      );
-    });
-});
-
-// 打开 Email 模态框的按钮
-document.getElementById('openEmailModal').addEventListener('click', (e) => {
-  e.preventDefault();
-  emailModal.style.display = 'block';
-});
+  </script>
+</body>
+</html>
