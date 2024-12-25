@@ -45,41 +45,36 @@
     }
 
    /* =========== NAVBAR =========== */
-.navbar {
-  background: linear-gradient(to right, #d6d6d6, #f2f2f2); /* 灰色渐变背景 */
-  color: #333; /* 文本颜色改为深灰色，适应灰色背景 */
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 增加轻微阴影效果 */
-}
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  .navbar .logo-wrap img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .menu {
+      display: flex;
+      gap: 20px;
+    }
+    .menu a {
+      color: #fff;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .menu a:hover {
+      background-color: #fa7f56;
+      color: #fff;
+    }
 
-.navbar .logo-wrap img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 4px;
-}
-
-.menu {
-  display: flex;
-  gap: 20px;
-}
-
-.menu a {
-  color: #333; /* 链接颜色为深灰色，与背景相协调 */
-  font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  text-decoration: none;
-}
-
-.menu a:hover {
-  background-color: #fa7f56; /* 鼠标悬停时的背景颜色为橙色 */
-  color: #fff; /* 悬停时字体颜色为白色 */
-}
 
 
     /* =========== PAGE SECTIONS =========== */
@@ -110,17 +105,16 @@
       color: #000;
     }
 /* =========== HOME SECTION =========== */
-.top-header {
-  width: 100%;
-  background: linear-gradient(135deg, #00aaff, #005577); /* Changed to blue gradient */
-  text-align: center;
-  padding: 20px 15px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  margin-top: -10px;
-  margin-bottom: -20px;
-}
-
+    .top-header {
+      width: 100%;
+      background: linear-gradient(135deg, #fa7f56, #b2503f);
+      text-align: center;
+      padding: 20px 15px; /* Reduced padding */
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      margin-top: -10px;
+      margin-bottom: -20px;
+    }
 .header-overlay {
   max-width: 600px;
   margin: 0 auto;
@@ -148,11 +142,10 @@
   color: #fff;
   margin-bottom: 5px;
 }
-
-.person-title {
-  font-size: 1.1rem;
-  color: #fce9e4;
-  margin-bottom: 15px;
+  .person-title {
+      font-size: 1.1rem; /* Slightly reduced size */
+      color: #fce9e4;
+      margin-bottom: 15px;
 }
 
      .action-row {
@@ -161,7 +154,7 @@
       gap: 15px;
       margin-top: 15px;
     }
-    .action-item {
+   .action-item {
       color: #fff;
       text-decoration: none;
       display: flex;
@@ -170,8 +163,8 @@
       border: 2px solid #fff;
       border-radius: 6px;
       padding: 8px;
-      width: 100px;
-      height: 50px;
+      width: 100px;   /* Slightly reduced width */
+      height: 50px;   /* Reduced height */
       justify-content: center;
       transition: background-color 0.2s, transform 0.2s;
     }
@@ -278,7 +271,7 @@
         display: inline-block;
         margin-top: 20px;
         padding: 12px 25px;
-        background: linear-gradient(to right, #a3b8cc, #d9e2ec); /* 渐变色 */
+        background: linear-gradient(to right, #a3b8cc, #d9e2ec); /*gradient*/
         color: #fff;
         font-weight: bold;
         font-size: 16px;
