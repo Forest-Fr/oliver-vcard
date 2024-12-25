@@ -47,36 +47,43 @@
       height: auto;
     }
 
-    /* =========== NAVBAR =========== */
-    .navbar {
-      background-color: #333;
-      color: #fff;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .navbar .logo-wrap img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: 4px;
-    }
-    .menu {
-      display: flex;
-      gap: 20px;
-    }
-    .menu a {
-      color: #fff;
-      font-weight: 500;
-      padding: 8px 12px;
-      border-radius: 4px;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-    .menu a:hover {
-      background-color: #fa7f56;
-      color: #fff;
-    }
+   /* =========== NAVBAR =========== */
+.navbar {
+  background: linear-gradient(to right, #d6d6d6, #f2f2f2); /* 灰色渐变背景 */
+  color: #333; /* 文本颜色改为深灰色，适应灰色背景 */
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 增加轻微阴影效果 */
+}
+
+.navbar .logo-wrap img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  color: #333; /* 链接颜色为深灰色，与背景相协调 */
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background-color: #fa7f56; /* 鼠标悬停时的背景颜色为橙色 */
+  color: #fff; /* 悬停时字体颜色为白色 */
+}
+
 
     /* =========== PAGE SECTIONS =========== */
     .page-section {
@@ -270,29 +277,44 @@
     }
 
     /* Download vCard Button */
-    .download-section {
-      text-align: center;
-      margin-top: 20px;
+    .download-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 25px;
+        background: linear-gradient(to right, #a3b8cc, #d9e2ec); /* 渐变色 */
+        color: #fff;
+        font-weight: bold;
+        font-size: 16px;
+        text-decoration: none;
+        text-align: center;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
     }
-    .download-btn {
-      display: inline-flex;
-      align-items: center;
-      background: linear-gradient(135deg, #fa7f56, #b2503f);
-      color: #fff;
-      padding: 8px 20px; /* Reduced padding */
-      border-radius: 4px;
-      font-size: 1rem;
-      transition: transform 0.2s;
-      cursor: pointer;
-      border: none;
+
+    .download-button img {
+        vertical-align: middle;
+        margin-right: 8px;
+        width: 20px;
+        height: 20px;
     }
-    .download-btn i {
-      margin-right: 8px;
-      font-size: 1.2rem;
+
+    .download-button:hover {
+        background: linear-gradient(to right, #9faebf, #cdd7e3); /* 渐变色调整 */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 加强阴影效果 */
     }
-    .download-btn:hover {
-      transform: scale(1.05);
+
+    .download-button:active {
+        transform: scale(0.98); /* 点击效果 */
     }
+</style>
+<!-- button HTML -->
+<button class="download-button" onclick="showPopup()">
+    <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="vCard Icon">
+    DOWNLOAD VCARD
+</button>
 
  /* Modal Styling */
 .modal {
@@ -463,73 +485,62 @@
           <a href="tel:+12817839998" class="action-item" aria-label="Call Oliver F">
             <i class="fas fa-phone"></i>
             <span>CALL</span>
-          </a>
-          <a href="mailto:oliveroogle@gmail.com" class="action-item" aria-label="Email Oliver F">
-            <i class="fas fa-envelope"></i>
-            <span>EMAIL</span>
-          </a>
-        </div>
+          <div class="info-section-home">
+  <div class="description">
+    <p>
+      DJA: PoE Switch brand by Dijiean Tech-original factory with R&D
+    </p>
+  </div>
+  <ul class="detail-list">
+    <!-- Phone -->
+    <li>
+      <div class="icon-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/126/126509.png" alt="Phone Icon" style="width: 24px; height: 24px; margin-right: 8px;">
       </div>
-    </header>
-
-    <div class="info-section-home">
-      <div class="description">
-        <p>
-          DJA: PoE Switch brand by Dijiean Tech-original factory with R&D
+      <div class="info-text">
+        <p class="info-value">
+          <a href="tel:+12817839998">+1 281 783 9998</a>
         </p>
+        <p class="info-label">Mobile</p>
       </div>
-      <ul class="detail-list">
-        <li>
-          <div class="icon-box">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
-              <path fill="#f7774d" d="M391.8 312.9c-19.3-10.5-43.3-16.7-68.5-16.7-25.1 0-49.1 6.2-68.5 16.7-19.3 10.5-35.2 25.3-45.7 44.6-10.5 19.3-16.7 43.3-16.7 68.5 0 25.1 6.2 49.1 16.7 68.5 10.5 19.3 25.3 35.2 44.6 45.7 19.3 10.5 43.3 16.7 68.5 16.7 25.1 0 49.1-6.2 68.5-16.7 19.3-10.5 35.2-25.3 45.7-45.7 10.5-19.3 16.7-43.3 16.7-68.5 0-25.2-6.2-49.2-16.7-68.5-10.5-19.3-25.3-35.2-45.7-45.7zM512 256c0 141.4-114.6 256-256 256S0 397.4 0 256 114.6 0 256 0s256 114.6 256 256z"/>
-              <path fill="#f7774d" d="M502.3 190.8c3.9-10.3 0.2-21.4-9.3-28.1L400 112.4c-9.5-6.7-22.3-6.7-31.8 0l-74.6 74.6c-4.7 4.7-7 10.9-6.6 17.3l1.2 25.6c.3 14.7-11.9 27.2-26.6 27.2h-48c-14.7 0-27-12.5-26.6-27.2l1.2-25.6c.4-6.4-1.9-12.6-6.6-17.3L158.6 145.6c-11.3-11.3-29.7-11.3-41 0s-11.3 29.7 0 41l74.6 74.6c4.7 4.7 7 10.9 6.6 17.3l-1.2 25.6c-.3 14.7 11.9 27.2 26.6 27.2h48c14.7 0 27-12.5 26.6-27.2l-1.2-25.6c-.4-6.4 1.9-12.6 6.6-17.3l74.6-74.6c11.3-11.3 11.3-29.7 0-41z"/>
-            </svg>
-          </div>
-          <div class="info-text">
-            <p class="info-value"><a href="tel:+12817839998">+1 281 783 9998</a></p>
-            <p class="info-label">Mobile</p>
-          </div>
-        </li>
-        <li>
-          <div class="icon-box">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
-              <path fill="#f7774d" d="M502.3 190.8c3.9-10.3 0.2-21.4-9.3-28.1L400 112.4c-9.5-6.7-22.3-6.7-31.8 0l-74.6 74.6c-4.7 4.7-7 10.9-6.6 17.3l1.2 25.6c.3 14.7-11.9 27.2-26.6 27.2h-48c-14.7 0-27-12.5-26.6-27.2l1.2-25.6c.4-6.4-1.9-12.6-6.6-17.3L158.6 145.6c-11.3-11.3-29.7-11.3-41 0s-11.3 29.7 0 41l74.6 74.6c4.7 4.7 7 10.9 6.6 17.3l-1.2 25.6c-.3 14.7 11.9 27.2 26.6 27.2h48c14.7 0 27-12.5 26.6-27.2l-1.2-25.6c-.4-6.4 1.9-12.6 6.6-17.3l74.6-74.6c11.3-11.3 11.3-29.7 0-41z"/>
-            </svg>
-          </div>
-          <div class="info-text">
-            <p class="info-value"><a href="mailto:oliveroogle@gmail.com">oliveroogle@gmail.com</a></p>
-            <p class="info-label">Email</p>
-          </div>
-        </li>
-        <li>
-          <div class="icon-box">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24">
-              <path fill="#f7774d" d="M336 80H48C21.5 80 0 101.5 0 128v256c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V128c0-26.5-21.5-48-48-48zM96 272a32 32 0 1 0 32 32 32 32 0 0 0-32-32zm192 0a32 32 0 1 0 32 32 32 32 0 0 0-32-32z"/>
-            </svg>
-          </div>
-          <div class="info-text">
-            <p class="info-value">Shenzhen Dijiean Techology Co,.Ltd</p>
-            <p class="info-label">Sales Manager</p>
-          </div>
-        </li>
-        <li>
-          <div class="icon-box">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24">
-              <path fill="#f7774d" d="M336 128H48C21.5 128 0 149.5 0 176v160c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V176c0-26.5-21.5-48-48-48zM192 320c-35.3 0-64-28.7-64-64s28.7-64 64-64 64 28.7 64 64-28.7 64-64 64z"/>
-            </svg>
-          </div>
-          <div class="info-text">
-            <p class="info-value">
-              <a href="https://en.djakeji.com" target="_blank" rel="noopener">
-  <img src="https://cdn-icons-png.flaticon.com/512/1239/1239525.png" alt="Company Logo" style="width: 40px; height: 40px;"/>
-  <span>Website</span>
-</a>
-            </p>
-            <p class="info-label">Website</p>
-          </div>
-        </li>
-      </ul>
+    </li>
+    <!-- Email -->
+    <li>
+      <div class="icon-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+      </div>
+      <div class="info-text">
+        <p class="info-value">
+          <a href="mailto:oliveroogle@gmail.com">oliveroogle@gmail.com</a>
+        </p>
+        <p class="info-label">Email</p>
+      </div>
+    </li>
+    <!-- Company -->
+    <li>
+      <div class="icon-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/1239/1239525.png" alt="Company Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+      </div>
+      <div class="info-text">
+        <p class="info-value">Shenzhen Dijiean Technology Co., Ltd</p>
+        <p class="info-label">Company</p>
+      </div>
+    </li>
+    <!-- Website -->
+    <li>
+      <div class="icon-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/2950/2950622.png" alt="Website Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+      </div>
+      <div class="info-text">
+        <p class="info-value">
+          <a href="https://en.djakeji.com" target="_blank" rel="noopener">en.djakeji.com</a>
+        </p>
+        <p class="info-label">Website</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
 
       <!-- Social Media -->
       <section class="social-section">
@@ -569,20 +580,17 @@
 
   <!-- Email Modal -->
   <div id="emailModal" class="modal">
-  <div class="modal-content">
-    <span class="close" aria-label="Close">&times;</span>
-    <h2>Send vCard via Email</h2>
-    <form id="emailForm">
-      <div class="logo-wrap">
-        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Logo" />
-      </div>
-      <input type="email" name="user_email" placeholder="Enter your email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
-      <span class="error-message" id="emailError">请输入有效的电子邮件地址。</span>
-      <button type="submit" class="modal-button">Send Email</button>
-    </form>
-    <p id="emailStatus" class="success-message"></p>
+    <div class="modal-content">
+      <span class="close" aria-label="Close">&times;</span>
+      <h2>Send vCard via Email</h2>
+      <form id="emailForm">
+        <input type="email" name="user_email" placeholder="Enter your email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
+        <span class="error-message" id="emailError">请输入有效的电子邮件地址。</span>
+        <button type="submit" class="modal-button email">Send Email</button>
+      </form>
+      <p id="emailStatus" class="success-message"></p>
+    </div>
   </div>
-</div>
 
   <!-- ABOUT SECTION -->
   <div class="page-section" id="aboutSection">
@@ -733,93 +741,119 @@
       };
 
       // 保存通过 Email
-      saveEmailBtn.onclick = () => {
-        vcardModal.style.display='none';
-        emailModal.style.display='block';
-      };
+saveEmailBtn.onclick = () => {
+  vcardModal.style.display = 'none';
+  emailModal.style.display = 'block';
+};
 
-      // 邮件验证函数
-      function validateEmail(email) {
-        const re = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-        return re.test(String(email).toLowerCase());
-      }
+// 邮件验证函数
+function validateEmail(email) {
+  const re = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i; // i: 忽略大小写
+  return re.test(String(email).toLowerCase());
+}
 
-      // 发送 vCard via Email
-      emailForm.addEventListener('submit',(e)=>{
-        e.preventDefault();
-        const userEmail = emailForm.user_email.value.trim();
+// 设置状态消息
+function setStatusMessage(element, message, status) {
+  element.style.color = status === 'success' ? 'green' : 'red';
+  element.textContent = message;
+}
 
-        // 验证邮箱格式
-        if(!validateEmail(userEmail)) {
-          emailError.style.display = 'block';
-          emailStatus.textContent = '';
-          return;
-        } else {
-          emailError.style.display = 'none';
-        }
+// 重置表单状态
+function resetFormStatus(form, statusElement) {
+  form.reset();
+  statusElement.textContent = '';
+}
 
-        emailStatus.textContent = "Sending...";
-        emailStatus.style.color = "black";
+// 发送 vCard via Email
+emailForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const userEmail = emailForm.user_email.value.trim();
 
-        // 发件人模板(template_ypdj9n9)
-        emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
-          to_email: userEmail,
-          message: 'Please download Oliver vCard from: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
-        })
-        .then((resp)=>{
-          console.log('SUCCESS!', resp.status, resp.text);
-          emailStatus.style.color='green';
-          emailStatus.textContent='Your message was sent successfully! We will reply soon.';
-          emailForm.reset();
-     }).catch((err) => {
-          console.log('FAILED...', err);
-          emailStatus.style.color='red';
-          emailStatus.textContent='Failed to send. Please try again.';
-        });
-      });
+  // 验证邮箱格式
+  if (!validateEmail(userEmail)) {
+    setStatusMessage(emailError, 'Please enter a valid email address.', 'error');
+    emailStatus.textContent = '';
+    return;
+  } else {
+    emailError.style.display = 'none';
+  }
 
-      // 联系表单提交
-      contactForm.addEventListener('submit',(e)=>{
-        e.preventDefault();
-        const contactEmail = contactForm.reply_to.value.trim();
+  setStatusMessage(emailStatus, 'Sending...', 'info');
 
-        // 验证邮箱格式
-        if(!validateEmail(contactEmail)) {
-          contactEmailError.style.display = 'block';
-          contactStatus.textContent = '';
-          return;
-        } else {
-          contactEmailError.style.display = 'none';
-        }
-
-        contactStatus.textContent = "Sending...";
-        contactStatus.style.color = "black";
-
-         // 收件人模板(template_o5n5jrp)
-        emailjs.send('service_1ffkva1', 'template_o5n5jrp',{
-          from_name: contactForm.from_name.value.trim(),
-        reply_to: contactEmail,
-          message: contactForm.message.value.trim()
-        })
-        .then((resp)=>{
-          console.log("SUCCESS!", resp.status, resp.text);
-          contactStatus.style.color='green';
-          contactStatus.textContent='Your message was sent successfully! We will reply soon.';
-          contactForm.reset();
-        },(err)=>{
-          console.log("FAILED...", err);
-          contactStatus.style.color='red';
-          contactStatus.textContent='Failed to send. Please try again.';
-        });
-      });
-
-      // 打开 Email 模态框的按钮
-      document.getElementById('openEmailModal').addEventListener('click', (e)=>{
-        e.preventDefault();
-        emailModal.style.display = 'block';
-      });
-
+  // 使用 EmailJS 发送邮件
+  emailjs
+    .send('service_1ffkva1', 'template_ypdj9n9', {
+      to_email: userEmail,
+      message:
+        'Please download Oliver vCard from: https://forest-fr.github.io/oliver-vcard/OliverF.vcf',
+    })
+    .then((resp) => {
+      console.log('SUCCESS!', resp.status, resp.text);
+      setStatusMessage(
+        emailStatus,
+        'Your message was sent successfully! We will reply soon.',
+        'success'
+      );
+      resetFormStatus(emailForm, emailStatus);
+    })
+    .catch((err) => {
+      console.error('FAILED...', err);
+      setStatusMessage(
+        emailStatus,
+        'Failed to send. Please try again.',
+        'error'
+      );
     });
-  </script>
-</body>
-</html>
+});
+
+// 联系表单提交
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const contactEmail = contactForm.reply_to.value.trim();
+
+  // 验证邮箱格式
+  if (!validateEmail(contactEmail)) {
+    setStatusMessage(
+      contactEmailError,
+      'Please enter a valid email address.',
+      'error'
+    );
+    contactStatus.textContent = '';
+    return;
+  } else {
+    contactEmailError.style.display = 'none';
+  }
+
+  setStatusMessage(contactStatus, 'Sending...', 'info');
+
+  // 使用 EmailJS 发送邮件
+  emailjs
+    .send('service_1ffkva1', 'template_o5n5jrp', {
+      from_name: contactForm.from_name.value.trim(),
+      reply_to: contactEmail,
+      message: contactForm.message.value.trim(),
+    })
+    .then((resp) => {
+      console.log('SUCCESS!', resp.status, resp.text);
+      setStatusMessage(
+        contactStatus,
+        'Your message was sent successfully! We will reply soon.',
+        'success'
+      );
+      resetFormStatus(contactForm, contactStatus);
+    })
+    .catch((err) => {
+      console.error('FAILED...', err);
+      setStatusMessage(
+        contactStatus,
+        'Failed to send. Please try again.',
+        'error'
+      );
+    });
+});
+
+// 打开 Email 模态框的按钮
+document.getElementById('openEmailModal').addEventListener('click', (e) => {
+  e.preventDefault();
+  emailModal.style.display = 'block';
+});
