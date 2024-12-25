@@ -228,38 +228,36 @@
     }
 
     /* Social Media */
-    .social-section h3 {
-      text-align: center;
-      margin-bottom: 10px;
-      color: #666;
-    }
-    .social-icons {
-      display: flex;
-      gap: 15px; /* Reduced gap */
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .social-icons a {
-      width: 60px; /* Slightly reduced size */
-      text-decoration: none;
-      color: #333;
-      transition: transform 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .social-icons a img {
-      width: 35px;
-      height: 35px;
-      margin-bottom: 5px;
-    }
-    .social-icons a:hover img {
-      transform: scale(1.1);
-    }
-    .social-icons a span {
-      font-size: 0.85rem;
-      color: #333;
-    }
+    .social-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.social-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: #666;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+}
 
   /* Download vCard Button */
 .download-section {
@@ -268,23 +266,22 @@
 }
 .download-btn {
   display: inline-flex;
-  align-items: center;
-  background: #c5c5c5; /* 灰色背景 */
-  color: #fff;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: transform 0.2s;
-  cursor: pointer;
-  border: none;
+    align-items: center;
+    background: linear-gradient(to right, #9faebf, #cdd7e3); /* 渐变色 */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
-
 .download-btn i {
   margin-right: 8px;
   font-size: 1.2rem;
 }
 .download-btn:hover {
-  transform: scale(1.05);
+ transform: scale(1.05);
 }
 
     /* =========== MODALS =========== */
@@ -297,19 +294,18 @@
       width: 100%; 
       height: 100%; 
       background-color: rgba(0,0,0,0.5);
-justify-content: center;
-    align-items: center;
     }
-     .modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 90%; /* 响应式宽度 */
-    max-width: 400px; /* 最大宽度，防止过宽 */
-    animation: fadeIn 0.3s ease-in-out;
-  }
+    .modal-content {
+      background-color: #fff;
+      margin: 8% auto;
+      padding: 25px;
+      width: 90%;
+      max-width: 600px; /* 调整为更宽 */
+      border-radius: 8px;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 0.3s;
+    }
     @keyframes fadeIn {
       from {opacity: 0;}
       to {opacity: 1;}
@@ -348,6 +344,19 @@ justify-content: center;
       background: #f08d49; 
       color: #fff;
     }
+.email-form input {
+  width: 90%; /* 改为较宽的输入框 */
+  max-width: 300px; /* 限制最大宽度 */
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.email-form button {
+  margin-top: 15px;
+}
+</style>
     /* =========== CONTACT FORM VALIDATION MESSAGES =========== */
    .error-message {
   color: red;
@@ -517,6 +526,7 @@ justify-content: center;
   </div>
 </div>
 
+
       <!-- Social Media -->
       <section class="social-section">
         <h3>Social Media</h3>
@@ -566,7 +576,7 @@ justify-content: center;
     required
     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
   />
-  <span class="error-message" id="emailError">.</span>
+  <span class="error-message" id="emailError">请输入有效的电子邮件地址。</span>
   <button type="submit" class="modal-button email">Send Email</button>
 </form>
       <p id="emailStatus" class="success-message"></p>
