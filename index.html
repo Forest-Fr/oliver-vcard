@@ -264,46 +264,19 @@
   margin-top: 20px;
 }
 .download-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #d3d3d3, #808080); /* 渐变灰色 */
-  color: #fff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
-  border: none;
+  background: #6c757d;
+  color: white;
+  padding: 12px 20px;
   border-radius: 8px;
-  padding: 15px 20px;
-  font-size: 1rem;
+  font-size: 16px;
+  border: none;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
 }
-
 .download-btn:hover {
-  transform: scale(1.05); /* 鼠标悬停缩放 */
-}
-/* 嵌入联系人 Logo 的按钮内容 */
-.download-btn i {
-  margin-right: 10px;
-  font-size: 1.5rem; /* 图标大小 */
-}
-
-/* 调整弹出框样式 */
-.modal-content {
-  max-width: 500px; /* 增加最大宽度 */
-  padding: 30px; /* 增加内边距 */
-}
-
-.email-form input {
-  width: 90%; /* 输入框宽度为父容器的 90% */
-  max-width: 450px; /* 限制最大宽度 */
-  padding: 15px; /* 增大内边距 */
-  font-size: 1.1rem; /* 调整字体大小 */
-}
-
-.email-form button {
-  margin-top: 15px;
-  width: 90%; /* 保持与输入框一致的宽度 */
-  max-width: 450px;
+  background: #5a6268;
 }
     /* =========== MODALS =========== */
     .modal {
@@ -445,19 +418,6 @@
          max-width: 90%; /* 更适合手机的最大宽度 */
     width: 100%; /* 占满屏幕宽度 */
   }
-.page-section {
-  padding-bottom: 50px; /* 调整主内容与 Footer 的间距 */
-}
-
-footer {
-  margin-top: auto;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 15px 0;
-  position: relative; /* 使 Footer 紧贴主页面 */
-  bottom: 0;
-  width: 100%;
 }
 
   </style>
@@ -465,12 +425,15 @@ footer {
 <body>
   <!-- NAVBAR -->
   <nav class="navbar">
+    <div class="logo-wrap">
+      <img src="DJA-logo.png" alt="DJA Logo" onerror="this.style.display='none'">
+    </div>
     <div class="menu">
-    <a href="#" data-page="home">Home</a>
-    <a href="#" data-page="about">About</a>
-    <a href="#" data-page="contact">Contact</a>
-  </div>
-</nav>
+      <a href="#" data-page="home">Home</a>
+      <a href="#" data-page="about">About</a>
+      <a href="#" data-page="contact">Contact</a>
+    </div>
+  </nav>
 
   <!-- HOME SECTION -->
 <div class="page-section active" id="homeSection">
@@ -565,9 +528,9 @@ footer {
 <!-- Download vCard -->
 <div class="download-section">
   <button id="downloadVCardBtn" class="download-btn">
-  <i class="fas fa-user-plus"></i> <!-- 嵌入联系人图标 -->
-  DOWNLOAD VCARD
-</button>
+    <i class="fas fa-user-plus"></i>
+    DOWNLOAD VCARD
+  </button>
 </div>
 
   <!-- vCard Modal -->
@@ -650,6 +613,11 @@ footer {
     </div>
   </div>
 
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2024 DJA Company. All Rights Reserved.</p>
+  </footer>
+
   <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
@@ -668,8 +636,8 @@ footer {
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-  const links = document.querySelectorAll('.menu a');
-  const sections = document.querySelectorAll('.page-section');
+      const links = document.querySelectorAll('.menu a');
+      const sections = document.querySelectorAll('.page-section');
       const vcardModal = document.getElementById('vcardModal');
       const emailModal = document.getElementById('emailModal');
       const downloadVCardBtn = document.getElementById('downloadVCardBtn');
@@ -685,23 +653,22 @@ footer {
 
       // 页面导航功能
       function showPage(pageId) {
-    sections.forEach(sec => sec.classList.remove('active'));
-    const active = document.getElementById(`${pageId}Section`);
-    if (active) {
-      active.classList.add('active');
-      active.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
+        sections.forEach(sec => sec.classList.remove('active'));
+        const active = document.getElementById(`${pageId}Section`);
+        if(active) {
+          active.classList.add('active');
+          active.scrollIntoView({behavior:'smooth'});
+        }
+      }
 
       // 菜单链接点击事件
       links.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const page = link.getAttribute('data-page');
-      showPage(page);
-    });
-  });
-});
+        link.addEventListener('click', (e)=>{
+          e.preventDefault();
+          const page = link.getAttribute('data-page');
+          showPage(page);
+        });
+      });
 
       // 默认显示 Home
       showPage('home');
