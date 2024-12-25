@@ -349,19 +349,6 @@
       background: #f08d49; 
       color: #fff;
     }
-.email-form input {
-  width: 90%; /* 改为较宽的输入框 */
-  max-width: 300px; /* 限制最大宽度 */
-  margin: 10px auto;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-.email-form button {
-  margin-top: 15px;
-}
-</style>
     /* =========== CONTACT FORM VALIDATION MESSAGES =========== */
    .error-message {
   color: red;
@@ -573,7 +560,7 @@
     <div class="modal-content">
       <span class="close" aria-label="Close">&times;</span>
       <h2>Send vCard via Email</h2>
-     <form id="emailForm">
+     <form id="emailForm" class="email-form">
   <input
     type="email"
     name="user_email"
@@ -581,7 +568,7 @@
     required
     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
   />
-  <span class="error-message" id="emailError">请输入有效的电子邮件地址。</span>
+  <span class="error-message" id="emailError">.</span>
   <button type="submit" class="modal-button email">Send Email</button>
 </form>
       <p id="emailStatus" class="success-message"></p>
