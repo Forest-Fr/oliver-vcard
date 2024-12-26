@@ -299,26 +299,28 @@ img {
  /* =========== HOME SECTION =========== */
 .top-header {
     width: 100%;
-    background: linear-gradient(135deg, #00aaff, #005577); /* 蓝色渐变 */
+    background: linear-gradient(135deg, #00aaff, #005577); /* Blue gradient */
     text-align: center;
-    padding: 20px 10px; /* 缩小顶部区域的上下内边距 */
+    padding: 10px 15px; /* 调整顶部和底部内边距 */
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    margin-bottom: 0; /* 去掉整体上移的负值 */
+    margin-top: -40px; /* 向上移动整个页面 */
+    margin-bottom: -20px;
 }
 
 .header-overlay {
     max-width: 600px;
     margin: 0 auto;
+    padding-top: 10px; /* 增加内边距以保证内容不挤压 */
 }
 
 .avatar-wrap {
-    width: 60px; /* 缩小头像大小 */
-    height: 60px;
+    width: 80px; /* Slightly reduced size */
+    height: 80px;
     margin: 0 auto 10px auto;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid #fff;
+    border: 3px solid #fff;
 }
 
 .avatar {
@@ -328,23 +330,23 @@ img {
 }
 
 .person-name {
-    font-size: 1.2rem; /* 缩小字体 */
+    font-size: 1.6rem; /* Slightly reduced size */
     font-weight: bold;
     color: #fff;
     margin-bottom: 5px;
 }
 
 .person-title {
-    font-size: 0.9rem; /* 缩小字体 */
+    font-size: 1.1rem; /* Slightly reduced size */
     color: #fce9e4;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .action-row {
     display: flex;
     justify-content: center;
-    gap: 10px; /* 缩小按钮间距 */
-    margin-top: 10px;
+    gap: 15px; /* Reduced gap */
+    margin-top: 15px;
 }
 
 .action-item {
@@ -355,49 +357,49 @@ img {
     align-items: center;
     border: 2px solid #fff;
     border-radius: 6px;
-    padding: 5px; /* 缩小按钮大小 */
-    width: 80px; /* 缩小宽度 */
-    height: 40px; /* 缩小高度 */
+    padding: 8px;
+    width: 100px;   /* Slightly reduced width */
+    height: 50px;   /* Reduced height */
     justify-content: center;
     transition: background-color 0.2s, transform 0.2s;
 }
 
 .action-item i {
-    font-size: 0.8rem; /* 缩小图标大小 */
-    margin-bottom: 2px;
+    font-size: 1.2rem; /* Slightly reduced size */
+    margin-bottom: 3px;
 }
 
 .action-item span {
-    font-size: 0.7rem; /* 缩小字体 */
+    font-size: 0.9rem;
     font-weight: 500;
 }
 
 .action-item:hover {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255,255,255,0.25);
     transform: scale(1.05);
 }
 
 .info-section-home {
-    padding: 10px; /* 缩小整体内边距 */
+    padding: 15px; /* Slightly reduced padding */
 }
 
 .description {
-    margin-bottom: 15px; /* 减少间距 */
+    margin-bottom: 20px;
     text-align: center;
-    font-size: 0.9rem; /* 缩小字体 */
+    font-size: 1rem; /* Reduced font size */
 }
 
 /* Icon + Info blocks */
 .detail-list {
     list-style: none;
-    margin-bottom: 15px; /* 缩小底部间距 */
+    margin-bottom: 20px;
 }
 
 .detail-list li {
     display: flex;
     align-items: center;
     border-top: 1px solid #eee;
-    padding: 10px 0; /* 缩小单元格内边距 */
+    padding: 15px 0;
 }
 
 .detail-list li:first-child {
@@ -405,11 +407,11 @@ img {
 }
 
 .icon-box {
-    width: 30px; /* 缩小图标容器大小 */
-    height: 30px;
+    width: 40px; /* Slightly reduced size */
+    height: 40px;
     border-radius: 8px;
-    margin-right: 8px; /* 缩小间距 */
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -417,7 +419,7 @@ img {
 }
 
 .detail-list i {
-    font-size: 0.8rem; /* 缩小图标大小 */
+    font-size: 1.2rem; /* Slightly reduced size */
     color: #f7774d;
 }
 
@@ -427,12 +429,12 @@ img {
 }
 
 .info-value {
-    font-size: 0.85rem; /* 缩小文字字体 */
+    font-size: 0.95rem;
     font-weight: 500;
 }
 
 .info-label {
-    font-size: 0.7rem; /* 缩小标签字体 */
+    font-size: 0.8rem;
     color: #888;
 }
 
@@ -451,7 +453,7 @@ img {
 }
 
 .social-icons a {
-    width: 50px; /* 缩小按钮大小 */
+    width: 60px; /* Slightly reduced size */
     text-decoration: none;
     color: #333;
     transition: transform 0.2s;
@@ -461,8 +463,8 @@ img {
 }
 
 .social-icons a img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     margin-bottom: 5px;
 }
 
@@ -471,7 +473,7 @@ img {
 }
 
 .social-icons a span {
-    font-size: 0.7rem; /* 缩小字体 */
+    font-size: 0.85rem;
     color: #333;
 }
 
@@ -479,7 +481,6 @@ img {
 .download-section {
     text-align: center;
     margin-top: 20px;
-    padding-bottom: 30px; /* 增加底部间距，确保按钮不被遮挡 */
 }
 
 .download-btn {
@@ -488,9 +489,9 @@ img {
     justify-content: center;
     background: #6c757d;
     color: white;
-    padding: 10px 15px; /* 缩小按钮内边距 */
+    padding: 12px 20px;
     border-radius: 8px;
-    font-size: 14px; /* 缩小字体 */
+    font-size: 16px;
     border: none;
     cursor: pointer;
     transition: transform 0.2s, background-color 0.2s;
@@ -500,6 +501,7 @@ img {
     background: #5a6268;
     transform: scale(1.05);
 }
+
 
 
    /* =========== MODALS =========== */
