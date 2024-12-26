@@ -26,13 +26,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%; /* 确保页面内容占满视口 */
-  overflow-x: hidden; /* 禁止水平滚动 */
-  overflow-y: auto; /* 启用垂直滚动 */
+  height: 100%; /* 确保页面占满视口 */
+  overflow-x: auto; /* 允许水平滚动 */
+  overflow-y: auto; /* 允许垂直滚动 */
+  box-sizing: border-box; /* 包括内边距和边框在宽高计算内 */
 }
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f7f7f7;
@@ -42,15 +45,18 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 a {
   text-decoration: none;
   color: inherit;
 }
+
 img {
   display: block;
   max-width: 100%;
   height: auto;
 }
+
 
 /* =========== RESPONSIVE DESIGN =========== */
 /* 手机端 (宽度小于768px) */
@@ -299,13 +305,14 @@ img {
  /* =========== HOME SECTION =========== */
 .top-header {
     width: 100%;
-    background: linear-gradient(135deg, #00aaff, #005577); /* Blue gradient */
+    background: linear-gradient(135deg, #00aaff, #005577); /* 蓝色渐变 */
     text-align: center;
-    padding: 10px 15px; /* 调整顶部和底部内边距 */
+    padding: 15px 10px; /* 调整顶部内边距，避免内容过于贴近边缘 */
+    box-sizing: border-box;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    margin-top: -40px; /* 向上移动整个页面 */
-    margin-bottom: -20px;
+    margin-top: 0; /* 去掉整体上移的负值 */
+    margin-bottom: -20px; /* 保持底部的轻微上移 */
 }
 
 .header-overlay {
@@ -315,7 +322,7 @@ img {
 }
 
 .avatar-wrap {
-    width: 80px; /* Slightly reduced size */
+    width: 80px; /* 缩小头像大小 */
     height: 80px;
     margin: 0 auto 10px auto;
     border-radius: 50%;
@@ -330,16 +337,16 @@ img {
 }
 
 .person-name {
-    font-size: 1.6rem; /* Slightly reduced size */
+    font-size: 1.4rem; /* 缩小字体 */
     font-weight: bold;
     color: #fff;
     margin-bottom: 5px;
 }
 
 .person-title {
-    font-size: 1.1rem; /* Slightly reduced size */
+    font-size: 1rem; /* 缩小字体 */
     color: #fce9e4;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .action-row {
@@ -357,20 +364,20 @@ img {
     align-items: center;
     border: 2px solid #fff;
     border-radius: 6px;
-    padding: 8px;
-    width: 100px;   /* Slightly reduced width */
-    height: 50px;   /* Reduced height */
+    padding: 6px; /* 缩小按钮内边距 */
+    width: 80px;   /* 缩小按钮宽度 */
+    height: 40px;   /* 缩小按钮高度 */
     justify-content: center;
     transition: background-color 0.2s, transform 0.2s;
 }
 
 .action-item i {
-    font-size: 1.2rem; /* Slightly reduced size */
-    margin-bottom: 3px;
+    font-size: 1rem; /* 缩小图标大小 */
+    margin-bottom: 2px;
 }
 
 .action-item span {
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* 缩小文字字体 */
     font-weight: 500;
 }
 
@@ -380,26 +387,26 @@ img {
 }
 
 .info-section-home {
-    padding: 15px; /* Slightly reduced padding */
+    padding: 10px; /* Slightly reduced padding */
 }
 
 .description {
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* 减少间距 */
     text-align: center;
-    font-size: 1rem; /* Reduced font size */
+    font-size: 0.9rem; /* 缩小字体 */
 }
 
 /* Icon + Info blocks */
 .detail-list {
     list-style: none;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* 缩小底部间距 */
 }
 
 .detail-list li {
     display: flex;
     align-items: center;
     border-top: 1px solid #eee;
-    padding: 15px 0;
+    padding: 8px 0; /* 缩小单元格上下间距 */
 }
 
 .detail-list li:first-child {
@@ -407,10 +414,10 @@ img {
 }
 
 .icon-box {
-    width: 40px; /* Slightly reduced size */
-    height: 40px;
+    width: 30px; /* 缩小图标容器大小 */
+    height: 30px;
     border-radius: 8px;
-    margin-right: 10px;
+    margin-right: 8px; /* 缩小间距 */
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
@@ -419,7 +426,7 @@ img {
 }
 
 .detail-list i {
-    font-size: 1.2rem; /* Slightly reduced size */
+    font-size: 1rem; /* 缩小图标大小 */
     color: #f7774d;
 }
 
@@ -429,12 +436,12 @@ img {
 }
 
 .info-value {
-    font-size: 0.95rem;
+    font-size: 0.85rem; /* 缩小文字字体 */
     font-weight: 500;
 }
 
 .info-label {
-    font-size: 0.8rem;
+    font-size: 0.7rem; /* 缩小标签字体 */
     color: #888;
 }
 
@@ -479,20 +486,16 @@ img {
 
 /* Download vCard Button */
 .download-section {
+    padding: 20px; /* 增加按钮显示空间 */
     text-align: center;
-    margin-top: 20px;
 }
 
 .download-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    padding: 10px 20px;
+    font-size: 14px; /* 调整按钮字体大小 */
     background: #6c757d;
     color: white;
-    padding: 12px 20px;
     border-radius: 8px;
-    font-size: 16px;
-    border: none;
     cursor: pointer;
     transition: transform 0.2s, background-color 0.2s;
 }
@@ -736,12 +739,13 @@ footer {
       <div class="action-row">
         <!-- Phone -->
         <a href="tel:+12817839998" class="action-item" aria-label="Call Oliver F">
-          <i class="fas fa-phone"></i> <!-- 替换 Gmail 风格图标 -->
-   <span>CALL</span>
+          <i class="fas fa-phone"></i>
+          <span>CALL</span>
         </a>
-  <a href="mailto:oliveroogle@gmail.com" class="action-item" aria-label="Email Oliver F">
-    <i class="fas fa-envelope"></i> <!-- 替换 Gmail 风格图标 -->
-    <span>EMAIL</span>
+        <!-- Email -->
+        <a href="mailto:oliveroogle@gmail.com" class="action-item" aria-label="Email Oliver F">
+          <i class="fas fa-envelope"></i>
+          <span>EMAIL</span>
         </a>
       </div>
     </div>
@@ -784,22 +788,25 @@ footer {
           <p class="info-label">Company</p>
         </div>
       </li>
-<ul class="detail-list">
       <!-- Website -->
       <li>
-    <div class="icon-box">
-      <img src="https://cdn-icons-png.flaticon.com/512/2950/2950622.png" alt="Website Icon" style="width: 24px; height: 24px; margin-right: 8px;">
-    </div>
-    <div class="info-text">
-      <p class="info-value">
-        <a href="https://en.djakeji.com" target="_blank" rel="noopener">
-                en.djakeji.com
-  </a>
-      </p>
-      <p class="info-label">Website</p>
-    </div>
-  </li>
-</ul>
+        <div class="icon-box">
+          <img src="https://cdn-icons-png.flaticon.com/512/2950/2950622.png" alt="Website Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+        </div>
+        <div class="info-text">
+          <p class="info-value">
+            <a href="https://en.djakeji.com" target="_blank" rel="noopener">en.djakeji.com</a>
+          </p>
+          <p class="info-label">Website</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="download-section">
+    <button class="download-btn">Download vCard</button>
+  </div>
+</div>
 
       <!-- Social Media -->
       <section class="social-section">
