@@ -20,30 +20,152 @@
   />
 
   <style>
-    /* =========== GLOBAL RESET =========== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f7f7f7;
-      color: #333;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
+/* =========== GLOBAL RESET =========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========== RESPONSIVE DESIGN =========== */
+/* 手机端 (宽度小于768px) */
+@media (max-width: 768px) {
+  body {
+    padding: 10px; /* 为手机端增加内边距 */
+  }
+
+  .navbar {
+    flex-direction: column; /* 导航栏垂直排列 */
+    align-items: flex-start;
+    padding: 10px; /* 减少导航栏内边距 */
+  }
+
+  .menu {
+    flex-direction: column; /* 菜单项垂直排列 */
+    gap: 10px; /* 减少菜单项间距 */
+    width: 100%; /* 占满屏幕宽度 */
+  }
+
+  .menu a {
+    padding: 10px; /* 增加点击区域 */
+    text-align: left; /* 文本左对齐 */
+    border-bottom: 1px solid #ccc; /* 增加分隔线 */
+  }
+
+  .page-section {
+    padding: 15px; /* 减少内边距 */
+    margin: 10px auto; /* 缩小外边距 */
+  }
+
+  .action-row {
+    flex-direction: column; /* 操作按钮垂直排列 */
+    gap: 10px; /* 减少间距 */
+  }
+
+  .action-item {
+    width: 100%; /* 占满屏幕宽度 */
+    padding: 10px; /* 增大按钮点击区域 */
+  }
+
+  .contact-content form {
+    gap: 10px; /* 减少表单字段间距 */
+  }
+
+  .contact-content input,
+  .contact-content textarea {
+    font-size: 0.9rem; /* 缩小字体 */
+    padding: 10px; /* 减少内边距 */
+  }
+
+  .download-btn {
+    padding: 10px; /* 减少按钮内边距 */
+    font-size: 14px; /* 调整字体大小 */
+  }
+}
+
+/* 平板端 (宽度在768px至1024px之间) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  body {
+    padding: 15px; /* 增加内边距 */
+  }
+
+  .navbar {
+    flex-direction: row; /* 导航栏水平排列 */
+    justify-content: space-between;
+    padding: 15px;
+  }
+
+  .menu {
+    flex-direction: row; /* 菜单项水平排列 */
+    gap: 15px; /* 增大菜单项间距 */
+  }
+
+  .menu a {
+    padding: 8px 12px; /* 调整菜单项内边距 */
+    font-size: 14px; /* 调整字体大小 */
+  }
+
+  .page-section {
+    padding: 20px; /* 增加内边距 */
+    margin: 15px auto; /* 增大外边距 */
+  }
+
+  .action-row {
+    flex-direction: row; /* 操作按钮水平排列 */
+    gap: 15px; /* 增大按钮间距 */
+  }
+}
+
+/* 桌面端 (宽度大于1024px) */
+@media (min-width: 1024px) {
+  body {
+    padding: 20px;
+  }
+
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  .menu {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .menu a {
+    padding: 8px 12px;
+    font-size: 16px; /* 保持原字体大小 */
+  }
+
+  .page-section {
+    padding: 30px; /* 增加内边距 */
+    margin: 20px auto; /* 增大外边距 */
+  }
+
+  .action-row {
+    flex-direction: row;
+    gap: 20px; /* 增大按钮间距 */
+  }
+}
 
     /* =========== NAVBAR =========== */
 .navbar {
@@ -769,7 +891,6 @@
       document.getElementById('homeSection').classList.add('active');
       window.scrollTo({top:0, behavior:'smooth'});
     }
-
 document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('.menu a'); // 右上角菜单按钮
   const sections = document.querySelectorAll('.page-section');
