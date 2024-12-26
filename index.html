@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -76,19 +77,19 @@
     }
 
     /* =========== PAGE SECTIONS =========== */
-    .page-section {
-      display: none; /* Show by JS */
-      max-width: 900px;
-      margin: 20px auto;
-      background-color: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: relative;
-    }
-    .page-section.active {
-      display: block;
-    }
+   .page-section {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: none; /* 默认隐藏，点击时显示 */
+}
+.page-section.active {
+  display: block;
+}
+
 
     /* "X" button styling */
     .section-close-btn {
@@ -227,10 +228,11 @@
       color: #888;
     }
 
-    /* Social Media */
-   social-section {
-  text-align: center;
-  margin-top: 20px;
+      /* Social Media */
+    .social-section h3 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #666;
     }
     .social-icons {
       display: flex;
@@ -238,12 +240,14 @@
       justify-content: center;
       flex-wrap: wrap;
     }
-    .social-icons a {
-  display: inline-flex;
-  align-items: center;
-  margin: 0 10px;
-  text-decoration: none;
-  color: #000;
+   .social-icons a {
+      width: 60px; /* Slightly reduced size */
+      text-decoration: none;
+      color: #333;
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .social-icons a img {
       width: 35px;
@@ -274,12 +278,15 @@
   font-size: 16px;
   border: none;
   cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
 }
 .download-btn:hover {
   background: #5a6268;
+  transform: scale(1.05);
 }
+
     /* =========== MODALS =========== */
-    .modal {
+   .modal {
   display: none;
   position: fixed;
   z-index: 1000;
@@ -288,8 +295,8 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center; /* 居中对齐 */
-  align-items: center; /* 垂直居中 */
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
@@ -300,8 +307,18 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   max-width: 400px; /* 设置最大宽度 */
   width: 90%; /* 响应式宽度 */
- margin: 0 auto; /* 水平居中 */
+  margin: 0 auto; /* 水平居中 */
 }
+.email-form input {
+  width: 100%;
+  max-width: 350px; /* 限制输入框最大宽度 */
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
     @keyframes fadeIn {
       from {opacity: 0;}
       to {opacity: 1;}
@@ -388,7 +405,7 @@
     }
 
     /* =========== FOOTER =========== */
-    footer {
+  footer {
       margin-top: auto;
       background-color: #333;
       color: #fff;
@@ -413,12 +430,10 @@
       .detail-list .icon-box {
         margin-bottom: 5px;
       }
-@media (max-width: 600px) {
-      .modal-content {
-         max-width: 90%; /* 更适合手机的最大宽度 */
-    width: 100%; /* 占满屏幕宽度 */
-  }
-}
+ .modal-content {
+        max-width: 90%; /* 更适合手机 */
+      }
+    }
 
   </style>
 </head>
@@ -429,7 +444,7 @@
       <img src="DJA-logo.png" alt="DJA Logo" onerror="this.style.display='none'">
     </div>
     <div class="menu">
-      <a href="#" data-page="home">Home</a>
+   <a href="#" data-page="home">Home</a>
       <a href="#" data-page="about">About</a>
       <a href="#" data-page="contact">Contact</a>
     </div>
@@ -503,7 +518,9 @@
     </div>
     <div class="info-text">
       <p class="info-value">
-        <a href="https://en.djakeji.com" target="_blank" rel="noopener">en.djakeji.com</a>
+        <a href="https://en.djakeji.com" target="_blank" rel="noopener">
+                en.djakeji.com
+  </a>
       </p>
       <p class="info-label">Website</p>
     </div>
@@ -530,8 +547,10 @@
   <button id="downloadVCardBtn" class="download-btn">
     <i class="fas fa-user-plus"></i>
     DOWNLOAD VCARD
-  </button>
-</div>
+    </button>
+      </div>
+    </div>
+  </div>
 
   <!-- vCard Modal -->
   <div id="vcardModal" class="modal">
@@ -568,14 +587,16 @@
   <div class="page-section" id="aboutSection">
     <span class="section-close-btn" onclick="goHome()">x</span>
     <div class="about-content" style="padding-top:30px;">
-      <h2>About DJA Company</h2>
+      <h2>About <strong>DJA PoE<strong> Company</h2>
       <p>
-        We specialize in PoE switching products and network infrastructure. Our mission is 
-        to deliver top-quality devices and outstanding customer service to our global clients.
+        DJA – Brand of Shenzhen Dijiean Technology Co., Ltd.
+Website: en.djakeji.com
+</p>
+      <p>
+Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, with <strong>"DJA" <strong>as our brand. Our website,<strong> djakeji.com,<strong> reflects our Chinese name, <strong>"Dijiean Keji."<strong>
       </p>
       <p>
-        Founded in 2011, we've rapidly expanded to serve markets worldwide, offering innovative
-        products under the <strong>DJA</strong> brand.
+        Founded in 2011, we've grown steadily and expanded our reach to markets worldwide, delivering innovative products such as PoE switches, splitters, repeaters, extenders, and fiber transceivers for <strong>security solutions<strong>. 
       </p>
     </div>
   </div>
@@ -613,10 +634,7 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2024 DJA Company. All Rights Reserved.</p>
-  </footer>
+  
 
   <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -635,7 +653,7 @@
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+     document.addEventListener('DOMContentLoaded', () => {
       const links = document.querySelectorAll('.menu a');
       const sections = document.querySelectorAll('.page-section');
       const vcardModal = document.getElementById('vcardModal');
@@ -652,14 +670,15 @@
       const contactEmailError = document.getElementById('contactEmailError');
 
       // 页面导航功能
-      function showPage(pageId) {
-        sections.forEach(sec => sec.classList.remove('active'));
-        const active = document.getElementById(`${pageId}Section`);
-        if(active) {
-          active.classList.add('active');
-          active.scrollIntoView({behavior:'smooth'});
-        }
-      }
+     function showPage(pageId) {
+  sections.forEach((sec) => sec.classList.remove('active'));
+  const activeSection = document.getElementById(`${pageId}Section`);
+  if (activeSection) {
+    activeSection.classList.add('active');
+    activeSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
 
       // 菜单链接点击事件
       links.forEach(link => {
@@ -675,8 +694,8 @@
 
       // 打开 vCard 模态框
       downloadVCardBtn.onclick = () => {
-  vcardModal.style.display = 'flex'; // 修改为 flex，支持居中
-};
+        vcardModal.style.display = 'block';
+      };
 
       // 关闭模态框
       closeBtns.forEach(btn => {
@@ -718,86 +737,111 @@
         return re.test(String(email).toLowerCase());
       }
 
-      // 发送 vCard via Email
-      emailForm.addEventListener('submit',(e)=>{
-        e.preventDefault();
-        const userEmail = emailForm.user_email.value.trim();
+      // 定义记录发送的邮箱和日期的对象
+const sentEmails = {};
 
-        // 验证邮箱格式
-        if(!validateEmail(userEmail)) {
-          emailError.style.display = 'block';
-          emailStatus.textContent = '';
-          return;
-        } else {
-          emailError.style.display = 'none';
-        }
+// 发送 vCard via Email
+emailForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const userEmail = emailForm.user_email.value.trim();
+  const today = new Date().toISOString().split('T')[0]; // 获取当天日期
 
-        emailStatus.textContent = "Sending...";
-        emailStatus.style.color = "black";
+  // 检查是否已经发送过
+  if (sentEmails[userEmail] === today) {
+    emailError.style.display = 'block';
+    emailError.textContent = 'This email has already received a message today. Please try again tomorrow.';
+    return;
+  }
 
-        // 发件人模板(template_ypdj9n9)
-        emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
-          to_email: userEmail,
-          message: 'Please download your vCard from: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
-        })
-        .then((resp)=>{
-          console.log('SUCCESS!', resp.status, resp.text);
-          emailStatus.style.color='green';
-          emailStatus.textContent='Email sent successfully! Check your inbox.';
-          emailForm.reset();
-          setTimeout(()=> {
-            emailModal.style.display='none';
-            emailStatus.textContent = '';
-          },3000);
-        },(err)=>{
-          console.log('FAILED...', err);
-          emailStatus.style.color='red';
-          emailStatus.textContent='Failed to send email. Try again later.';
-        });
-      });
+  // 验证邮箱格式
+  if (!validateEmail(userEmail)) {
+    emailError.style.display = 'block';
+    emailStatus.textContent = '';
+    return;
+  } else {
+    emailError.style.display = 'none';
+  }
 
-      // 联系表单提交
-      contactForm.addEventListener('submit',(e)=>{
-        e.preventDefault();
-        const contactEmail = contactForm.reply_to.value.trim();
+  emailStatus.textContent = "Sending...";
+  emailStatus.style.color = "black";
 
-        // 验证邮箱格式
-        if(!validateEmail(contactEmail)) {
-          contactEmailError.style.display = 'block';
-          contactStatus.textContent = '';
-          return;
-        } else {
-          contactEmailError.style.display = 'none';
-        }
+  // 发件人模板(template_ypdj9n9)
+  emailjs.send('service_1ffkva1', 'template_ypdj9n9', {
+    to_email: userEmail,
+    message: 'Please download your vCard from: https://forest-fr.github.io/oliver-vcard/OliverF.vcf'
+  })
+  .then((resp) => {
+    console.log('SUCCESS!', resp.status, resp.text);
+    sentEmails[userEmail] = today; // 记录发送时间
+    emailStatus.style.color = 'green';
+    emailStatus.textContent = 'Email sent successfully! Check your inbox.';
+    emailForm.reset();
+    setTimeout(() => {
+      emailModal.style.display = 'none';
+      emailStatus.textContent = '';
+    }, 3000);
+  }, (err) => {
+    console.log('FAILED...', err);
+    emailStatus.style.color = 'red';
+    emailStatus.textContent = 'Failed to send email. Try again later.';
+  });
+});
 
-        contactStatus.textContent = "Sending...";
-        contactStatus.style.color = "black";
+// 定义记录发送的邮箱和日期的对象
+const sentEmails = {};
 
-         // 收件人模板(template_o5n5jrp)
-        emailjs.send('service_1ffkva1', 'template_o5n5jrp',{
-          from_name: contactForm.from_name.value.trim(),
-        reply_to: contactEmail,
-          message: contactForm.message.value.trim()
-        })
-        .then((resp)=>{
-          console.log("SUCCESS!", resp.status, resp.text);
-          contactStatus.style.color='green';
-          contactStatus.textContent='Your message was sent successfully! We will reply soon.';
-          contactForm.reset();
-        },(err)=>{
-          console.log("FAILED...", err);
-          contactStatus.style.color='red';
-          contactStatus.textContent='Failed to send. Please try again.';
-        });
-      });
+// 联系表单提交
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const contactEmail = contactForm.reply_to.value.trim();
+  const today = new Date().toISOString().split('T')[0]; // 获取当天日期
 
-      // 打开 Email 模态框的按钮
-      document.getElementById('openEmailModal').addEventListener('click', (e)=>{
-        e.preventDefault();
-        emailModal.style.display = 'block';
-      });
+  // 检查是否已经发送过
+  if (sentEmails[contactEmail] === today) {
+    contactEmailError.style.display = 'block';
+    contactEmailError.textContent = 'This email has already sent a message today. Please try again tomorrow.';
+    contactStatus.textContent = ''; // 清空状态信息
+    return;
+  }
 
-    });
+  // 验证邮箱格式
+  if (!validateEmail(contactEmail)) {
+    contactEmailError.style.display = 'block';
+    contactEmailError.textContent = 'Please enter a valid email address.';
+    contactStatus.textContent = '';
+    return;
+  } else {
+    contactEmailError.style.display = 'none';
+  }
+
+  contactStatus.textContent = "Sending...";
+  contactStatus.style.color = "black";
+
+  // 收件人模板(template_o5n5jrp)
+  emailjs.send('service_1ffkva1', 'template_o5n5jrp', {
+    from_name: contactForm.from_name.value.trim(),
+    reply_to: contactEmail,
+    message: contactForm.message.value.trim()
+  })
+  .then((resp) => {
+    console.log("SUCCESS!", resp.status, resp.text);
+    sentEmails[contactEmail] = today; // 记录发送时间
+    contactStatus.style.color = 'green';
+    contactStatus.textContent = 'Your message was sent successfully! We will reply soon.';
+    contactForm.reset();
+  }, (err) => {
+    console.log("FAILED...", err);
+    contactStatus.style.color = 'red';
+    contactStatus.textContent = 'Failed to send. Please try again.';
+  });
+});
+
+// 打开 Email 模态框的按钮
+document.getElementById('openEmailModal').addEventListener('click', (e) => {
+  e.preventDefault();
+  emailModal.style.display = 'block';
+});
+});
   </script>
 </body>
 </html>
