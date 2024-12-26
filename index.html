@@ -296,15 +296,15 @@ img {
 }
 
 
-  /* =========== HOME SECTION =========== */
+ /* =========== HOME SECTION =========== */
 .top-header {
     width: 100%;
     background: linear-gradient(135deg, #00aaff, #005577); /* 蓝色渐变 */
     text-align: center;
-    padding: 20px 10px; /* 缩小顶部和底部内边距 */
+    padding: 20px 10px; /* 缩小顶部区域的上下内边距 */
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    margin-bottom: -20px; /* 删除向上移动功能 */
+    margin-bottom: 0; /* 去掉整体上移的负值 */
 }
 
 .header-overlay {
@@ -313,12 +313,12 @@ img {
 }
 
 .avatar-wrap {
-    width: 70px; /* 缩小头像大小 */
-    height: 70px;
+    width: 60px; /* 缩小头像大小 */
+    height: 60px;
     margin: 0 auto 10px auto;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid #fff;
+    border: 2px solid #fff;
 }
 
 .avatar {
@@ -328,14 +328,14 @@ img {
 }
 
 .person-name {
-    font-size: 1.4rem; /* 缩小字体 */
+    font-size: 1.2rem; /* 缩小字体 */
     font-weight: bold;
     color: #fff;
     margin-bottom: 5px;
 }
 
 .person-title {
-    font-size: 1rem; /* 缩小字体 */
+    font-size: 0.9rem; /* 缩小字体 */
     color: #fce9e4;
     margin-bottom: 10px;
 }
@@ -343,7 +343,7 @@ img {
 .action-row {
     display: flex;
     justify-content: center;
-    gap: 10px; /* 缩小间距 */
+    gap: 10px; /* 缩小按钮间距 */
     margin-top: 10px;
 }
 
@@ -355,7 +355,7 @@ img {
     align-items: center;
     border: 2px solid #fff;
     border-radius: 6px;
-    padding: 6px; /* 缩小按钮大小 */
+    padding: 5px; /* 缩小按钮大小 */
     width: 80px; /* 缩小宽度 */
     height: 40px; /* 缩小高度 */
     justify-content: center;
@@ -363,12 +363,12 @@ img {
 }
 
 .action-item i {
-    font-size: 1rem; /* 缩小图标大小 */
+    font-size: 0.8rem; /* 缩小图标大小 */
     margin-bottom: 2px;
 }
 
 .action-item span {
-    font-size: 0.8rem; /* 缩小文字字体 */
+    font-size: 0.7rem; /* 缩小字体 */
     font-weight: 500;
 }
 
@@ -417,7 +417,7 @@ img {
 }
 
 .detail-list i {
-    font-size: 1rem; /* 缩小图标大小 */
+    font-size: 0.8rem; /* 缩小图标大小 */
     color: #f7774d;
 }
 
@@ -451,7 +451,7 @@ img {
 }
 
 .social-icons a {
-    width: 60px; /* Slightly reduced size */
+    width: 50px; /* 缩小按钮大小 */
     text-decoration: none;
     color: #333;
     transition: transform 0.2s;
@@ -461,8 +461,8 @@ img {
 }
 
 .social-icons a img {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     margin-bottom: 5px;
 }
 
@@ -471,7 +471,7 @@ img {
 }
 
 .social-icons a span {
-    font-size: 0.85rem;
+    font-size: 0.7rem; /* 缩小字体 */
     color: #333;
 }
 
@@ -479,6 +479,7 @@ img {
 .download-section {
     text-align: center;
     margin-top: 20px;
+    padding-bottom: 30px; /* 增加底部间距，确保按钮不被遮挡 */
 }
 
 .download-btn {
@@ -487,9 +488,9 @@ img {
     justify-content: center;
     background: #6c757d;
     color: white;
-    padding: 12px 20px;
+    padding: 10px 15px; /* 缩小按钮内边距 */
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 14px; /* 缩小字体 */
     border: none;
     cursor: pointer;
     transition: transform 0.2s, background-color 0.2s;
