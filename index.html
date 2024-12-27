@@ -27,11 +27,11 @@
   box-sizing: border-box;
 }
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%; /* 确保页面内容占满视口 */
+  margin: 0; /* 移除默认外边距 */
+  padding: 0; /* 移除默认内边距 */
   overflow-x: hidden; /* 禁止水平滚动 */
   overflow-y: auto; /* 启用垂直滚动 */
+  min-height: 100%; /* 让内容占满页面高度 */
 }
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -233,13 +233,12 @@ img {
 
     /* =========== PAGE SECTIONS =========== */
 .page-section {
-  position: fixed; /* 固定位置，方便实现居中 */
+  position: absolute; /* 改为 absolute，避免页面上移 */
   top: 50%; /* 垂直居中 */
   left: 50%; /* 水平居中 */
-  transform: translate(-50%, -40.5%); /* 通过平移实现完全居中 */
+  transform: translate(-50%, -50%); /* 完全居中 */
   max-width: 600px; /* 设置最大宽度 */
   width: 90%; /* 响应式宽度，适配手机、平板、桌面 */
-  margin: 0 auto; /* 居中对齐 */
   padding: 20px; /* 内边距 */
   background: #fff; /* 背景色 */
   border-radius: 8px; /* 圆角效果 */
