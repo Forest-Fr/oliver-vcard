@@ -27,20 +27,15 @@
   box-sizing: border-box;
 }
 html, body {
-  margin: 0; /* 移除默认外边距 */
-  padding: 0; /* 移除默认内边距 */
+  margin: 0;
+  padding: 0;
+  width: 100%; /* 确保内容适配宽度 */
+  height: auto; /* 内容高度自动调整 */
   overflow-x: hidden; /* 禁止水平滚动 */
-  overflow-y: auto; /* 启用垂直滚动 */
-  min-height: 100%; /* 让内容占满页面高度 */
-}
-body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f7f7f7;
   color: #333;
   line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 a {
   text-decoration: none;
@@ -97,10 +92,14 @@ img {
   }
 
   .contact-content input,
-  .contact-content textarea {
-    font-size: 0.9rem; /* 缩小字体 */
-    padding: 10px; /* 减少内边距 */
-  }
+.contact-content textarea {
+  width: 100%; /* 宽度占满父容器 */
+  padding: 12px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
   .download-btn {
     padding: 10px; /* 减少按钮内边距 */
@@ -233,28 +232,47 @@ img {
 
     /* =========== PAGE SECTIONS =========== */
 .page-section {
-  position: absolute; /* 改为 absolute，避免页面上移 */
+  position: fixed;
   top: 50%; /* 垂直居中 */
   left: 50%; /* 水平居中 */
   transform: translate(-50%, -50%); /* 完全居中 */
-  max-width: 600px; /* 设置最大宽度 */
-  width: 90%; /* 响应式宽度，适配手机、平板、桌面 */
-  padding: 20px; /* 内边距 */
-  background: #fff; /* 背景色 */
-  border-radius: 8px; /* 圆角效果 */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
-  display: none; /* 默认隐藏，点击时显示 */
-  z-index: 1000; /* 确保覆盖其他内容 */
+  max-width: 600px; /* 最大宽度 */
+  width: 90%; /* 根据屏幕宽度调整，确保适配 */
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: none; /* 默认隐藏 */
+  z-index: 1000;
 }
 
-/* 修复首页整体上移问题 */
-html, body {
-  margin: 0; /* 移除默认外边距 */
-  padding: 0; /* 移除默认内边距 */
-  height: 100%; /* 确保高度占满视口 */
-  overflow: auto; /* 启用页面滚动 */
+/* 手机端弹窗样式 */
+@media (max-width: 768px) {
+  .contact-content input,
+  .contact-content textarea {
+    font-size: 0.9rem; /* 缩小字体 */
+    padding: 10px; /* 缩小内边距 */
+  }
+}
+  .contact-content input,
+  .contact-content textarea {
+    width: 100%; /* 输入框宽度占满 */
+    font-size: 0.9rem; /* 字体稍微缩小 */
+  }
+  .contact-content button {
+    width: 100%; /* 按钮宽度占满 */
+    padding: 12px; /* 缩小内边距 */
+  }
 }
 
+/* 针对桌面端优化 */
+@media (min-width: 769px) {
+  .page-section {
+    max-width: 600px; /* 保持桌面端的宽度限制 */
+    padding: 20px; /* 适当内边距 */
+  }
+}
 .page-section.active {
   display: block; /* 激活时显示 */
   animation: fadeIn 0.3s ease-in-out; /* 添加淡入动画 */
@@ -286,10 +304,11 @@ html, body {
 
 /* 响应式设计调整 */
 @media (max-width: 768px) {
-  .page-section {
-    max-width: 90%; /* 小屏幕下的最大宽度 */
-    padding: 15px; /* 减少内边距 */
+  .top-header {
+    font-size: 1rem; /* 缩小字体 */
+    padding: 15px; /* 减少顶部内边距 */
   }
+}
 
   .section-close-btn {
     font-size: 20px; /* 小屏幕下关闭按钮略小 */
@@ -305,15 +324,12 @@ html, body {
 
   /* =========== HOME SECTION =========== */
 .top-header {
-    width: 100%;
-    background: linear-gradient(135deg, #00aaff, #005577); /* 蓝色渐变 */
     text-align: center;
-    padding: 30px 15px; /* 调整顶部内边距，避免内容过于贴近边缘 */
-    box-sizing: border-box; /* 确保内边距和边框包含在宽度内 */
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    margin-top: 0; /* 去掉整体上移的负值，避免影响手机端显示 */
-    margin-bottom: -20px; /* 保持底部的轻微上移 */
+  background: linear-gradient(135deg, #00aaff, #005577);
+  padding: 20px;
+  border-radius: 8px 8px 0 0;
+  color: #fff;
+  font-size: 1.2rem; /* 调整字体大小 */
 }
 
 .header-overlay {
