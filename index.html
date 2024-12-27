@@ -20,280 +20,500 @@
   />
 
   <style>
-    /* =========== GLOBAL RESET =========== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f7f7f7;
-      color: #333;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
+/* =========== GLOBAL RESET =========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* 确保页面内容占满视口 */
+  overflow-x: hidden; /* 禁止水平滚动 */
+  overflow-y: auto; /* 启用垂直滚动 */
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
-    /* =========== NAVBAR =========== */
-    .navbar {
-      background-color: #333;
-      color: #fff;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .navbar .logo-wrap img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: 4px;
-    }
-    .menu {
-      display: flex;
-      gap: 20px;
-    }
-    .menu a {
-      color: #fff;
-      font-weight: 500;
-      padding: 8px 12px;
-      border-radius: 4px;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-    .menu a:hover {
-      background-color: #fa7f56;
-      color: #fff;
-    }
+/* =========== RESPONSIVE DESIGN =========== */
+/* 手机端 (宽度小于768px) */
+@media (max-width: 768px) {
+  body {
+    padding: 10px; /* 为手机端增加内边距 */
+  }
+
+  .navbar {
+    flex-direction: column; /* 导航栏垂直排列 */
+    align-items: flex-start;
+    padding: 10px; /* 减少导航栏内边距 */
+  }
+
+  .menu {
+    flex-direction: column; /* 菜单项垂直排列 */
+    gap: 10px; /* 减少菜单项间距 */
+    width: 100%; /* 占满屏幕宽度 */
+  }
+
+  .menu a {
+    padding: 10px; /* 增加点击区域 */
+    text-align: left; /* 文本左对齐 */
+    border-bottom: 1px solid #ccc; /* 增加分隔线 */
+  }
+
+  .page-section {
+    padding: 15px; /* 减少内边距 */
+    margin: 10px auto; /* 缩小外边距 */
+  }
+
+  .action-row {
+    flex-direction: column; /* 操作按钮垂直排列 */
+    gap: 10px; /* 减少间距 */
+  }
+
+  .action-item {
+    width: 100%; /* 占满屏幕宽度 */
+    padding: 10px; /* 增大按钮点击区域 */
+  }
+
+  .contact-content form {
+    gap: 10px; /* 减少表单字段间距 */
+  }
+
+  .contact-content input,
+  .contact-content textarea {
+    font-size: 0.9rem; /* 缩小字体 */
+    padding: 10px; /* 减少内边距 */
+  }
+
+  .download-btn {
+    padding: 10px; /* 减少按钮内边距 */
+    font-size: 14px; /* 调整字体大小 */
+  }
+
+  .top-header {
+    padding: 20px 10px; /* 减小顶部内边距，适配手机端 */
+  }
+
+  .avatar-wrap {
+    width: 80px; /* 缩小头像大小 */
+    height: 80px;
+  }
+
+  .download-section {
+    padding-bottom: 40px; /* 增加底部间距 */
+  }
+}
+
+/* 平板端 (宽度在768px至1024px之间) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  body {
+    padding: 15px; /* 增加内边距 */
+  }
+
+  .navbar {
+    flex-direction: row; /* 导航栏水平排列 */
+    justify-content: space-between;
+    padding: 15px;
+  }
+
+  .menu {
+    flex-direction: row; /* 菜单项水平排列 */
+    gap: 15px; /* 增大菜单项间距 */
+  }
+
+  .menu a {
+    padding: 8px 12px; /* 调整菜单项内边距 */
+    font-size: 14px; /* 调整字体大小 */
+  }
+
+  .page-section {
+    padding: 20px; /* 增加内边距 */
+    margin: 15px auto; /* 增大外边距 */
+  }
+
+  .action-row {
+    flex-direction: row; /* 操作按钮水平排列 */
+    gap: 15px; /* 增大按钮间距 */
+  }
+}
+
+/* 桌面端 (宽度大于1024px) */
+@media (min-width: 1024px) {
+  body {
+    padding: 20px;
+  }
+
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+  }
+
+  .menu {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .menu a {
+    padding: 8px 12px;
+    font-size: 16px; /* 保持原字体大小 */
+  }
+
+  .page-section {
+    padding: 30px; /* 增加内边距 */
+    margin: 20px auto; /* 增大外边距 */
+  }
+
+  .action-row {
+    flex-direction: row;
+    gap: 20px; /* 增大按钮间距 */
+  }
+}
+
+
+   /* =========== NAVBAR =========== */
+.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO 样式优化 */
+.navbar .logo-wrap {
+  display: flex;
+  align-items: center; /* 垂直居中 */
+}
+
+.navbar .logo-wrap img {
+  width: 50px; /* 优化宽度，保持和优化样式一致 */
+  height: 50px; /* 设置高度，确保一致性 */
+  object-fit: cover; /* 图片裁切方式 */
+  border-radius: 4px; /* 圆角样式 */
+  margin-right: 10px; /* 添加右侧间距，避免和菜单挤在一起 */
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  color: #fff;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.menu a:hover {
+  background-color: #fa7f56;
+  color: #fff;
+}
+
 
     /* =========== PAGE SECTIONS =========== */
-   .page-section {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.page-section {
+  position: fixed; /* 固定位置，方便实现居中 */
+  top: 50%; /* 垂直居中 */
+  left: 50%; /* 水平居中 */
+  transform: translate(-50%, -50%); /* 通过平移实现完全居中 */
+  max-width: 600px; /* 设置最大宽度 */
+  width: 90%; /* 响应式宽度，适配手机、平板、桌面 */
+  margin: 0 auto; /* 居中对齐 */
+  padding: 20px; /* 内边距 */
+  background: #fff; /* 背景色 */
+  border-radius: 8px; /* 圆角效果 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 阴影效果 */
   display: none; /* 默认隐藏，点击时显示 */
+  z-index: 1000; /* 确保覆盖其他内容 */
 }
+
 .page-section.active {
-  display: block;
+  display: block; /* 激活时显示 */
+  animation: fadeIn 0.3s ease-in-out; /* 添加淡入动画 */
+}
+
+/* "X" button styling */
+.section-close-btn {
+  position: absolute; /* 绝对定位 */
+  top: 10px; /* 调整位置 */
+  right: 15px; /* 调整位置 */
+  font-size: 24px; /* 字体大小 */
+  color: #aaa; /* 默认颜色 */
+  cursor: pointer; /* 鼠标样式 */
+}
+
+.section-close-btn:hover {
+  color: #000; /* 悬停时颜色变化 */
+}
+
+/* 淡入动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* 初始透明度 */
+  }
+  to {
+    opacity: 1; /* 最终透明度 */
+  }
+}
+
+/* 响应式设计调整 */
+@media (max-width: 768px) {
+  .page-section {
+    max-width: 90%; /* 小屏幕下的最大宽度 */
+    padding: 15px; /* 减少内边距 */
+  }
+
+  .section-close-btn {
+    font-size: 20px; /* 小屏幕下关闭按钮略小 */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .page-section {
+    max-width: 80%; /* 平板设备的最大宽度 */
+  }
 }
 
 
-    /* "X" button styling */
-    .section-close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 24px;
-      color: #aaa;
-      cursor: pointer;
-    }
-    .section-close-btn:hover {
-      color: #000;
-    }
-
-    /* =========== HOME SECTION =========== */
+  /* =========== HOME SECTION =========== */
 .top-header {
     width: 100%;
-    background: linear-gradient(135deg, #00aaff, #005577); /* Blue gradient */
+    background: linear-gradient(135deg, #00aaff, #005577); /* 蓝色渐变 */
     text-align: center;
-    padding: 20px 15px;
+    padding: 30px 15px; /* 调整顶部内边距，避免内容过于贴近边缘 */
+    box-sizing: border-box; /* 确保内边距和边框包含在宽度内 */
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    margin-top: -10px;
-    margin-bottom: -20px;
-  }
-    .header-overlay {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .avatar-wrap {
-      width: 80px; /* Slightly reduced size */
-      height: 80px;
-      margin: 0 auto 10px auto;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid #fff;
-    }
-    .avatar {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .person-name {
-      font-size: 1.6rem; /* Slightly reduced size */
-      font-weight: bold;
-      color: #fff;
-      margin-bottom: 5px;
-    }
-    .person-title {
-      font-size: 1.1rem; /* Slightly reduced size */
-      color: #fce9e4;
-      margin-bottom: 15px;
-    }
+    margin-top: 0; /* 去掉整体上移的负值，避免影响手机端显示 */
+    margin-bottom: -20px; /* 保持底部的轻微上移 */
+}
 
-    .action-row {
-      display: flex;
-      justify-content: center;
-      gap: 15px; /* Reduced gap */
-      margin-top: 15px;
-    }
-    .action-item {
-      color: #fff;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border: 2px solid #fff;
-      border-radius: 6px;
-      padding: 8px;
-      width: 100px;   /* Slightly reduced width */
-      height: 50px;   /* Reduced height */
-      justify-content: center;
-      transition: background-color 0.2s, transform 0.2s;
-    }
-    .action-item i {
-      font-size: 1.2rem; /* Slightly reduced size */
-      margin-bottom: 3px;
-    }
-    .action-item span {
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-    .action-item:hover {
-      background-color: rgba(255,255,255,0.25);
-      transform: scale(1.05);
-    }
+.header-overlay {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-top: 10px; /* 增加内边距以保证内容不挤压 */
+}
 
-    .info-section-home {
-      padding: 15px; /* Slightly reduced padding */
-    }
-    .description {
-      margin-bottom: 20px;
-      text-align: center;
-      font-size: 1rem; /* Reduced font size */
-    }
+.avatar-wrap {
+    width: 100px; /* 优化图片大小，适应手机端 */
+    height: 100px;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #fff;
+}
 
-    /* Icon + Info blocks */
-    .detail-list {
-      list-style: none;
-      margin-bottom: 20px;
-    }
-    .detail-list li {
-      display: flex;
-      align-items: center;
-      border-top: 1px solid #eee;
-      padding: 15px 0;
-    }
-    .detail-list li:first-child {
-      border-top: none;
-    }
-    .icon-box {
-      width: 40px; /* Slightly reduced size */
-      height: 40px;
-      border-radius: 8px;
-      margin-right: 10px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #fafafa;
-    }
-    .detail-list i {
-      font-size: 1.2rem; /* Slightly reduced size */
-      color: #f7774d;
-    }
-    .info-text {
-      display: flex;
-      flex-direction: column;
-    }
-    .info-value {
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-    .info-label {
-      font-size: 0.8rem;
-      color: #888;
-    }
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-      /* Social Media */
-    .social-section h3 {
-      text-align: center;
-      margin-bottom: 10px;
-      color: #666;
-    }
-    .social-icons {
-      display: flex;
-      gap: 15px; /* Reduced gap */
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-   .social-icons a {
-      width: 60px; /* Slightly reduced size */
-      text-decoration: none;
-      color: #333;
-      transition: transform 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .social-icons a img {
-      width: 35px;
-      height: 35px;
-      margin-bottom: 5px;
-    }
-    .social-icons a:hover img {
-      transform: scale(1.1);
-    }
-    .social-icons a span {
-      font-size: 0.85rem;
-      color: #333;
-    }
+.person-name {
+    font-size: 1.6rem; /* Slightly reduced size */
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 5px;
+}
 
-  /* Download vCard Button */
+.person-title {
+    font-size: 1.1rem; /* Slightly reduced size */
+    color: #fce9e4;
+    margin-bottom: 15px;
+}
+
+.action-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Reduced gap */
+    margin-top: 15px;
+}
+
+.action-item {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    padding: 8px;
+    width: 100px;   /* Slightly reduced width */
+    height: 50px;   /* Reduced height */
+    justify-content: center;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.action-item i {
+    font-size: 1.2rem; /* Slightly reduced size */
+    margin-bottom: 3px;
+}
+
+.action-item span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.action-item:hover {
+    background-color: rgba(255,255,255,0.25);
+    transform: scale(1.05);
+}
+
+.info-section-home {
+    padding: 15px; /* Slightly reduced padding */
+}
+
+.description {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1rem; /* Reduced font size */
+}
+
+/* Icon + Info blocks */
+.detail-list {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.detail-list li {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.detail-list li:first-child {
+    border-top: none;
+}
+
+.icon-box {
+    width: 40px; /* Slightly reduced size */
+    height: 40px;
+    border-radius: 8px;
+    margin-right: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
+}
+
+.detail-list i {
+    font-size: 1.2rem; /* Slightly reduced size */
+    color: #f7774d;
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-value {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.info-label {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Social Media */
+.social-section h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px; /* Reduced gap */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.social-icons a {
+    width: 60px; /* Slightly reduced size */
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-icons a img {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 5px;
+}
+
+.social-icons a:hover img {
+    transform: scale(1.1);
+}
+
+.social-icons a span {
+    font-size: 0.85rem;
+    color: #333;
+}
+
+/* Download vCard Button */
 .download-section {
-  text-align: center;
-  margin-top: 20px;
-}
-.download-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #6c757d;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
-}
-.download-btn:hover {
-  background: #5a6268;
-  transform: scale(1.05);
+    text-align: center;
+    margin-top: 20px;
 }
 
-    /* =========== MODALS =========== */
-   .modal {
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #6c757d;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.download-btn:hover {
+    background: #5a6268;
+    transform: scale(1.05);
+}
+
+
+   /* =========== MODALS =========== */
+.modal {
   display: none;
   position: fixed;
   z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%; /* 居中 */
+  left: 50%; /* 居中 */
+  transform: translate(-50%, -50%); /* 通过平移居中 */
+  width: 90%; /* 响应式宽度 */
+  max-width: 400px; /* 最大宽度 */
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
@@ -305,58 +525,85 @@
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 400px; /* 设置最大宽度 */
-  width: 90%; /* 响应式宽度 */
-  margin: 0 auto; /* 水平居中 */
+  width: 100%; /* 弹窗宽度 */
+  max-width: 400px; /* 弹窗最大宽度 */
+  animation: fadeIn 0.3s ease-in-out; /* 添加弹窗渐入动画 */
 }
+
 .email-form input {
-  width: 100%;
+  width: 90%; /* 宽度为弹窗的 90% */
   max-width: 350px; /* 限制输入框最大宽度 */
   margin: 10px auto;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
+  box-sizing: border-box; /* 保证宽度一致 */
 }
 
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-    .close {
-      color: #aaa;
-      position: absolute;
-      top: 12px;
-      right: 15px;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .close:hover {
-      color: #000;
-    }
-    .modal-button {
-      display: block;
-      width: 100%;
-      padding: 14px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .modal-button:hover {
-      transform: scale(1.03);
-    }
-    .modal-button.iphone {
-      background: #6ca4f8; /* 蓝色 */
-      color: #fff;
-    }
-    .modal-button.email {
-      background: #f08d49; 
-      color: #fff;
-    }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -55%); /* 初始略微向上 */
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%); /* 最终居中 */
+  }
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover {
+  color: #000;
+}
+
+.modal-button {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.modal-button:hover {
+  transform: scale(1.03);
+}
+.modal-button.iphone {
+  background: #6ca4f8; /* 蓝色 */
+  color: #fff;
+}
+.modal-button.email {
+  background: #f08d49; 
+  color: #fff;
+}
+
+/* 响应式优化：针对不同设备的调整 */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%; /* 更适合小屏幕 */
+    max-width: 360px;
+    padding: 15px; /* 缩小内边距 */
+  }
+  .email-form input {
+    font-size: 0.9rem; /* 调整字体大小 */
+  }
+  .modal-button {
+    padding: 12px; /* 调整按钮内边距 */
+    font-size: 0.9rem;
+  }
+}
+
     /* =========== CONTACT FORM VALIDATION MESSAGES =========== */
    .error-message {
   color: red;
@@ -404,14 +651,41 @@
       transform: scale(1.03);
     }
 
-    /* =========== FOOTER =========== */
-  footer {
-      margin-top: auto;
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 15px 0;
-    }
+   /* =========== FOOTER =========== */
+footer {
+    margin-top: auto;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* =========== BUTTONS AND FOOTER =========== */
+.download-section {
+    text-align: center;
+    margin-top: 20px; /* 确保底部按钮不被截断 */
+    padding-bottom: 20px; /* 增加底部空间，确保手机端体验 */
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #6c757d;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.download-btn:hover {
+    background: #5a6268;
+    transform: scale(1.05);
+}
+
 
     /* =========== RESPONSIVE =========== */
     @media (max-width: 600px) {
@@ -441,7 +715,7 @@
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo-wrap">
-      <img src="DJA-logo.png" alt="DJA Logo" onerror="this.style.display='none'">
+      <img src="DJA-logo.png" alt="DJA Logo" class="logo" />
     </div>
     <div class="menu">
    <a href="#" data-page="home">Home</a>
@@ -584,37 +858,46 @@
   </div>
 
   <!-- ABOUT SECTION -->
-  <div class="page-section" id="aboutSection">
-    <span class="section-close-btn" onclick="goHome()">x</span>
-    <div class="about-content" style="padding-top:30px;">
-      <h2>About <strong>DJA PoE<strong> Company</h2>
-      <p>
-        DJA – Brand of Shenzhen Dijiean Technology Co., Ltd.
-Website: en.djakeji.com
-</p>
-      <p>
-Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, with <strong>"DJA" <strong>as our brand. Our website,<strong> djakeji.com,<strong> reflects our Chinese name, <strong>"Dijiean Keji."<strong>
-      </p>
-      <p>
-        Founded in 2011, we've grown steadily and expanded our reach to markets worldwide, delivering innovative products such as PoE switches, splitters, repeaters, extenders, and fiber transceivers for <strong>security solutions<strong>. 
-      </p>
-    </div>
+<div class="page-section" id="aboutSection">
+  <span class="section-close-btn" onclick="goHome()">x</span>
+  <div class="about-content" style="padding-top: 30px;">
+    <h2>About DJA PoE Company</h2>
+    <p>
+      DJA – Brand of Shenzhen Dijiean Technology Co., Ltd. <br>
+      Website: <a href="https://en.djakeji.com" target="_blank" rel="noopener">en.djakeji.com</a>
+    </p>
+    <p>
+      Note that <strong>Dijiean Technology Co., Ltd.</strong> is our official name, with "DJA" as our brand. Our website, 
+      <a href="https://djakeji.com" target="_blank" rel="noopener">djakeji.com</a>, reflects our Chinese name, "Dijiean Keji."
+    </p>
+    <p>
+      Founded in 2011, we've grown steadily and expanded our reach to markets worldwide, delivering innovative products such as PoE switches, 
+      splitters, repeaters, extenders, and fiber transceivers for <strong>security solutions</strong>.
+    </p>
   </div>
+</div>
 
-  <!-- CONTACT SECTION -->
-  <div class="page-section" id="contactSection">
-    <span class="section-close-btn" onclick="goHome()">x</span>
-    <div class="contact-content">
-      <h2>Contact Us</h2>
-      <p>We appreciate your interest. Please fill out the form below:</p>
-      <form id="contactForm">
+<!-- CONTACT SECTION -->
+<div class="page-section" id="contactSection">
+  <span class="section-close-btn" onclick="goHome()">x</span>
+  <div class="contact-content">
+    <h2>Contact Us</h2>
+    <p>We appreciate your interest. Please fill out the form below:</p>
+    <form id="contactForm">
+      <div>
+        <label for="from_name" style="display: none;">Your Name</label>
         <input 
+          id="from_name"
           type="text" 
           name="from_name" 
           placeholder="Your Name" 
           required 
         />
+      </div>
+      <div>
+        <label for="reply_to" style="display: none;">Your Email</label>
         <input 
+          id="reply_to"
           type="email" 
           name="reply_to" 
           placeholder="Your Email" 
@@ -622,17 +905,23 @@ Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, wit
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
         />
         <span class="error-message" id="contactEmailError">Please enter a valid email address.</span>
+      </div>
+      <div>
+        <label for="message" style="display: none;">Your Message</label>
         <textarea 
+          id="message"
           name="message" 
           rows="5" 
           placeholder="Your Message" 
           required
         ></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-      <p id="contactStatus" class="success-message"></p>
-    </div>
+      </div>
+      <button type="submit">Send Message</button>
+    </form>
+    <p id="contactStatus" class="success-message"></p>
   </div>
+</div>
+
 
   
 
@@ -652,8 +941,7 @@ Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, wit
       document.getElementById('homeSection').classList.add('active');
       window.scrollTo({top:0, behavior:'smooth'});
     }
-
-     document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('.menu a'); // 右上角菜单按钮
   const sections = document.querySelectorAll('.page-section');
   const vcardModal = document.getElementById('vcardModal'); // vCard 模态框
@@ -711,12 +999,16 @@ Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, wit
   });
 
   // ESC 键关闭模态框
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      vcardModal.style.display = 'none';
-      emailModal.style.display = 'none';
-    }
-  });
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') {
+    // 获取所有模态框
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+      modal.style.display = 'none'; // 隐藏模态框
+    });
+  }
+});
+
 
   // 保存到 iPhone
   savePhoneBtn.addEventListener('click', () => {
@@ -833,6 +1125,7 @@ Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, wit
     });
   });
 });
+
 
 
   </script>
