@@ -20,626 +20,392 @@
   />
 
   <style>
-/* =========== GLOBAL RESET =========== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%; /* 确保内容适配宽度 */
-  height: auto; /* 内容高度自动调整 */
-  overflow-x: hidden; /* 禁止水平滚动 */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f7f7f7;
-  color: #333;
-  line-height: 1.6;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-/* =========== RESPONSIVE DESIGN =========== */
-/* 手机端 (宽度小于768px) */
-@media (max-width: 768px) {
-  body {
-    padding: 10px; /* 为手机端增加内边距 */
-  }
-
-  .navbar {
-    flex-direction: column; /* 导航栏垂直排列 */
-    align-items: flex-start;
-    padding: 10px; /* 减少导航栏内边距 */
-  }
-
-  .menu {
-    flex-direction: column; /* 菜单项垂直排列 */
-    gap: 10px; /* 减少菜单项间距 */
-    width: 100%; /* 占满屏幕宽度 */
-  }
-
-  .menu a {
-    padding: 10px; /* 增加点击区域 */
-    text-align: left; /* 文本左对齐 */
-    border-bottom: 1px solid #ccc; /* 增加分隔线 */
-  }
-
-  .page-section {
-    padding: 15px; /* 减少内边距 */
-    margin: 10px auto; /* 缩小外边距 */
-  }
-
-  .action-row {
-    flex-direction: column; /* 操作按钮垂直排列 */
-    gap: 10px; /* 减少间距 */
-  }
-
-  .action-item {
-    width: 100%; /* 占满屏幕宽度 */
-    padding: 10px; /* 增大按钮点击区域 */
-  }
-
-  .contact-content form {
-    gap: 10px; /* 减少表单字段间距 */
-  }
-
-  .contact-content input,
-.contact-content textarea {
-  width: 100%; /* 宽度占满父容器 */
-  padding: 12px;
-  margin-bottom: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-  .download-btn {
-    padding: 10px; /* 减少按钮内边距 */
-    font-size: 14px; /* 调整字体大小 */
-  }
-
-  .top-header {
-    padding: 20px 10px; /* 减小顶部内边距，适配手机端 */
-  }
-
-  .avatar-wrap {
-    width: 80px; /* 缩小头像大小 */
-    height: 80px;
-  }
-
-  .download-section {
-    padding-bottom: 40px; /* 增加底部间距 */
-  }
-}
-
-/* 平板端 (宽度在768px至1024px之间) */
-@media (min-width: 768px) and (max-width: 1024px) {
-  body {
-    padding: 15px; /* 增加内边距 */
-  }
-
-  .navbar {
-    flex-direction: row; /* 导航栏水平排列 */
-    justify-content: space-between;
-    padding: 15px;
-  }
-
-  .menu {
-    flex-direction: row; /* 菜单项水平排列 */
-    gap: 15px; /* 增大菜单项间距 */
-  }
-
-  .menu a {
-    padding: 8px 12px; /* 调整菜单项内边距 */
-    font-size: 14px; /* 调整字体大小 */
-  }
-
-  .page-section {
-    padding: 20px; /* 增加内边距 */
-    margin: 15px auto; /* 增大外边距 */
-  }
-
-  .action-row {
-    flex-direction: row; /* 操作按钮水平排列 */
-    gap: 15px; /* 增大按钮间距 */
-  }
-}
-
-/* 桌面端 (宽度大于1024px) */
-@media (min-width: 1024px) {
-  body {
-    padding: 20px;
-  }
-
-  .navbar {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 20px;
-  }
-
-  .menu {
-    flex-direction: row;
-    gap: 20px;
-  }
-
-  .menu a {
-    padding: 8px 12px;
-    font-size: 16px; /* 保持原字体大小 */
-  }
-
-  .page-section {
-    padding: 30px; /* 增加内边距 */
-    margin: 20px auto; /* 增大外边距 */
-  }
-
-  .action-row {
-    flex-direction: row;
-    gap: 20px; /* 增大按钮间距 */
-  }
-}
-
-
-   /* =========== NAVBAR =========== */
-.navbar {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* LOGO 样式优化 */
-.navbar .logo-wrap {
-  display: flex;
-  align-items: center; /* 垂直居中 */
-}
-
-.navbar .logo-wrap img {
-  width: 50px; /* 优化宽度，保持和优化样式一致 */
-  height: 50px; /* 设置高度，确保一致性 */
-  object-fit: cover; /* 图片裁切方式 */
-  border-radius: 4px; /* 圆角样式 */
-  margin-right: 10px; /* 添加右侧间距，避免和菜单挤在一起 */
-}
-
-.menu {
-  display: flex;
-  gap: 20px;
-}
-
-.menu a {
-  color: #fff;
-  font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.menu a:hover {
-  background-color: #fa7f56;
-  color: #fff;
-}
-
+   /* =========== GLOBAL RESET =========== */
+   * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    
+     /* =========== NAVBAR =========== */
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar .logo-wrap img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .menu {
+      display: flex;
+      gap: 20px;
+    }
+    .menu a {
+      color: #fff;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    .menu a:hover {
+      background-color: #fa7f56;
+      color: #fff;
+    }
 
     /* =========== PAGE SECTIONS =========== */
-.page-section {
-  position: fixed;
-  top: 50%; /* 垂直居中 */
-  left: 50%; /* 水平居中 */
-  transform: translate(-50%, -50%); /* 完全居中 */
-  max-width: 600px; /* 最大宽度 */
-  width: 90%; /* 根据屏幕宽度调整，确保适配 */
-  margin: 0 auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  display: none; /* 默认隐藏 */
-  z-index: 1000;
-}
+ .page-section {
+      max-width: 600px;
+      top: 50%;
+      left: 50%;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+      z-index: 1000;
+    }
 
-/* 手机端弹窗样式 */
-@media (max-width: 768px) {
-  .contact-content input,
-  .contact-content textarea {
-    font-size: 0.9rem; /* 缩小字体 */
-    padding: 10px; /* 缩小内边距 */
-  }
-}
-  .contact-content input,
-  .contact-content textarea {
-    width: 100%; /* 输入框宽度占满 */
-    font-size: 0.9rem; /* 字体稍微缩小 */
-  }
-  .contact-content button {
-    width: 100%; /* 按钮宽度占满 */
-    padding: 12px; /* 缩小内边距 */
-  }
-}
+    .page-section.active {
+      display: block;
+    }
+    /* 这里把aboutSection、contactSection也改为modal时才显示
+       可以保留部分结构做“非弹窗”使用，但本示例中为了符合需求，最终是通过另外的.modal + .modal-content来做弹窗显示
+       因此本例中可能不再直接用.page-section.active，而是用JS弹窗。*/
 
-/* 针对桌面端优化 */
-@media (min-width: 769px) {
-  .page-section {
-    max-width: 600px; /* 保持桌面端的宽度限制 */
-    padding: 20px; /* 适当内边距 */
-  }
-}
-.page-section.active {
-  display: block; /* 激活时显示 */
-  animation: fadeIn 0.3s ease-in-out; /* 添加淡入动画 */
-}
+    /* =========== HOME SECTION =========== */
+    .top-header {
+      width: 100%;
+      background: linear-gradient(135deg, #00aaff, #005577); /* Blue gradient */
+      text-align: center;
+      padding: 20px 15px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      margin-top: -10px;
+      margin-bottom: -20px;
+    }
+    .header-overlay {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .avatar-wrap {
+      width: 80px; 
+      height: 80px;
+      margin: 0 auto 10px auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #fff;
+    }
+    .avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .person-name {
+      font-size: 1.6rem; 
+      font-weight: normal;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+    .person-title {
+      font-size: 1.1rem; 
+      color: #fce9e4;
+      margin-bottom: 15px;
+    }
 
-/* "X" button styling */
-.section-close-btn {
-  position: absolute; /* 绝对定位 */
-  top: 10px; /* 调整位置 */
-  right: 15px; /* 调整位置 */
-  font-size: 24px; /* 字体大小 */
-  color: #aaa; /* 默认颜色 */
-  cursor: pointer; /* 鼠标样式 */
-}
+    .action-row {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .action-item {
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid #fff;
+      border-radius: 6px;
+      padding: 8px;
+      width: 100px;   
+      height: 50px;   
+      justify-content: center;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .action-item i {
+      font-size: 1.2rem;
+      margin-bottom: 3px;
+    }
+    .action-item span {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .action-item:hover {
+      background-color: rgba(255,255,255,0.25);
+      transform: scale(1.05);
+    }
 
-.section-close-btn:hover {
-  color: #000; /* 悬停时颜色变化 */
-}
+    .info-section-home {
+      padding: 15px;
+    }
+    .description {
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 1rem;
+    }
 
-/* 淡入动画效果 */
-@keyframes fadeIn {
-  from {
-    opacity: 0; /* 初始透明度 */
-  }
-  to {
-    opacity: 1; /* 最终透明度 */
-  }
-}
+    /* Icon + Info blocks */
+    .detail-list {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+    .detail-list li {
+      display: flex;
+      align-items: center;
+      border-top: 1px solid #eee;
+      padding: 6.6px 0;
+    }
+    .detail-list li:first-child {
+      border-top: none;
+    }
+    .icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      margin-right: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fafafa;
+    }
+    .detail-list i {
+      font-size: 1.2rem;
+      color: #f7774d;
+    }
+    .info-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .info-value {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .info-label {
+      font-size: 0.8rem;
+      color: #888;
+    }
 
-/* 响应式设计调整 */
-@media (max-width: 768px) {
-  .top-header {
-    font-size: 1rem; /* 缩小字体 */
-    padding: 15px; /* 减少顶部内边距 */
-  }
-}
-
-  .section-close-btn {
-    font-size: 20px; /* 小屏幕下关闭按钮略小 */
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .page-section {
-    max-width: 80%; /* 平板设备的最大宽度 */
-  }
-}
-
-
-  /* =========== HOME SECTION =========== */
-.top-header {
-    text-align: center;
-  background: linear-gradient(135deg, #00aaff, #005577);
-  padding: 20px;
-  border-radius: 8px 8px 0 0;
-  color: #fff;
-  font-size: 1.2rem; /* 调整字体大小 */
-}
-
-.header-overlay {
-    max-width: 600px;
-    margin: 0 auto;
-    padding-top: 10px; /* 增加内边距以保证内容不挤压 */
-}
-
-.avatar-wrap {
-    width: 100px; /* 优化图片大小，适应手机端 */
-    height: 100px;
-    margin: 0 auto 10px auto;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid #fff;
-}
-
-.avatar {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.person-name {
-    font-size: 1.6rem; /* Slightly reduced size */
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 5px;
-}
-
-.person-title {
-    font-size: 1.1rem; /* Slightly reduced size */
-    color: #fce9e4;
-    margin-bottom: 15px;
-}
-
-.action-row {
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* Reduced gap */
-    margin-top: 15px;
-}
-
-.action-item {
-    color: #fff;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid #fff;
-    border-radius: 6px;
-    padding: 8px;
-    width: 100px;   /* Slightly reduced width */
-    height: 50px;   /* Reduced height */
-    justify-content: center;
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-.action-item i {
-    font-size: 1.2rem; /* Slightly reduced size */
-    margin-bottom: 3px;
-}
-
-.action-item span {
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.action-item:hover {
-    background-color: rgba(255,255,255,0.25);
-    transform: scale(1.05);
-}
-
-.info-section-home {
-    padding: 15px; /* Slightly reduced padding */
-}
-
-.description {
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 1rem; /* Reduced font size */
-}
-
-/* Icon + Info blocks */
-.detail-list {
-    list-style: none;
-    margin-bottom: 20px;
-}
-
-.detail-list li {
-    display: flex;
-    align-items: center;
-    border-top: 1px solid #eee;
-    padding: 15px 0;
-}
-
-.detail-list li:first-child {
-    border-top: none;
-}
-
-.icon-box {
-    width: 40px; /* Slightly reduced size */
-    height: 40px;
-    border-radius: 8px;
-    margin-right: 10px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #fafafa;
-}
-
-.detail-list i {
-    font-size: 1.2rem; /* Slightly reduced size */
-    color: #f7774d;
-}
-
-.info-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.info-value {
-    font-size: 0.95rem;
-    font-weight: 500;
-}
-
-.info-label {
-    font-size: 0.8rem;
-    color: #888;
-}
-
-/* Social Media */
-.social-section h3 {
-    text-align: center;
-    margin-bottom: 10px;
-    color: #666;
-}
-
-.social-icons {
-    display: flex;
-    gap: 15px; /* Reduced gap */
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.social-icons a {
-    width: 60px; /* Slightly reduced size */
-    text-decoration: none;
-    color: #333;
-    transition: transform 0.2s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.social-icons a img {
-    width: 35px;
-    height: 35px;
-    margin-bottom: 5px;
-}
-
-.social-icons a:hover img {
-    transform: scale(1.1);
-}
-
-.social-icons a span {
-    font-size: 0.85rem;
-    color: #333;
-}
-
+    /* Social Media */
+    .social-section h3 {
+      text-align: center;
+margin-top: -1cm; /* 向上缩进1cm */
+      margin-bottom: 10px;
+      color: #666;
+    }
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .social-icons a {
+      width: 60px;
+      text-decoration: none;
+      color: #333;
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .social-icons a img {
+      width: 35px;
+      height: 35px;
+      margin-bottom: 5px;
+    }
+    .social-icons a:hover img {
+      transform: scale(1.1);
+    }
+    .social-icons a span {
+      font-size: 0.85rem;
+      color: #333;
+    }
 /* Download vCard Button */
-.download-section {
-    text-align: center;
-    margin-top: 20px;
-}
+    .download-section {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #cccccc, #888888);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+    .download-btn:hover {
+      background: linear-gradient(135deg, #bbbbbb, #666666);
+      transform: scale(1.05);
+    }
 
-.download-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #6c757d;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-}
 
-.download-btn:hover {
-    background: #5a6268;
-    transform: scale(1.05);
-}
-
-
-   /* =========== MODALS =========== */
+    /* =========== MODALS =========== */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  top: 50%; /* 居中 */
-  left: 50%; /* 居中 */
-  transform: translate(-50%, -50%); /* 通过平移居中 */
-  width: 90%; /* 响应式宽度 */
-  max-width: 400px; /* 最大宽度 */
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-}
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.show {
+      display: flex; /* 打开时显示 */
+    }
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 480px; 
+      width: 90%; 
+      position: relative; /* 为右上角关闭按钮预留 */
+      margin: 0 auto;
+    }
+.modal-content h2 {
+      margin-bottom: 15px;
+    }
+ /* 关闭按钮样式 */
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 10px; /* 调整顶部位置 */
+      right: 15px; /* 调整右侧位置 */
+      font-size: 20px; /* 按钮大小 */
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
 
-.modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100%; /* 弹窗宽度 */
-  max-width: 400px; /* 弹窗最大宽度 */
-  animation: fadeIn 0.3s ease-in-out; /* 添加弹窗渐入动画 */
-}
+    .close:hover {
+      color: #000; /* 鼠标悬浮时变黑 */
+      transform: scale(1.2); /* 鼠标悬浮时稍微放大 */
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #333;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .modal-close-btn:hover {
+      color: #fa7f56;
+    }
 
-.email-form input {
-  width: 90%; /* 宽度为弹窗的 90% */
-  max-width: 350px; /* 限制输入框最大宽度 */
-  margin: 10px auto;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-  box-sizing: border-box; /* 保证宽度一致 */
-}
+    /* 用于在子弹窗里做居中 + 合理大小 */
+    .email-form input {
+      width: 100%;
+      max-width: 350px;
+      margin: 10px auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -55%); /* 初始略微向上 */
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%); /* 最终居中 */
-  }
-}
+    .modal-button {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+      color: #fff;
+    }
+    .modal-button:hover {
+      transform: scale(1.03);
+    }
 
-.close {
-  color: #aaa;
-  position: absolute;
-  top: 12px;
-  right: 15px;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.close:hover {
-  color: #000;
-}
+    /* 两个不同颜色的按钮示例：一个蓝色渐变，一个灰色渐变 */
+    .modal-button.iphone {
+      background: linear-gradient(135deg, #6ca4f8, #3a6edc); /* 渐变蓝 */
+    }
+    .modal-button.email {
+      background: linear-gradient(135deg, #bdbdbd, #888); /* 渐变灰 */
+    }
 
-.modal-button {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-.modal-button:hover {
-  transform: scale(1.03);
-}
-.modal-button.iphone {
-  background: #6ca4f8; /* 蓝色 */
-  color: #fff;
-}
-.modal-button.email {
-  background: #f08d49; 
-  color: #fff;
-}
-
-/* 响应式优化：针对不同设备的调整 */
-@media (max-width: 768px) {
-  .modal-content {
-    width: 95%; /* 更适合小屏幕 */
-    max-width: 360px;
-    padding: 15px; /* 缩小内边距 */
-  }
-  .email-form input {
-    font-size: 0.9rem; /* 调整字体大小 */
-  }
-  .modal-button {
-    padding: 12px; /* 调整按钮内边距 */
-    font-size: 0.9rem;
-  }
-}
-
+    /* 发送邮箱那里的按钮同样灰色渐变 */
+    .email-form button {
+      background: linear-gradient(135deg, #bdbdbd, #888);
+      color: #fff;
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .email-form button:hover {
+      transform: scale(1.03);
+    }
     /* =========== CONTACT FORM VALIDATION MESSAGES =========== */
-   .error-message {
-  color: red;
-  font-size: 0.85rem;
-  margin-top: 5px;
-  display: none;
-}
-.success-message {
-  color: green;
-  font-size: 0.85rem;
-  margin-top: 5px;
-  display: none;
-}
+  .error-message {
+      color: red;
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: none;
+    }
+    .success-message {
+      color: green;
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: none;
+    }
 
     /* =========== CONTACT STYLES =========== */
     .contact-content h2 {
@@ -674,42 +440,70 @@ img {
       transform: scale(1.03);
     }
 
-   /* =========== FOOTER =========== */
-footer {
-    margin-top: auto;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 15px 0;
+    /* =========== FOOTER =========== */
+  footer {
+      margin-top: auto;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+    }
+ /* =========== “About” & “Contact” 作为模态 =========== */
+    /* 这里演示把 #aboutSection, #contactSection 用于模态内部内容 */
+    #aboutSection, #contactSection {
+      /* 不再使用原本的 display:block, 改到模态内由JS控制显示 */
+      padding: 20px;
+      text-align: left; /* 可根据需求调整 */
+    }
+    /* “Contact” 里输入框整体向右延长，这里设置宽度80%等，可根据需求再微调 */
+    #contactSection form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 80%; 
+      margin: 0 auto;
+    }
+    #contactSection form input,
+    #contactSection form textarea {
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%; 
+    }
+    /* 发送按钮改为灰色（渐变） */
+    #contactSection form button {
+      background: linear-gradient(135deg, #bdbdbd, #888);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+      padding: 12px;
+    }
+    #contactSection form button:hover {
+      transform: scale(1.03);
+    }
+
+    /* 为让 About 区域文字居中，你也可以另外加一些样式，比如： */
+    #aboutSection h2 {
+      text-align: center; /* 让标题和那行提示语居中 */
+  /* 如果里面表单要左对齐，可单独给 form 再设 text-align: left */
+}
+#contactSection p {
+  margin-bottom: 15px;
+}
+#contactSection h2 {
+  margin-bottom: 10px;
 }
 
-/* =========== BUTTONS AND FOOTER =========== */
-.download-section {
-    text-align: center;
-    margin-top: 20px; /* 确保底部按钮不被截断 */
-    padding-bottom: 20px; /* 增加底部空间，确保手机端体验 */
+#contactSection form {
+  /* 让表单在内部居中 */
+  width: 80%; 
+  margin: 0 auto; 
+  text-align: left; /* 让输入框标签等保持左对齐(如需要的话) */
 }
-
-.download-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #6c757d;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-}
-
-.download-btn:hover {
-    background: #5a6268;
-    transform: scale(1.05);
-}
-
-
     /* =========== RESPONSIVE =========== */
     @media (max-width: 600px) {
       .action-row {
@@ -727,18 +521,17 @@ footer {
       .detail-list .icon-box {
         margin-bottom: 5px;
       }
- .modal-content {
+      .modal-content {
         max-width: 90%; /* 更适合手机 */
       }
     }
-
-  </style>
+ </style>
 </head>
 <body>
   <!-- NAVBAR -->
-  <nav class="navbar">
+ <nav class="navbar">
     <div class="logo-wrap">
-      <img src="DJA-logo.png" alt="DJA Logo" class="logo" />
+      <img src="DJA-logo.png" alt="DJA Logo" onerror="this.style.display='none'">
     </div>
     <div class="menu">
    <a href="#" data-page="home">Home</a>
@@ -755,7 +548,7 @@ footer {
         <img src="Oliver-Avatar.png" alt="Oliver F Avatar" onerror="this.style.display='none'" class="avatar" />
       </div>
       <h1 class="person-name">Oliver F</h1>
-      <h2 class="person-title">Sales Manager</h2>
+      <h2 class="person-title">Sales Consultant</h2>
       <div class="action-row">
         <!-- Phone -->
         <a href="tel:+12817839998" class="action-item" aria-label="Call Oliver F">
@@ -784,7 +577,7 @@ footer {
         </div>
         <div class="info-text">
           <p class="info-value"><a href="tel:+12817839998">+1 281 783 9998</a></p>
-          <p class="info-label">Mobile</p>
+          <p class="info-label">Mobile&WhatsApp</p>
         </div>
       </li>
       <!-- Email -->
@@ -815,8 +608,8 @@ footer {
     </div>
     <div class="info-text">
       <p class="info-value">
-        <a href="https://en.djakeji.com" target="_blank" rel="noopener">
-                en.djakeji.com
+        <a href="https://djakeji.com" target="_blank" rel="noopener">
+                djakeji.com
   </a>
       </p>
       <p class="info-label">Website</p>
@@ -842,16 +635,18 @@ footer {
 <!-- Download vCard -->
 <div class="download-section">
   <button id="downloadVCardBtn" class="download-btn">
+    <!-- 这里仍保留原先的icon -->
     <i class="fas fa-user-plus"></i>
     DOWNLOAD VCARD
-    </button>
-      </div>
+  </button>
+</div>
     </div>
   </div>
 
   <!-- vCard Modal -->
   <div id="vcardModal" class="modal">
     <div class="modal-content">
+<!-- 右上角关闭按钮 -->
       <span class="close" aria-label="Close">&times;</span>
       <h2>Save Contact Data</h2>
       <p>How would you like to save contact data?</p>
@@ -881,46 +676,38 @@ footer {
   </div>
 
   <!-- ABOUT SECTION -->
-<div class="page-section" id="aboutSection">
-  <span class="section-close-btn" onclick="goHome()">x</span>
-  <div class="about-content" style="padding-top: 30px;">
-    <h2>About DJA PoE Company</h2>
-    <p>
-      DJA – Brand of Shenzhen Dijiean Technology Co., Ltd. <br>
-      Website: <a href="https://en.djakeji.com" target="_blank" rel="noopener">en.djakeji.com</a>
-    </p>
-    <p>
-      Note that <strong>Dijiean Technology Co., Ltd.</strong> is our official name, with "DJA" as our brand. Our website, 
-      <a href="https://djakeji.com" target="_blank" rel="noopener">djakeji.com</a>, reflects our Chinese name, "Dijiean Keji."
-    </p>
-    <p>
-      Founded in 2011, we've grown steadily and expanded our reach to markets worldwide, delivering innovative products such as PoE switches, 
-      splitters, repeaters, extenders, and fiber transceivers for <strong>security solutions</strong>.
-    </p>
-  </div>
-</div>
+  <div class="page-section" id="aboutSection">
+    <span class="section-close-btn" onclick="goHome()">x</span>
+    <div class="about-content" style="padding-top:30px;">
+      <h2>About <strong>DJA PoE<strong> Company</h2>
+      <p>
+  DJA – Brand of Shenzhen Dijiean Technology Co., Ltd. 
+  <a href="https://djakeji.com" target="_blank" style="text-decoration: none; color: #007bff;">Website: djakeji.com</a>
+</p>
 
-<!-- CONTACT SECTION -->
-<div class="page-section" id="contactSection">
-  <span class="section-close-btn" onclick="goHome()">x</span>
-  <div class="contact-content">
-    <h2>Contact Us</h2>
-    <p>We appreciate your interest. Please fill out the form below:</p>
-    <form id="contactForm">
-      <div>
-        <label for="from_name" style="display: none;">Your Name</label>
+      <p>
+Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, with <strong>"DJA" <strong>as our brand. Our website,<strong> djakeji.com,<strong> reflects our Chinese name, <strong>"Dijiean Keji."<strong>
+      </p>
+      <p>
+        Founded in 2011, we've grown steadily and expanded our reach to markets worldwide, delivering innovative products such as PoE switches, splitters, repeaters, extenders, and fiber transceivers for <strong>security solutions<strong>. 
+      </p>
+    </div>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <div class="page-section" id="contactSection">
+    <span class="section-close-btn" onclick="goHome()">x</span>
+    <div class="contact-content">
+      <h2>Contact Us</h2>
+      <p>We appreciate your interest. Please fill out the form below:</p>
+      <form id="contactForm">
         <input 
-          id="from_name"
           type="text" 
           name="from_name" 
           placeholder="Your Name" 
           required 
         />
-      </div>
-      <div>
-        <label for="reply_to" style="display: none;">Your Email</label>
         <input 
-          id="reply_to"
           type="email" 
           name="reply_to" 
           placeholder="Your Email" 
@@ -928,24 +715,18 @@ footer {
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
         />
         <span class="error-message" id="contactEmailError">Please enter a valid email address.</span>
-      </div>
-      <div>
-        <label for="message" style="display: none;">Your Message</label>
         <textarea 
-          id="message"
           name="message" 
           rows="5" 
           placeholder="Your Message" 
           required
         ></textarea>
-      </div>
-      <button type="submit">Send Message</button>
-    </form>
-    <p id="contactStatus" class="success-message"></p>
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="contactStatus" class="success-message"></p>
+    </div>
   </div>
-</div>
-
-
+ 
   
 
   <!-- EmailJS SDK -->
@@ -964,7 +745,8 @@ footer {
       document.getElementById('homeSection').classList.add('active');
       window.scrollTo({top:0, behavior:'smooth'});
     }
-document.addEventListener('DOMContentLoaded', () => {
+
+     document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('.menu a'); // 右上角菜单按钮
   const sections = document.querySelectorAll('.page-section');
   const vcardModal = document.getElementById('vcardModal'); // vCard 模态框
@@ -1022,16 +804,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ESC 键关闭模态框
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') {
-    // 获取所有模态框
-    const modals = document.querySelectorAll('.modal');
-    modals.forEach(modal => {
-      modal.style.display = 'none'; // 隐藏模态框
-    });
-  }
-});
-
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      vcardModal.style.display = 'none';
+      emailModal.style.display = 'none';
+    }
+  });
 
   // 保存到 iPhone
   savePhoneBtn.addEventListener('click', () => {
@@ -1148,7 +926,6 @@ document.addEventListener('keydown', (event) => {
     });
   });
 });
-
 
 
   </script>
