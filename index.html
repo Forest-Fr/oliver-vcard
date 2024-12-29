@@ -745,11 +745,10 @@ margin-top: -0.19cm; /* 向上缩进0.19cm */
         required
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
       />
-      <span class="error-message" id="emailError" style="display: none;">Please enter a valid email address.</span>
-      <span class="error-message" id="vCardError" style="display: none;">This email has already received a vCard today.</span>
-      <span class="success-message" id="vCardSuccess" style="display: none;">vCard sent successfully!</span>
+      <span class="error-message" id="emailError"></span>
       <button type="submit" class="modal-button email">Send Email</button>
     </form>
+    <p id="emailStatus" class="success-message"></p>
   </div>
 </div>
 
@@ -779,100 +778,113 @@ Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, wit
     <h2>Contact Us</h2>
     <p>We appreciate your interest. Please fill out the form below:</p>
     <form id="contactForm">
-      <input 
-        type="text" 
-        name="from_name" 
-        placeholder="Your Name" 
-        required 
+      <input
+        type="text"
+        name="from_name"
+        placeholder="Your Name"
+        required
       />
-      <input 
-        type="email" 
-        name="reply_to" 
-        placeholder="Your Email" 
-        required 
+      <input
+        type="email"
+        name="reply_to"
+        placeholder="Your Email"
+        required
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
       />
-      <span class="error-message" id="contactEmailError" style="display: none;">This email has already sent a message today.</span>
-      <span class="success-message" id="contactSuccess" style="display: none;">Your message was sent successfully!</span>
-      <textarea 
-        name="message" 
-        rows="5" 
-        placeholder="Your Message" 
+      <span class="error-message" id="contactEmailError"></span>
+      <textarea
+        name="message"
+        rows="5"
+        placeholder="Your Message"
         required
       ></textarea>
-      <button type="submit">Send Message</button>
+      <button type="submit" class="modal-button gray">Send Message</button>
     </form>
+    <p id="contactStatus" class="success-message"></p>
   </div>
 </div>
- <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const sentEmailsContact = {}; // Contact form逻辑限制
-  const sentEmailsVCard = {}; // vCard form逻辑限制
 
-  // vCard表单提交逻辑
-  document.getElementById("emailForm").addEventListener("submit", (e) => {
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sentEmails = {};
+  const sentMessages = {};
+
+  const today = new Date().toISOString().split('T')[0]; // 获取当天日期
+
+  // Email Modal Logic
+  const emailForm = document.getElementById('emailForm');
+  const emailError = document.getElementById('emailError');
+  const emailStatus = document.getElementById('emailStatus');
+
+  emailForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const form = e.target;
-    const email = form.user_email.value.trim();
-    const today = new Date().toISOString().split("T")[0]; // 当天日期
+    const userEmail = emailForm.user_email.value.trim();
 
-    // 验证邮箱格式（HTML pattern 已验证，JavaScript 冗余验证）
-    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    if (!emailPattern.test(email)) {
-      document.getElementById("emailError").style.display = "block";
-      document.getElementById("emailError").textContent = "Please enter a valid email address.";
-      document.getElementById("vCardSuccess").style.display = "none";
+    if (sentEmails[userEmail] === today) {
+      emailError.style.color = 'red';
+      emailError.textContent = 'This email has already received the vCard today. Please try again tomorrow. Thank you for your understanding.';
+      emailStatus.textContent = '';
       return;
     }
 
-    // 检查当天是否已发送过
-    if (sentEmailsVCard[email] === today) {
-      document.getElementById("emailError").style.display = "none";
-      document.getElementById("vCardError").style.display = "block";
-      document.getElementById("vCardSuccess").style.display = "none";
+    if (!validateEmail(userEmail)) {
+      emailError.style.color = 'red';
+      emailError.textContent = 'Please enter a valid email address.';
+      emailStatus.textContent = '';
       return;
     }
 
-    // 更新发送记录并显示成功消息
-    sentEmailsVCard[email] = today;
-    document.getElementById("emailError").style.display = "none";
-    document.getElementById("vCardError").style.display = "none";
-    document.getElementById("vCardSuccess").style.display = "block";
-    form.reset();
+    emailError.textContent = '';
+    emailStatus.style.color = 'green';
+    emailStatus.textContent = 'vCard sent successfully!';
+    sentEmails[userEmail] = today; // 记录发送时间
+
+    setTimeout(() => {
+      emailStatus.textContent = '';
+    }, 3000);
   });
 
-  // Contact表单提交逻辑
-  document.getElementById("contactForm").addEventListener("submit", (e) => {
+  // Contact Section Logic
+  const contactForm = document.getElementById('contactForm');
+  const contactEmailError = document.getElementById('contactEmailError');
+  const contactStatus = document.getElementById('contactStatus');
+
+  contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const form = e.target;
-    const email = form.reply_to.value.trim();
-    const today = new Date().toISOString().split("T")[0]; // 当天日期
+    const contactEmail = contactForm.reply_to.value.trim();
 
-    // 验证邮箱格式（HTML pattern 已验证，JavaScript 冗余验证）
-    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    if (!emailPattern.test(email)) {
-      document.getElementById("contactEmailError").style.display = "block";
-      document.getElementById("contactEmailError").textContent = "Please enter a valid email address.";
-      document.getElementById("contactSuccess").style.display = "none";
+    if (sentMessages[contactEmail] === today) {
+      contactEmailError.style.color = 'red';
+      contactEmailError.textContent = 'This email has already sent a message today. Please try again tomorrow. Thank you for your understanding.';
+      contactStatus.textContent = '';
       return;
     }
 
-    // 检查当天是否已发送过
-    if (sentEmailsContact[email] === today) {
-      document.getElementById("contactEmailError").style.display = "block";
-      document.getElementById("contactEmailError").textContent = "This email has already sent a message today.";
-      document.getElementById("contactSuccess").style.display = "none";
+    if (!validateEmail(contactEmail)) {
+      contactEmailError.style.color = 'red';
+      contactEmailError.textContent = 'Please enter a valid email address.';
+      contactStatus.textContent = '';
       return;
     }
 
-    // 更新发送记录并显示成功消息
-    sentEmailsContact[email] = today;
-    document.getElementById("contactEmailError").style.display = "none";
-    document.getElementById("contactSuccess").style.display = "block";
-    form.reset();
+    contactEmailError.textContent = '';
+    contactStatus.style.color = 'green';
+    contactStatus.textContent = 'Your message was sent successfully!';
+    sentMessages[contactEmail] = today; // 记录发送时间
+
+    setTimeout(() => {
+      contactStatus.textContent = '';
+    }, 3000);
   });
+
+  // Email Validation
+  function validateEmail(email) {
+    const re = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    return re.test(String(email).toLowerCase());
+  }
 });
 </script>
+
   
 
   <!-- EmailJS SDK -->
