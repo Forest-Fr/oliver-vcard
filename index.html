@@ -593,8 +593,13 @@ margin-top: -0.19cm; /* 向上缩进0.19cm */
   .info-value a:hover {
     text-decoration: underline;
     color: #0056b3;
-  }
+ /* 其他 CSS 样式继续 */
+  </style>
 
+  <!-- 这里引入 script.js -->
+  <script src="script.js" defer></script> <!-- 引入优化后的JS -->
+</head>
+  <style>
   /* 社交媒体图标及文字样式 */
   .social-icons a {
     text-decoration: none;
@@ -778,29 +783,29 @@ Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, wit
     <h2>Contact Us</h2>
     <p>We appreciate your interest. Please fill out the form below:</p>
     <form id="contactForm">
-      <input
-        type="text"
-        name="from_name"
-        placeholder="Your Name"
-        required
+      <input 
+        type="text" 
+        name="from_name" 
+        placeholder="Your Name" 
+        required 
       />
-      <input
-        type="email"
-        name="reply_to"
-        placeholder="Your Email"
-        required
+      <input 
+        type="email" 
+        name="reply_to" 
+        placeholder="Your Email" 
+        required 
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
       />
-      <span class="error-message" id="contactEmailError"></span>
-      <textarea
-        name="message"
-        rows="5"
-        placeholder="Your Message"
+      <span class="error-message" id="contactEmailError">Please enter a valid email address.</span>
+      <textarea 
+        name="message" 
+        rows="5" 
+        placeholder="Your Message" 
         required
       ></textarea>
-      <button type="submit" class="modal-button gray">Send Message</button>
+      <p id="contactStatus" class="success-message"></p>
+      <button type="submit" class="modal-button email">Send Message</button>
     </form>
-    <p id="contactStatus" class="success-message"></p>
   </div>
 </div>
 <script>
