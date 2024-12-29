@@ -221,43 +221,74 @@
     }
 
     /* Social Media */
-    .social-section h3 {
-      text-align: center;
-margin-top: -1cm; /* 向上缩进1cm */
-      margin-bottom: 10px;
-      color: #666;
-    }
-    .social-icons {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .social-icons a {
-      width: 60px;
-      text-decoration: none;
-      color: #333;
-      transition: transform 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .social-icons a img {
-      width: 35px;
-      height: 35px;
-      margin-bottom: 5px;
-    }
-    .social-icons a:hover img {
-      transform: scale(1.1);
-    }
-    .social-icons a span {
-      font-size: 0.85rem;
-      color: #333;
-    }
+ .social-section {
+  text-align: center;
+  margin-bottom: 20px; /* 调整与下方按钮的间距 */
+}
+
+.social-section h3 {
+  font-size: 1.5rem; /* 标题大小 */
+  margin-bottom: 10px; /* 标题与图标间距 */
+  color: #666;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* 图标之间的间距 */
+}
+
+.social-icons a {
+  display: flex;
+  flex-direction: column; /* 图标与文字纵向排列 */
+  align-items: center;
+  text-decoration: none;
+  color: #333; /* 默认文字颜色 */
+  transition: transform 0.2s ease-in-out;
+}
+
+.social-icons a:hover {
+  transform: scale(1.1); /* 鼠标悬停放大 */
+}
+
+.social-icons a img {
+  width: 40px; /* 图标大小 */
+  height: 40px;
+  margin-bottom: 5px; /* 图标与文字的间距 */
+}
+
+.social-icons a span {
+  font-size: 0.9rem; /* 调整文字大小 */
+  font-weight: 500; /* 文字加粗 */
+  text-align: center;
+  color: #333; /* 默认文字颜色 */
+}
+
+.download-section {
+  text-align: center;
+  margin-top: 20px; /* 按钮上方的间距 */
+}
+
+.download-btn {
+  background: linear-gradient(135deg, #cccccc, #888888); /* 渐变背景 */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.download-btn:hover {
+  background: linear-gradient(135deg, #bbbbbb, #666666); /* 悬停颜色 */
+  transform: scale(1.05);
+}
 /* Download vCard Button */
     .download-section {
       text-align: center;
-margin-top: -0.19cm; /* 向上缩进0.19cm */
+margin-top: -0.55cm; /* 向上缩进0.55cm */
       margin-bottom: 20px; /* 保留下方间距 */
   }
     .download-btn {
@@ -602,7 +633,8 @@ margin-top: -0.19cm; /* 向上缩进0.19cm */
   <style>
   /* 社交媒体图标及文字样式 */
   .social-icons a {
-    text-decoration: none;
+   width: 60px; /* Slightly reduced size */
+ text-decoration: none;
     color: #007bff;
     display: flex;
     flex-direction: column;
@@ -617,8 +649,8 @@ margin-top: -0.19cm; /* 向上缩进0.19cm */
   }
 
   .social-icons a img {
-    width: 24px;
-    height: 24px;
+    width: 35px;
+    height: 35px;
     margin-bottom: 5px;
   }
 
@@ -796,16 +828,16 @@ Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, wit
         required 
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
       />
-      <span class="error-message" id="contactEmailError">Please enter a valid email address.</span>
+      <span class="error-message" id="contactEmailError"></span>
       <textarea 
         name="message" 
         rows="5" 
         placeholder="Your Message" 
         required
       ></textarea>
-      <p id="contactStatus" class="success-message"></p>
-      <button type="submit" class="modal-button email">Send Message</button>
+      <button type="submit" class="modal-button gray">Send Message</button>
     </form>
+    <p id="contactStatus" class="success-message"></p>
   </div>
 </div>
 <script>
