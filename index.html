@@ -805,89 +805,90 @@ Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, wit
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const sentEmailsContact = {}; // 用于 Contact 表单逻辑限制
-  const sentEmailsVCard = {}; // 用于 vCard 表单逻辑限制
+  const sentEmailsContact = {}; // 记录 Contact 表单的发送记录
+  const sentEmailsVCard = {}; // 记录 vCard 表单的发送记录
 
-  // 日期生成工具函数
-  function getTodayDate() {
-    return new Date().toISOString().split('T')[0];
-  }
+  const getTodayDate = () => new Date().toISOString().split("T")[0]; // 获取当天日期
 
-  // 校验邮箱格式工具函数
-  function validateEmail(email) {
+  const validateEmail = (email) => {
     const re = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
     return re.test(String(email).toLowerCase());
-  }
+  };
 
-  // vCard 模块发送逻辑
-  document.getElementById('emailForm').addEventListener('submit', (e) => {
+  // 处理 vCard 模块发送逻辑
+  document.getElementById("emailForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const userEmail = e.target.user_email.value.trim();
     const today = getTodayDate();
 
-    const emailError = document.getElementById('emailError');
-    const emailStatus = document.getElementById('emailStatus');
-
+    // 校验邮箱格式
     if (!validateEmail(userEmail)) {
-      emailError.textContent = 'Please enter a valid email address.';
-      emailError.style.color = 'red';
+      const emailError = document.getElementById("emailError");
+      emailError.textContent = "Please enter a valid email address.";
+      emailError.style.display = "block";
       return;
+    } else {
+      document.getElementById("emailError").style.display = "none";
     }
 
+    // 检查是否已发送过
     if (sentEmailsVCard[userEmail] === today) {
-      emailError.textContent = 'This email has already received the vCard today. Please try again tomorrow.';
-      emailError.style.color = 'red';
+      const emailError = document.getElementById("emailError");
+      emailError.textContent = "This email address already received the vCard today. Please try again tomorrow.";
+      emailError.style.display = "block";
       return;
     }
 
-    // 模拟发送逻辑
-    emailError.textContent = '';
-    emailStatus.textContent = 'Sending...';
-    emailStatus.style.color = 'black';
+    // 发送成功逻辑
+    sentEmailsVCard[userEmail] = today; // 记录发送状态
+    const emailStatus = document.getElementById("emailStatus");
+    emailStatus.textContent = "vCard sent successfully!";
+    emailStatus.style.color = "green";
+    emailStatus.style.display = "block";
 
-    setTimeout(() => {
-      sentEmailsVCard[userEmail] = today;
-      emailStatus.textContent = 'vCard sent successfully!';
-      emailStatus.style.color = 'green';
-      e.target.reset();
-    }, 1000);
+    // 模拟发送操作（可以在此添加实际发送逻辑）
+    console.log(`vCard sent to ${userEmail}`);
+    e.target.reset(); // 清空表单
   });
 
-  // Contact 模块发送逻辑
-  document.getElementById('contactForm').addEventListener('submit', (e) => {
+  // 处理 Contact 表单发送逻辑
+  document.getElementById("contactForm").addEventListener("submit", (e) => {
     e.preventDefault();
     const userEmail = e.target.reply_to.value.trim();
     const today = getTodayDate();
 
-    const contactError = document.getElementById('contactError');
-    const contactStatus = document.getElementById('contactStatus');
-
+    // 校验邮箱格式
     if (!validateEmail(userEmail)) {
-      contactError.textContent = 'Please enter a valid email address.';
-      contactError.style.color = 'red';
+      const contactEmailError = document.getElementById("contactEmailError");
+      contactEmailError.textContent = "Please enter a valid email address.";
+      contactEmailError.style.display = "block";
       return;
+    } else {
+      document.getElementById("contactEmailError").style.display = "none";
     }
 
+    // 检查是否已发送过
     if (sentEmailsContact[userEmail] === today) {
-      contactError.textContent = 'This email has already sent a message today. Please try again tomorrow.';
-      contactError.style.color = 'red';
+      const contactStatus = document.getElementById("contactStatus");
+      contactStatus.textContent = "This email address already sent a message today. Please try again tomorrow.";
+      contactStatus.style.color = "red";
+      contactStatus.style.display = "block";
       return;
     }
 
-    // 模拟发送逻辑
-    contactError.textContent = '';
-    contactStatus.textContent = 'Sending...';
-    contactStatus.style.color = 'black';
+    // 发送成功逻辑
+    sentEmailsContact[userEmail] = today; // 记录发送状态
+    const contactStatus = document.getElementById("contactStatus");
+    contactStatus.textContent = "Your message was sent successfully!";
+    contactStatus.style.color = "green";
+    contactStatus.style.display = "block";
 
-    setTimeout(() => {
-      sentEmailsContact[userEmail] = today;
-      contactStatus.textContent = 'Your message was sent successfully!';
-      contactStatus.style.color = 'green';
-      e.target.reset();
-    }, 1000);
- });
+    // 模拟发送操作（可以在此添加实际发送逻辑）
+    console.log(`Message sent to ${userEmail}`);
+    e.target.reset(); // 清空表单
+  });
 });
-});
+
 </script>
 </body>
 
