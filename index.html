@@ -804,85 +804,90 @@ Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, wit
   </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const sentEmails = {};
-  const sentMessages = {};
+// 初始化发送记录
+const sentEmailsVCard = {}; // 用于 downloadvcard 模块
+const sentEmailsContact = {}; // 用于 contact 表单模块
 
-  const today = new Date().toISOString().split('T')[0]; // 获取当天日期
+// 日期生成工具函数
+function getTodayDate() {
+  return new Date().toISOString().split('T')[0]; // 获取 YYYY-MM-DD 格式
+}
 
-  // Email Modal Logic
-  const emailForm = document.getElementById('emailForm');
-  const emailError = document.getElementById('emailError');
-  const emailStatus = document.getElementById('emailStatus');
+// 校验邮箱格式工具函数
+function validateEmail(email) {
+  const re = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+  return re.test(String(email).toLowerCase());
+}
 
-  emailForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const userEmail = emailForm.user_email.value.trim();
+// vCard模块发送逻辑
+document.getElementById('emailForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const userEmail = e.target.user_email.value.trim();
+  const today = getTodayDate();
 
-    if (sentEmails[userEmail] === today) {
-      emailError.style.color = 'red';
-      emailError.textContent = 'This email has already received the vCard today. Please try again tomorrow. Thank you for your understanding.';
-      emailStatus.textContent = '';
-      return;
-    }
-
-    if (!validateEmail(userEmail)) {
-      emailError.style.color = 'red';
-      emailError.textContent = 'Please enter a valid email address.';
-      emailStatus.textContent = '';
-      return;
-    }
-
-    emailError.textContent = '';
-    emailStatus.style.color = 'green';
-    emailStatus.textContent = 'vCard sent successfully!';
-    sentEmails[userEmail] = today; // 记录发送时间
-
-    setTimeout(() => {
-      emailStatus.textContent = '';
-    }, 3000);
-  });
-
-  // Contact Section Logic
-  const contactForm = document.getElementById('contactForm');
-  const contactEmailError = document.getElementById('contactEmailError');
-  const contactStatus = document.getElementById('contactStatus');
-
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const contactEmail = contactForm.reply_to.value.trim();
-
-    if (sentMessages[contactEmail] === today) {
-      contactEmailError.style.color = 'red';
-      contactEmailError.textContent = 'This email has already sent a message today. Please try again tomorrow. Thank you for your understanding.';
-      contactStatus.textContent = '';
-      return;
-    }
-
-    if (!validateEmail(contactEmail)) {
-      contactEmailError.style.color = 'red';
-      contactEmailError.textContent = 'Please enter a valid email address.';
-      contactStatus.textContent = '';
-      return;
-    }
-
-    contactEmailError.textContent = '';
-    contactStatus.style.color = 'green';
-    contactStatus.textContent = 'Your message was sent successfully!';
-    sentMessages[contactEmail] = today; // 记录发送时间
-
-    setTimeout(() => {
-      contactStatus.textContent = '';
-    }, 3000);
-  });
-
-  // Email Validation
-  function validateEmail(email) {
-    const re = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    return re.test(String(email).toLowerCase());
+  if (!validateEmail(userEmail)) {
+    // 邮箱格式不正确
+    document.getElementById('emailError').style.display = 'block';
+    document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+    return;
   }
+
+  // 检查是否当天已发送过邮件
+  if (sentEmailsVCard[userEmail] === today) {
+    document.getElementById('emailError').style.display = 'block';
+    document.getElementById('emailError').textContent = 'This email address has already received the vCard today. Please try again tomorrow.';
+    return;
+  }
+
+  // 清除错误提示，显示发送状态
+  document.getElementById('emailError').style.display = 'none';
+  document.getElementById('emailStatus').textContent = 'Sending...';
+
+  // 模拟发送逻辑
+  setTimeout(() => {
+    // 假设发送成功
+    sentEmailsVCard[userEmail] = today; // 记录发送时间
+    document.getElementById('emailStatus').style.color = 'green';
+    document.getElementById('emailStatus').textContent = 'vCard sent successfully!';
+    e.target.reset();
+  }, 1000);
 });
+
+// Contact模块发送逻辑
+document.getElementById('contactForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const userEmail = e.target.reply_to.value.trim();
+  const today = getTodayDate();
+
+  if (!validateEmail(userEmail)) {
+    // 邮箱格式不正确
+    document.getElementById('contactEmailError').style.display = 'block';
+    document.getElementById('contactEmailError').textContent = 'Please enter a valid email address.';
+    return;
+  }
+
+  // 检查是否当天已发送过消息
+  if (sentEmailsContact[userEmail] === today) {
+    document.getElementById('contactEmailError').style.display = 'block';
+    document.getElementById('contactEmailError').textContent = 'This email address has already sent a message today. Please try again tomorrow.';
+    return;
+  }
+
+  // 清除错误提示，显示发送状态
+  document.getElementById('contactEmailError').style.display = 'none';
+  document.getElementById('contactStatus').textContent = 'Sending...';
+
+  // 模拟发送逻辑
+  setTimeout(() => {
+    // 假设发送成功
+    sentEmailsContact[userEmail] = today; // 记录发送时间
+    document.getElementById('contactStatus').style.color = 'green';
+    document.getElementById('contactStatus').textContent = 'Your message was sent successfully!';
+    e.target.reset();
+  }, 1000);
+});
+
+
 </script>
 
   
