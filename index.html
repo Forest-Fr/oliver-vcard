@@ -804,7 +804,75 @@ Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, wit
     </form>
   </div>
 </div>
- 
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sentEmailsContact = {}; // Contact form逻辑限制
+  const sentEmailsVCard = {}; // vCard form逻辑限制
+
+  // vCard表单提交逻辑
+  document.getElementById("emailForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.user_email.value.trim();
+    const today = new Date().toISOString().split("T")[0]; // 当天日期
+
+    // 验证邮箱格式（HTML pattern 已验证，JavaScript 冗余验证）
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (!emailPattern.test(email)) {
+      document.getElementById("emailError").style.display = "block";
+      document.getElementById("emailError").textContent = "Please enter a valid email address.";
+      document.getElementById("vCardSuccess").style.display = "none";
+      return;
+    }
+
+    // 检查当天是否已发送过
+    if (sentEmailsVCard[email] === today) {
+      document.getElementById("emailError").style.display = "none";
+      document.getElementById("vCardError").style.display = "block";
+      document.getElementById("vCardSuccess").style.display = "none";
+      return;
+    }
+
+    // 更新发送记录并显示成功消息
+    sentEmailsVCard[email] = today;
+    document.getElementById("emailError").style.display = "none";
+    document.getElementById("vCardError").style.display = "none";
+    document.getElementById("vCardSuccess").style.display = "block";
+    form.reset();
+  });
+
+  // Contact表单提交逻辑
+  document.getElementById("contactForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.reply_to.value.trim();
+    const today = new Date().toISOString().split("T")[0]; // 当天日期
+
+    // 验证邮箱格式（HTML pattern 已验证，JavaScript 冗余验证）
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (!emailPattern.test(email)) {
+      document.getElementById("contactEmailError").style.display = "block";
+      document.getElementById("contactEmailError").textContent = "Please enter a valid email address.";
+      document.getElementById("contactSuccess").style.display = "none";
+      return;
+    }
+
+    // 检查当天是否已发送过
+    if (sentEmailsContact[email] === today) {
+      document.getElementById("contactEmailError").style.display = "block";
+      document.getElementById("contactEmailError").textContent = "This email has already sent a message today.";
+      document.getElementById("contactSuccess").style.display = "none";
+      return;
+    }
+
+    // 更新发送记录并显示成功消息
+    sentEmailsContact[email] = today;
+    document.getElementById("contactEmailError").style.display = "none";
+    document.getElementById("contactSuccess").style.display = "block";
+    form.reset();
+  });
+});
+</script>
   
 
   <!-- EmailJS SDK -->
