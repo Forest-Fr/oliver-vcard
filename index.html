@@ -757,177 +757,213 @@ margin-top: -0.55cm; /* 向上缩进0.55cm */
     </div>
   </div>
 
-  <!-- vCard Modal -->
-  <div id="vcardModal" class="modal">
-    <div class="modal-content">
-<!-- 右上角关闭按钮 -->
-      <span class="close" aria-label="Close">&times;</span>
-      <h2>Save Contact Data</h2>
-      <p>How would you like to save contact data?</p>
-      <button id="savePhoneBtn" class="modal-button iphone">To My iPhone</button>
-      <button id="saveEmailBtn" class="modal-button email">Save via Email</button>
-    </div>
-  </div>
-
-  <!-- Email Modal -->
-  <div id="emailModal" class="modal">
+<!-- vCard Modal -->
+<div id="vcardModal" class="modal">
   <div class="modal-content">
+    <!-- 右上角关闭按钮 -->
     <span class="close" aria-label="Close">&times;</span>
-    <h2>Send vCard via Email</h2>
-    <form id="emailForm" class="email-form">
-      <input
-        type="email"
-        name="user_email"
-        placeholder="Enter your email"
-        required
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-      />
-      <span class="error-message" id="emailError"></span>
-      <button type="submit" class="modal-button email">Send Email</button>
-    </form>
-    <p id="emailStatus" class="success-message"></p>
+    <h2>Save Contact Data</h2>
+    <p>How would you like to save contact data?</p>
+    <button id="savePhoneBtn" class="modal-button iphone">To My iPhone</button>
+    <button id="saveEmailBtn" class="modal-button email">Send via Email</button>
   </div>
 </div>
 
-  <!-- ABOUT SECTION -->
-  <div class="page-section" id="aboutSection">
-    <span class="section-close-btn" onclick="goHome()">x</span>
-    <div class="about-content" style="padding-top:30px;">
-      <h2>About <strong>DJA PoE<strong> Company</h2>
-      <p>
-  DJA – Brand of Shenzhen Dijiean Technology Co., Ltd. 
-  <a href="https://djakeji.com" target="_blank" style="text-decoration: none; color: #007bff;">Website: djakeji.com</a>
-</p>
-
-      <p>
-Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, with <strong>"DJA" <strong>as our brand. Our website,<strong> djakeji.com,<strong> reflects our Chinese name, <strong>"Dijiean Keji."<strong>
-      </p>
-      <p>
-        Founded in 2011, we've grown steadily and expanded our reach to markets worldwide, delivering innovative products such as PoE switches, splitters, repeaters, extenders, and fiber transceivers for <strong>security solutions<strong>. 
-      </p>
-    </div>
+<!-- Email Modal -->
+<div id="emailModal" class="modal">
+  <div class="modal-content">
+    <span class="close" aria-label="Close">&times;</span>
+    <h2>Send vCard via Email</h2>
+    <form id="vcardEmailForm" class="email-form">
+      <input
+        type="email"
+        id="vcardEmailInput"
+        placeholder="Enter your email"
+        required
+      />
+      <span class="message error-message" id="vcardEmailError"></span>
+      <span class="message success-message" id="vcardSuccessMessage"></span>
+      <span class="message info-message" id="vcardInfoMessage"></span>
+      <button type="submit" class="modal-button email" id="vcardSendButton" disabled>Send Email</button>
+    </form>
   </div>
+</div>
 
-  <!-- CONTACT SECTION -->
-  <div class="page-section" id="contactSection">
+<!-- CONTACT SECTION -->
+<div class="page-section" id="contactSection">
   <span class="section-close-btn" onclick="goHome()">x</span>
   <div class="contact-content">
     <h2>Contact Us</h2>
     <p>We appreciate your interest. Please fill out the form below:</p>
-    <form id="contactForm">
-      <input 
-        type="text" 
-        name="from_name" 
-        placeholder="Your Name" 
-        required 
+    <form id="contactForm" class="email-form">
+      <input
+        type="text"
+        id="contactNameInput"
+        placeholder="Your Name"
+        required
       />
-      <input 
-        type="email" 
-        name="reply_to" 
-        placeholder="Your Email" 
-        required 
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+      <input
+        type="email"
+        id="contactEmailInput"
+        placeholder="Your Email"
+        required
       />
-      <span class="error-message" id="contactEmailError"></span>
-      <textarea 
-        name="message" 
-        rows="5" 
-        placeholder="Your Message" 
+      <span class="message error-message" id="contactEmailError"></span>
+      <textarea
+        id="contactMessageInput"
+        rows="5"
+        placeholder="Your Message"
         required
       ></textarea>
-      <button type="submit" class="modal-button gray">Send Message</button>
+      <span class="message success-message" id="contactSuccessMessage"></span>
+      <span class="message info-message" id="contactInfoMessage"></span>
+      <button type="submit" class="modal-button gray" id="contactSendButton" disabled>Send Message</button>
     </form>
-    <p id="contactStatus" class="success-message"></p>
   </div>
 </div>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const sentEmailsContact = {}; // 记录 Contact 表单的发送记录
-  const sentEmailsVCard = {}; // 记录 vCard 表单的发送记录
+  // 初始化 EmailJS
+  emailjs.init("B1JJOs3J1-mRZ2AhL");
 
-  const getTodayDate = () => new Date().toISOString().split("T")[0]; // 获取当天日期
+  // 全局验证函数
+  const validateEmail = (email) =>
+    /^[^\s@]+@[^\s@]+\.(com|net|org|edu|gov|info)$/.test(email);
 
-  const validateEmail = (email) => {
-    const re = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    return re.test(String(email).toLowerCase());
-  };
+  const getTodayDate = () => new Date().toISOString().split("T")[0];
 
-  // 处理 vCard 模块发送逻辑
-  document.getElementById("emailForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const userEmail = e.target.user_email.value.trim();
-    const today = getTodayDate();
+  // ================== downloadvcard 部分 ==================
+  const vcardSentEmails = {};
+  const vcardEmailForm = document.getElementById("vcardEmailForm");
+  const vcardEmailInput = document.getElementById("vcardEmailInput");
+  const vcardEmailError = document.getElementById("vcardEmailError");
+  const vcardSuccessMessage = document.getElementById("vcardSuccessMessage");
+  const vcardInfoMessage = document.getElementById("vcardInfoMessage");
+  const vcardSendButton = document.getElementById("vcardSendButton");
 
-    // 校验邮箱格式
-    if (!validateEmail(userEmail)) {
-      const emailError = document.getElementById("emailError");
-      emailError.textContent = "Please enter a valid email address.";
-      emailError.style.display = "block";
-      return;
+  vcardEmailInput.addEventListener("input", () => {
+    const email = vcardEmailInput.value.trim();
+    if (!email) {
+      vcardEmailError.style.display = "none";
+      vcardSendButton.disabled = true;
+    } else if (validateEmail(email)) {
+      vcardEmailError.style.display = "none";
+      vcardSendButton.disabled = false;
     } else {
-      document.getElementById("emailError").style.display = "none";
+      vcardEmailError.style.display = "block";
+      vcardEmailError.textContent = "Please input a valid email";
+      vcardSendButton.disabled = true;
     }
-
-    // 检查是否已发送过
-    if (sentEmailsVCard[userEmail] === today) {
-      const emailError = document.getElementById("emailError");
-      emailError.textContent = "This email address already received the vCard today. Please try again tomorrow.";
-      emailError.style.display = "block";
-      return;
-    }
-
-    // 发送成功逻辑
-    sentEmailsVCard[userEmail] = today; // 记录发送状态
-    const emailStatus = document.getElementById("emailStatus");
-    emailStatus.textContent = "vCard sent successfully!";
-    emailStatus.style.color = "green";
-    emailStatus.style.display = "block";
-
-    // 模拟发送操作（可以在此添加实际发送逻辑）
-    console.log(`vCard sent to ${userEmail}`);
-    e.target.reset(); // 清空表单
+    vcardSuccessMessage.style.display = "none";
+    vcardInfoMessage.style.display = "none";
   });
 
-  // 处理 Contact 表单发送逻辑
-  document.getElementById("contactForm").addEventListener("submit", (e) => {
+  vcardEmailForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const userEmail = e.target.reply_to.value.trim();
+    const email = vcardEmailInput.value.trim();
     const today = getTodayDate();
 
-    // 校验邮箱格式
-    if (!validateEmail(userEmail)) {
-      const contactEmailError = document.getElementById("contactEmailError");
-      contactEmailError.textContent = "Please enter a valid email address.";
-      contactEmailError.style.display = "block";
+    if (!validateEmail(email)) {
+      vcardEmailError.style.display = "block";
+      vcardEmailError.textContent = "Please input a valid email";
       return;
+    }
+
+    if (vcardSentEmails[email] === today) {
+      vcardInfoMessage.style.display = "block";
+      vcardInfoMessage.textContent =
+        "This email has already been sent today. Thanks for your understanding";
+      return;
+    }
+
+    emailjs
+      .send("service_atyduqa", "template_ubf6qdk", { to_email: email })
+      .then(
+        () => {
+          vcardSuccessMessage.style.display = "block";
+          vcardSuccessMessage.textContent =
+            "Email sent successfully! Check your inbox.";
+          vcardSentEmails[email] = today;
+          vcardEmailForm.reset();
+        },
+        () => {
+          vcardEmailError.style.display = "block";
+          vcardEmailError.textContent = "Failed to send email. Try again.";
+        }
+      );
+  });
+
+  // ================== contact 部分 ==================
+  const contactSentEmails = {};
+  const contactForm = document.getElementById("contactForm");
+  const contactNameInput = document.getElementById("contactNameInput");
+  const contactEmailInput = document.getElementById("contactEmailInput");
+  const contactMessageInput = document.getElementById("contactMessageInput");
+  const contactEmailError = document.getElementById("contactEmailError");
+  const contactSuccessMessage = document.getElementById("contactSuccessMessage");
+  const contactInfoMessage = document.getElementById("contactInfoMessage");
+  const contactSendButton = document.getElementById("contactSendButton");
+
+  contactEmailInput.addEventListener("input", () => {
+    const email = contactEmailInput.value.trim();
+    if (!email) {
+      contactEmailError.style.display = "none";
+      contactSendButton.disabled = true;
+    } else if (validateEmail(email)) {
+      contactEmailError.style.display = "none";
+      contactSendButton.disabled = false;
     } else {
-      document.getElementById("contactEmailError").style.display = "none";
+      contactEmailError.style.display = "block";
+      contactEmailError.textContent = "Please input a valid email";
+      contactSendButton.disabled = true;
     }
+    contactSuccessMessage.style.display = "none";
+    contactInfoMessage.style.display = "none";
+  });
 
-    // 检查是否已发送过
-    if (sentEmailsContact[userEmail] === today) {
-      const contactStatus = document.getElementById("contactStatus");
-      contactStatus.textContent = "This email address already sent a message today. Please try again tomorrow.";
-      contactStatus.style.color = "red";
-      contactStatus.style.display = "block";
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = contactEmailInput.value.trim();
+    const name = contactNameInput.value.trim();
+    const message = contactMessageInput.value.trim();
+    const today = getTodayDate();
+
+    if (!validateEmail(email)) {
+      contactEmailError.style.display = "block";
+      contactEmailError.textContent = "Please input a valid email";
       return;
     }
 
-    // 发送成功逻辑
-    sentEmailsContact[userEmail] = today; // 记录发送状态
-    const contactStatus = document.getElementById("contactStatus");
-    contactStatus.textContent = "Your message was sent successfully!";
-    contactStatus.style.color = "green";
-    contactStatus.style.display = "block";
+    if (contactSentEmails[email] === today) {
+      contactInfoMessage.style.display = "block";
+      contactInfoMessage.textContent =
+        "This email has already sent a message today. Thanks for your understanding.";
+      return;
+    }
 
-    // 模拟发送操作（可以在此添加实际发送逻辑）
-    console.log(`Message sent to ${userEmail}`);
-    e.target.reset(); // 清空表单
+    emailjs
+      .send("service_atyduqa", "template_ubf6qdk", {
+        from_name: name,
+        to_email: email,
+        message: message,
+      })
+      .then(
+        () => {
+          contactSuccessMessage.style.display = "block";
+          contactSuccessMessage.textContent =
+            "Your message was sent successfully! We will reply soon.";
+          contactSentEmails[email] = today;
+          contactForm.reset();
+        },
+        () => {
+          contactEmailError.style.display = "block";
+          contactEmailError.textContent = "Your messeage has already been sent. Will reply soon. Thanks";
+        }
+      );
   });
 });
-
 </script>
-</body>
 
   <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
