@@ -187,7 +187,7 @@
       display: flex;
       align-items: center;
       border-top: 1px solid #eee;
-      padding: 6.6px 0;
+      padding: 1.6px 0;
     }
     .detail-list li:first-child {
       border-top: none;
@@ -774,36 +774,18 @@ margin-top: -0.55cm; /* 向上缩进0.55cm */
   <div class="modal-content">
     <span class="close" aria-label="Close">&times;</span>
     <h2>Send vCard via Email</h2>
-    <form id="vcardForm" class="email-form">
+    <form id="vcardEmailForm" class="email-form">
       <input
         type="email"
-        name="user_email"
         id="vcardEmailInput"
         placeholder="Enter your email"
         required
       />
-      <span class="error-message" id="vcardEmailError"></span>
-      <p id="vcardStatus" class="success-message"></p>
-      <button type="submit" class="modal-button email" id="vcardSendButton">Send Email</button>
+      <span class="message error-message" id="vcardEmailError"></span>
+      <span class="message success-message" id="vcardSuccessMessage"></span>
+      <span class="message info-message" id="vcardInfoMessage"></span>
+      <button type="submit" class="modal-button email" id="vcardSendButton" disabled>Send Email</button>
     </form>
-  </div>
-</div>
-
-<!-- ABOUT SECTION -->
-<div class="page-section" id="aboutSection">
-  <span class="section-close-btn" onclick="goHome()">x</span>
-  <div class="about-content" style="padding-top:30px;">
-    <h2>About <strong>DJA PoE<strong> Company</h2>
-    <p>
-      DJA – Brand of Shenzhen Dijiean Technology Co., Ltd. 
-      <a href="https://djakeji.com" target="_blank" style="text-decoration: none; color: #007bff;">Website: djakeji.com</a>
-    </p>
-    <p>
-      Note that <strong>Dijiean Technology Co., Ltd.<strong> is our official name, with <strong>"DJA" <strong>as our brand. Our website,<strong> djakeji.com,<strong> reflects our Chinese name, <strong>"Dijiean Keji."<strong>
-    </p>
-    <p>
-      Founded in 2011, we've grown steadily and expanded our reach to markets worldwide, delivering innovative products such as PoE switches, splitters, repeaters, extenders, and fiber transceivers for <strong>security solutions<strong>. 
-    </p>
   </div>
 </div>
 
@@ -813,31 +795,29 @@ margin-top: -0.55cm; /* 向上缩进0.55cm */
   <div class="contact-content">
     <h2>Contact Us</h2>
     <p>We appreciate your interest. Please fill out the form below:</p>
-    <form id="contactForm">
+    <form id="contactForm" class="email-form">
       <input
         type="text"
-        name="from_name"
         id="contactNameInput"
         placeholder="Your Name"
         required
       />
       <input
         type="email"
-        name="reply_to"
         id="contactEmailInput"
         placeholder="Your Email"
         required
       />
-      <span class="error-message" id="contactEmailError"></span>
+      <span class="message error-message" id="contactEmailError"></span>
       <textarea
-        name="message"
         id="contactMessageInput"
         rows="5"
         placeholder="Your Message"
         required
       ></textarea>
-      <p id="contactStatus" class="success-message"></p>
-      <button type="submit" class="modal-button gray" id="contactSendButton">Send Message</button>
+      <span class="message success-message" id="contactSuccessMessage"></span>
+      <span class="message info-message" id="contactInfoMessage"></span>
+      <button type="submit" class="modal-button gray" id="contactSendButton" disabled>Send Message</button>
     </form>
   </div>
 </div>
@@ -845,22 +825,21 @@ margin-top: -0.55cm; /* 向上缩进0.55cm */
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   // 初始化 EmailJS
-  emailjs.init("HXCThZROMytOt-wyp");
+  emailjs.init("B1JJOs3J1-mRZ2AhL");
 
+  // 全局验证函数
   const validateEmail = (email) =>
     /^[^\s@]+@[^\s@]+\.(com|net|org|edu|gov|info)$/.test(email);
 
   const getTodayDate = () => new Date().toISOString().split("T")[0];
 
-  let vcardSending = false;
-  let contactSending = false;
-
-  // ================== vCard 部分 ==================
+  // ================== downloadvcard 部分 ==================
   const vcardSentEmails = {};
-  const vcardForm = document.getElementById("vcardForm");
+  const vcardEmailForm = document.getElementById("vcardEmailForm");
   const vcardEmailInput = document.getElementById("vcardEmailInput");
   const vcardEmailError = document.getElementById("vcardEmailError");
-  const vcardStatus = document.getElementById("vcardStatus");
+  const vcardSuccessMessage = document.getElementById("vcardSuccessMessage");
+  const vcardInfoMessage = document.getElementById("vcardInfoMessage");
   const vcardSendButton = document.getElementById("vcardSendButton");
 
   vcardEmailInput.addEventListener("input", () => {
@@ -872,66 +851,58 @@ document.addEventListener("DOMContentLoaded", () => {
       vcardEmailError.style.display = "none";
       vcardSendButton.disabled = false;
     } else {
-      vcardEmailError.textContent = "Please enter a valid email address.";
       vcardEmailError.style.display = "block";
+      vcardEmailError.textContent = "Please input a valid email";
       vcardSendButton.disabled = true;
     }
-    vcardStatus.style.display = "none";
+    vcardSuccessMessage.style.display = "none";
+    vcardInfoMessage.style.display = "none";
   });
 
-  vcardForm.addEventListener("submit", (e) => {
+  vcardEmailForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    if (vcardSending) return;
-    vcardSending = true;
-
     const email = vcardEmailInput.value.trim();
     const today = getTodayDate();
 
     if (!validateEmail(email)) {
-      vcardEmailError.textContent = "Please enter a valid email address.";
       vcardEmailError.style.display = "block";
-      vcardSending = false;
+      vcardEmailError.textContent = "Please input a valid email";
       return;
     }
 
     if (vcardSentEmails[email] === today) {
-      vcardEmailError.textContent =
-        "This email has already received the vCard today.";
-      vcardEmailError.style.display = "block";
-      vcardSending = false;
+      vcardInfoMessage.style.display = "block";
+      vcardInfoMessage.textContent =
+        "This email has already been sent today. Thanks for your understanding";
       return;
     }
 
     emailjs
-      .send("service_1ffkva1", "template_ypdj9n9", {
-        to_email: email,
-      })
-      .then(() => {
-        vcardStatus.textContent = "vCard sent successfully!";
-        vcardStatus.style.color = "green";
-        vcardStatus.style.display = "block";
-        vcardSentEmails[email] = today;
-        vcardForm.reset();
-        vcardSendButton.disabled = true;
-      })
-      .catch(() => {
-        vcardEmailError.textContent = "Failed to send vCard. Please try again.";
-        vcardEmailError.style.display = "block";
-      })
-      .finally(() => {
-        vcardSending = false;
-      });
+      .send("service_atyduqa", "template_ubf6qdk", { to_email: email })
+      .then(
+        () => {
+          vcardSuccessMessage.style.display = "block";
+          vcardSuccessMessage.textContent =
+            "Email sent successfully! Check your inbox.";
+          vcardSentEmails[email] = today;
+          vcardEmailForm.reset();
+        },
+        () => {
+          vcardEmailError.style.display = "block";
+          vcardEmailError.textContent = "Failed to send email. Try again.";
+        }
+      );
   });
 
-  // ================== Contact 部分 ==================
+  // ================== contact 部分 ==================
   const contactSentEmails = {};
   const contactForm = document.getElementById("contactForm");
   const contactNameInput = document.getElementById("contactNameInput");
   const contactEmailInput = document.getElementById("contactEmailInput");
   const contactMessageInput = document.getElementById("contactMessageInput");
   const contactEmailError = document.getElementById("contactEmailError");
-  const contactStatus = document.getElementById("contactStatus");
+  const contactSuccessMessage = document.getElementById("contactSuccessMessage");
+  const contactInfoMessage = document.getElementById("contactInfoMessage");
   const contactSendButton = document.getElementById("contactSendButton");
 
   contactEmailInput.addEventListener("input", () => {
@@ -943,65 +914,56 @@ document.addEventListener("DOMContentLoaded", () => {
       contactEmailError.style.display = "none";
       contactSendButton.disabled = false;
     } else {
-      contactEmailError.textContent = "Please enter a valid email address.";
       contactEmailError.style.display = "block";
+      contactEmailError.textContent = "Please input a valid email";
       contactSendButton.disabled = true;
     }
-    contactStatus.style.display = "none";
+    contactSuccessMessage.style.display = "none";
+    contactInfoMessage.style.display = "none";
   });
 
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
-    if (contactSending) return;
-    contactSending = true;
-
     const email = contactEmailInput.value.trim();
     const name = contactNameInput.value.trim();
     const message = contactMessageInput.value.trim();
     const today = getTodayDate();
 
     if (!validateEmail(email)) {
-      contactEmailError.textContent = "Please enter a valid email address.";
       contactEmailError.style.display = "block";
-      contactSending = false;
+      contactEmailError.textContent = "Please input a valid email";
       return;
     }
 
     if (contactSentEmails[email] === today) {
-      contactEmailError.textContent =
-        "This email address has already sent a message today.";
-      contactEmailError.style.display = "block";
-      contactSending = false;
+      contactInfoMessage.style.display = "block";
+      contactInfoMessage.textContent =
+        "This email has already sent a message today. Thanks for your understanding.";
       return;
     }
 
     emailjs
-      .send("service_1ffkva1", "template_o5n5jrp", {
+      .send("service_atyduqa", "template_ubf6qdk", {
         from_name: name,
-        reply_to: email,
+        to_email: email,
         message: message,
       })
-      .then(() => {
-        contactStatus.textContent = "Your message was sent successfully!";
-        contactStatus.style.color = "green";
-        contactStatus.style.display = "block";
-        contactSentEmails[email] = today;
-        contactForm.reset();
-        contactSendButton.disabled = true;
-      })
-      .catch(() => {
-        contactEmailError.textContent = "Failed to send your message. Please try again.";
-        contactEmailError.style.display = "block";
-      })
-      .finally(() => {
-        contactSending = false;
-      });
+      .then(
+        () => {
+          contactSuccessMessage.style.display = "block";
+          contactSuccessMessage.textContent =
+            "Your message was sent successfully! We will reply soon.";
+          contactSentEmails[email] = today;
+          contactForm.reset();
+        },
+        () => {
+          contactEmailError.style.display = "block";
+          contactEmailError.textContent = "Your messeage has already been sent. Will reply soon. Thanks";
+        }
+      );
   });
 });
 </script>
-
-
 
   <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
